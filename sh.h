@@ -6,7 +6,7 @@
 /*   By: mlaize <mlaize@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/18 14:16:49 by mlaize            #+#    #+#             */
-/*   Updated: 2014/02/26 13:48:14 by scohen           ###   ########.fr       */
+/*   Updated: 2014/02/26 13:59:15 by jmoiroux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,13 +57,13 @@ typedef struct	s_data
 int		prs_build_me_tree(char *str, t_tree **tree);
 int		prs_cut_last_str(t_tree *tree, t_ope operation);
 int		prs_parser_lexer(char *str);
+int		env_tablen(char **tab);
+int		env_tabheight(char **tab);
 
+void	env_copy(char **environ, t_data *d);
+void	ft_exit(t_data *d, char *s);
 void	read_me_tree_mothafocka(t_tree*);
 
 t_tree	*prs_create_tree_node(int type, int ope, char *command);
-
-int		env_tablen(char **tab);
-int		env_tabheight(char **tab);
-void	env_copy(char **environ, t_data *d);
 
 #endif
