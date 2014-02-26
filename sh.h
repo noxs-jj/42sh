@@ -6,7 +6,7 @@
 /*   By: mlaize <mlaize@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/18 14:16:49 by mlaize            #+#    #+#             */
-/*   Updated: 2014/02/26 13:48:14 by scohen           ###   ########.fr       */
+/*   Updated: 2014/02/26 14:53:42 by nmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,11 @@ typedef struct	s_ope
 typedef struct	s_data
 {
 	char		**c_env;
+	char		**cmd;
 }				t_data;
 
+char	*env_getenv(const char *name, t_data *d);
+int		env_setenv(const char *name, const char *value, t_data *d);
 
 int		prs_build_me_tree(char *str, t_tree **tree);
 int		prs_cut_last_str(t_tree *tree, t_ope operation);

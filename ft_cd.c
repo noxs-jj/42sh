@@ -6,7 +6,7 @@
 /*   By: nmohamed <nmohamed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/25 16:24:35 by nmohamed          #+#    #+#             */
-/*   Updated: 2014/02/26 14:05:47 by nmohamed         ###   ########.fr       */
+/*   Updated: 2014/02/26 14:56:56 by nmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,11 @@
 
 /*
 ** Dependencies:
-**	- char	*env_getenv(const char *name);
-**	- int	env_setenv(const char *name, const char *value, int overwrite);
+**	- char	*env_getenv(const char *name, t_data *d);
+**	- int	env_setenv(const char *name, const char *value, t_data *d);
 ** TEST seems ok. Needs team approval
 */
+
 
 static int	is_dir(const char *path)
 {
@@ -44,10 +45,10 @@ static int	ft_cd_tilde(t_data *data)
 	int		error;
 
 	error = ft_check_dir(data->cmd[1]);
-	if (chdir(env_getenv("HOME")) == 0)
+	if (chdir(env_getenv("HOME", data)) == 0)
 	{
-		env_setenv("OLDPWD", env_getenv("PWD"), 1);
-		env_setenv("PWD", env_getenv("HOME"), 1);
+		env_setenv("OLDPWD", env_getenv("PWD", data), data);
+		env_setenv("PWD", env_getenv("HOME", data), data);
 	}
 	return (error);
 }
@@ -55,13 +56,14 @@ static int	ft_cd_tilde(t_data *data)
 static int	ft_cd_dash(t_data *data)
 {
 	int		error;
+	char	*tmp;
 
 	error = ft_check_dir(data->cmd[1]);
-	if (chdir(env_getenv("OLDPWD")) == 0)
+	if (chdir(env_getenv("OLDPWD", data)) == 0)
 	{
-		tmp = env_getenv("PWD");
-		env_setenv("PWD", env_getenv("OLDPWD"), 1);
-		env_setenv("OLDPWD", tmp, 1);
+		tmp = env_getenv("PWD", data);
+		env_setenv("PWD", env_getenv("OLDPWD", data), data);
+		env_setenv("OLDPWD", tmp, data);
 	}
 	return (error);
 }
@@ -73,8 +75,8 @@ static int	ft_cd_normal(t_data *data)
 	error = ft_check_dir(data->cmd[1]);
 	if (chdir(data->cmd[1]) == 0 && error == FT_CD_SUCCESS)
 	{
-		env_setenv("OLDPWD", env_getenv("PWD"), 1);
-		env_setenv("PWD", data->cmd[1], 1);
+		env_setenv("OLDPWD", env_getenv("PWD", data), data);
+		env_setenv("PWD", data->cmd[1], data);
 	}
 	return (error);
 }
@@ -82,7 +84,6 @@ static int	ft_cd_normal(t_data *data)
 int			ft_cd(t_data *data)
 {
 	int		error;
-	char	*tmp;
 
 	error = FT_CD_SUCCESS;
 	if (data->cmd[1] == NULL || ft_strcmp(data->cmd[1], "~") == 0)
@@ -91,7 +92,6 @@ int			ft_cd(t_data *data)
 		error = ft_cd_dash(data);
 	else if (data->cmd[1] != NULL)
 		 error = ft_cd_normal(data);
-	else
 	if (error != FT_CD_SUCCESS)
 		WR(2, "Chdir failed\n");
 	return (error);
