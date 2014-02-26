@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   sh.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlaize <mlaize@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nmohamed <nmohamed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/18 14:16:49 by mlaize            #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2014/02/26 15:05:06 by nmohamed         ###   ########.fr       */
+=======
+/*   Updated: 2014/02/26 14:00:15 by nmohamed         ###   ########.fr       */
+>>>>>>> c156a5b5d0cb5fdf718bb3f291845fe6c20a9363
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +21,11 @@
 # define MAX_PRIORITY 2
 
 # define WR(fd, str) write(fd, str, sizeof(str) - 1)
+<<<<<<< HEAD
 
 extern char			**environ;
+=======
+>>>>>>> c156a5b5d0cb5fdf718bb3f291845fe6c20a9363
 
 typedef struct		s_tree
 {
@@ -29,7 +36,6 @@ typedef struct		s_tree
 	struct s_tree	*right; /* link to right next node */
 }					t_tree;
 
-
 typedef struct	s_ope
 {
 	char		*operand;
@@ -37,7 +43,10 @@ typedef struct	s_ope
 	int			priority;
 }				t_ope;
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> c156a5b5d0cb5fdf718bb3f291845fe6c20a9363
 static t_ope	list_ope[] =
 {
 	{"|", 0, 0},
@@ -48,19 +57,28 @@ static t_ope	list_ope[] =
 	{"||", 5, 2},
 	{NULL, -1, -1}
 };
+<<<<<<< HEAD
 
 
 typedef struct	s_data
 {
 	char		**c_env;
+=======
+
+typedef struct	s_data
+{
+>>>>>>> c156a5b5d0cb5fdf718bb3f291845fe6c20a9363
 	char		**env;
 	t_tree		*tree;
 	char		**cmd;
 }				t_data;
 
+<<<<<<< HEAD
 char	*env_getenv(const char *name, t_data *d);
 int		env_setenv(const char *name, const char *value, t_data *d);
 
+=======
+>>>>>>> c156a5b5d0cb5fdf718bb3f291845fe6c20a9363
 int		prs_build_me_tree(char *str, t_tree **tree);
 int		prs_cut_last_str(t_tree *tree, t_ope operation);
 int		prs_parser_lexer(char *str);
