@@ -6,7 +6,7 @@
 #    By: jmoiroux <jmoiroux@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/02/26 11:22:36 by jmoiroux          #+#    #+#              #
-#    Updated: 2014/02/26 11:22:56 by jmoiroux         ###   ########.fr        #
+#    Updated: 2014/02/26 11:32:55 by jmoiroux         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -20,9 +20,13 @@ RM = rm -rf
 
 HEADER = sh.h
 
-NAME = # executable
+NAME = 42sh
 
-SRCS = # source
+SRCS = \
+cut_tree.c \
+env_copy.c \
+prs_build_tree.c \
+prs_parse.c \
 
 OBJS = $(SRCS:.c=.o)
 
