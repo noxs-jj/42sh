@@ -6,7 +6,7 @@
 /*   By: nmohamed <nmohamed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/25 18:17:41 by nmohamed          #+#    #+#             */
-/*   Updated: 2014/02/26 14:59:49 by nmohamed         ###   ########.fr       */
+/*   Updated: 2014/02/26 15:23:18 by nmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 # include <unistd.h>
 # include <sys/stat.h>
 
-# define FT_CD_SUCCESS 1
-# define FT_CD_NOEXIST 2
-# define FT_CD_ADENIED 3
-# define FT_CD_NOTADIR 4
+# define FT_CD_SUCCESS 0
+# define FT_CD_NOEXIST 1
+# define FT_CD_ADENIED 2
+# define FT_CD_NOTADIR 3
 
 /*
 ** ft_cd() return values
