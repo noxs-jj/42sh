@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sh.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlaize <mlaize@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nmohamed <nmohamed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/18 14:16:49 by mlaize            #+#    #+#             */
-/*   Updated: 2014/02/25 16:17:51 by jmoiroux         ###   ########.fr       */
+/*   Updated: 2014/02/25 18:23:04 by nmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # include "libft/includes/libft.h"
 # define MAX_PRIORITY 2
+
+# define WR(fd, str) write(fd, str, sizeof(str) - 1)
 
 typedef struct		s_tree
 {
@@ -25,14 +27,12 @@ typedef struct		s_tree
 	struct s_tree	*right; /* link to right next node */
 }					t_tree;
 
-
 typedef struct	s_ope
 {
 	char		*operand;
 	int			code;
 	int			priority;
 }				t_ope;
-
 
 static t_ope	list_ope[] =
 {
@@ -45,12 +45,12 @@ static t_ope	list_ope[] =
 	{NULL, -1, -1}
 };
 
-
 typedef struct	s_data
 {
-
+	char		**env;
+	t_tree		*tree;
+	char		**cmd;
 }				t_data;
-
 
 int		prs_build_me_tree(char *str, t_tree **tree);
 int		prs_cut_last_str(t_tree *tree, t_ope operation);
