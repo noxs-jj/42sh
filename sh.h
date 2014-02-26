@@ -6,7 +6,7 @@
 /*   By: mlaize <mlaize@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/18 14:16:49 by mlaize            #+#    #+#             */
-/*   Updated: 2014/02/26 14:53:42 by nmohamed         ###   ########.fr       */
+/*   Updated: 2014/02/26 15:05:06 by nmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # include "libft/includes/libft.h"
 # define MAX_PRIORITY 2
+
+# define WR(fd, str) write(fd, str, sizeof(str) - 1)
 
 extern char			**environ;
 
@@ -36,7 +38,7 @@ typedef struct	s_ope
 }				t_ope;
 
 
-/*static t_ope	list_ope[] =
+static t_ope	list_ope[] =
 {
 	{"|", 0, 0},
 	{"<", 1, 0},
@@ -46,11 +48,13 @@ typedef struct	s_ope
 	{"||", 5, 2},
 	{NULL, -1, -1}
 };
-*/
+
 
 typedef struct	s_data
 {
 	char		**c_env;
+	char		**env;
+	t_tree		*tree;
 	char		**cmd;
 }				t_data;
 
@@ -64,9 +68,5 @@ int		prs_parser_lexer(char *str);
 void	read_me_tree_mothafocka(t_tree*);
 
 t_tree	*prs_create_tree_node(int type, int ope, char *command);
-
-int		env_tablen(char **tab);
-int		env_tabheight(char **tab);
-void	env_copy(char **environ, t_data *d);
 
 #endif
