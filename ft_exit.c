@@ -6,7 +6,7 @@
 /*   By: jmoiroux <jmoiroux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/26 13:48:39 by jmoiroux          #+#    #+#             */
-/*   Updated: 2014/02/26 13:54:52 by jmoiroux         ###   ########.fr       */
+/*   Updated: 2014/02/26 13:56:19 by jmoiroux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,4 +17,5 @@ void	ft_exit(t_data *d, char *s)
 	if (d != NULL)
 		ft_memdel((void **)&d);
 	ft_putendl(s);
+	_exit(1);
 }
