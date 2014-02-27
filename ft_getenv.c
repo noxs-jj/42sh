@@ -6,7 +6,7 @@
 /*   By: nmohamed <nmohamed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/27 12:39:35 by nmohamed          #+#    #+#             */
-/*   Updated: 2014/02/27 15:44:58 by nmohamed         ###   ########.fr       */
+/*   Updated: 2014/02/27 15:46:39 by nmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,12 +69,11 @@ char	*ft_getenv(char *str, char **env)
 }
 
 /*
- ** Takes the ADDRESS of a string of strings
- ** Frees each strings one by one
- ** Frees main string of strings
- ** Set value of the main pointer to NULL
- */
-
+** Takes the ADDRESS of a string of strings
+** Frees each strings one by one
+** Frees main string of strings
+** Set value of the main pointer to NULL
+*/
 
 void	ft_putenv(char ***env, char *var, char *val)
 {
