@@ -6,7 +6,7 @@
 /*   By: nmohamed <nmohamed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/18 14:16:49 by mlaize            #+#    #+#             */
-/*   Updated: 2014/02/27 13:50:26 by nmohamed         ###   ########.fr       */
+/*   Updated: 2014/02/27 17:29:59 by mlaize           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,19 @@
 
 extern char			**environ;
 
+/*
+**	type :	0 = for sort
+**			1 = operator
+**			2 = command
+**			3 = response
+*/
 typedef struct		s_tree
 {
-	int				type; /* type: 0 don't know type / 1 OPE / 2 CMD */
+	int				type; /* type */
+	int				response; /* response of child's action */
 	int				ope; /* What operator is it */
 	char			*command; /* The command string */
+	struct s_tree	*father
 	struct s_tree	*left; /* link to left next node */
 	struct s_tree	*right; /* link to right next node */
 }					t_tree;
