@@ -6,7 +6,7 @@
 /*   By: nmohamed <nmohamed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/18 14:16:49 by mlaize            #+#    #+#             */
-/*   Updated: 2014/02/26 15:11:08 by nmohamed         ###   ########.fr       */
+/*   Updated: 2014/02/27 13:50:26 by nmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 
 # include "libft/includes/libft.h"
 # define MAX_PRIORITY 2
-
-# define WR(fd, str) write(fd, str, sizeof(str) - 1)
 
 extern char			**environ;
 
@@ -36,6 +34,7 @@ typedef struct	s_ope
 	int			priority;
 }				t_ope;
 
+/*
 static t_ope	list_ope[] =
 {
 	{"|", 0, 0},
@@ -46,17 +45,14 @@ static t_ope	list_ope[] =
 	{"||", 5, 2},
 	{NULL, -1, -1}
 };
+*/
 
 typedef struct	s_data
 {
 	char		**c_env;
 	char		**env;
 	t_tree		*tree;
-	char		**cmd;
 }				t_data;
-
-char	*env_getenv(const char *name, t_data *d);
-int		env_setenv(const char *name, const char *value, t_data *d);
 
 int		prs_build_me_tree(char *str, t_tree **tree);
 int		prs_cut_last_str(t_tree *tree, t_ope operation);
