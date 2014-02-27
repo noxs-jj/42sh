@@ -6,16 +6,11 @@
 /*   By: nmohamed <nmohamed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/27 12:39:35 by nmohamed          #+#    #+#             */
-/*   Updated: 2014/02/27 13:57:17 by nmohamed         ###   ########.fr       */
+/*   Updated: 2014/02/27 15:29:58 by nmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
-#include <stdio.h>
-#include <strings.h>
-#include <string.h>
-#include <stdlib.h>
-#include <unistd.h>
 
 size_t	arraylen(char **array)
 {
@@ -32,6 +27,19 @@ size_t	arraylen(char **array)
 	return (i);
 }
 
+void	*ft_realloc(void *ptr, size_t size)
+{
+	void	*new_ptr;
+
+	if (ptr == NULL)
+		return (ft_memalloc(size));
+	if (size == 0)
+		return (ptr);
+	new_ptr = ft_memalloc(size);
+	ft_memcpy(new_ptr, ptr, size);
+	return (new_ptr);
+}
+
 char	**env_cpy(char **env)
 {
 	char	**new;
@@ -40,7 +48,7 @@ char	**env_cpy(char **env)
 
 	i = 0;
 	len = arraylen(env);
-	new = (char **)malloc(len * sizeof(char *) + 1);
+	new = (char **)ft_memalloc(len * (sizeof(char *) + 2));
 	if (new == NULL)
 	{
 		ft_putendl("Malloc error: could not copy environement");
@@ -52,8 +60,10 @@ char	**env_cpy(char **env)
 		++i;
 	}
 	new[i] = ft_strdup("\0");
+	new[i + 1] = NULL;
 	return (new);
 }
+
 
 /*
 ** Return values:
@@ -61,12 +71,12 @@ char	**env_cpy(char **env)
 ** Otherwise, returns an allocated COPY of the string found in **env
 */
 
-char	*env_getenv(char **env, char *str)
+char	*env_getenv(char *str, char **env)
 {
 	size_t	i;
 	char	*tmp;
 
-	if ((tmp = malloc(strlen(str) + 1)) != NULL)
+	if ((tmp = ft_memalloc(ft_strlen(str) + 1)) != NULL)
 	{
 		tmp = ft_strcpy(tmp, str);
 		tmp = ft_strcat(tmp, "=");
@@ -88,11 +98,11 @@ char	*env_getenv(char **env, char *str)
 }
 
 /*
-** Takes the ADDRESS of a string of strings
-** Frees each strings one by one
-** Frees main string of strings
-** Set value of the main pointer to NULL
-*/
+ ** Takes the ADDRESS of a string of strings
+ ** Frees each strings one by one
+ ** Frees main string of strings
+ ** Set value of the main pointer to NULL
+ */
 
 void	env_del(char ***env)
 {
@@ -109,15 +119,85 @@ void	env_del(char ***env)
 	*p = NULL;
 }
 
-void	env_print(char **env)
+
+void	env_putenv(char ***env, char *var, char *val)
 {
-   while (**env)
-   {
-	   ft_putendl(*env);
-	   ++env;
-   }
+	char	*tmp;
+
+	if ((tmp = ft_memalloc(ft_strlen(var) + ft_strlen(val) + 1)) != NULL)
+	{
+		tmp = ft_strcpy(tmp, var);
+		tmp = ft_strcat(tmp, "=");
+		tmp = ft_strcat(tmp, val);
+	}
+	else
+	{
+		ft_putendl("Malloc error: could not allocate new variable");
+		return ;
+	}
+	(*env)[arraylen(*env)] = tmp;
 }
 
+int		env_search(char **env, char *str)
+{
+	size_t	i;
+	char	*tmp;
+
+	if ((tmp = ft_memalloc(ft_strlen(str) + 1)) != NULL)
+	{
+		tmp = ft_strcpy(tmp, str);
+		tmp = ft_strcat(tmp, "=");
+	}
+	else
+	{
+		ft_putendl("Malloc error: could not allocate tmp");
+		return (-1);
+	}
+	i = 0;
+	while (*env[i] != '\0' && ft_strncmp(env[i], tmp, ft_strlen(tmp)) != 0)
+	{
+		++i;
+	}
+	free(tmp);
+	if (env[i][0] == '\0')
+		return (-1);
+	return (i);
+}
+
+void	env_setenv(char ***env, char *var, char *val)
+{
+	char	*tmp;
+
+	if (env_getenv(var, *env) == NULL)
+		env_putenv(env, var, val);
+	else
+	{
+		*env = ft_realloc(*env, sizeof(char *) * (arraylen(*env) + 1));
+		if ((tmp = malloc(ft_strlen(var) + ft_strlen(val) + 1)) != NULL)
+		{
+			tmp = ft_strcpy(tmp, var);
+			tmp = ft_strcat(tmp, "=");
+			tmp = ft_strcat(tmp, val);
+		}
+		else
+		{
+			ft_putendl("Malloc error: could not allocate variable (setenv)");
+			return ;
+		}
+		(*env)[env_search(*env, var)] = tmp;
+	}
+}
+
+void	env_print(char **env)
+{
+	while (*env && **env)
+	{
+		ft_putendl(*env);
+		++env;
+	}
+}
+
+/*
 int		main(int ac, char **av, char **old_env)
 {
 	char	**env;
@@ -125,7 +205,7 @@ int		main(int ac, char **av, char **old_env)
 	char	*var;
 
 	tofree = env = env_cpy(old_env);
-	//env_print(env);
+	env_print(env);
 	var = env_getenv(env, av[1]);
 	puts(var);
 	env_del(&env);
@@ -133,3 +213,20 @@ int		main(int ac, char **av, char **old_env)
 	(void)av;
 	return (0);
 }
+
+int		main(int ac, char **av, char **old_env)
+{
+	char	**env;
+	char	**tofree;
+
+	tofree = env = env_cpy(old_env);
+	//env_print(env);
+	env_setenv(&env, av[1], av[2]);
+	env_print(env);
+	env_del(&env);
+	(void)ac;
+	(void)av;
+	return (0);
+}
+*/
+
