@@ -6,7 +6,7 @@
 #    By: jmoiroux <jmoiroux@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/02/26 11:22:36 by jmoiroux          #+#    #+#              #
-#    Updated: 2014/02/26 11:32:55 by jmoiroux         ###   ########.fr        #
+#    Updated: 2014/02/26 18:48:50 by jmoiroux         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -23,8 +23,13 @@ HEADER = sh.h
 NAME = 42sh
 
 SRCS = \
+build_check.c \
 cut_tree.c \
 env_copy.c \
+env_tabheight.c \
+env_tablen.c \
+ft_cd.c \
+ft_exit.c \
 prs_build_tree.c \
 prs_parse.c \
 
