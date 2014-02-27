@@ -6,7 +6,7 @@
 /*   By: jmoiroux <jmoiroux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/26 14:53:25 by jmoiroux          #+#    #+#             */
-/*   Updated: 2014/02/26 15:55:32 by jmoiroux         ###   ########.fr       */
+/*   Updated: 2014/02/26 15:59:36 by jmoiroux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,11 @@ static const	t_build[] =
 	{"exit\n", &ft_cd},
 	{'\0', NULL}
 }
+
+/*
+** Check what builtin is used et lunch function
+** TEST
+*/
 
 void			build_check(t_data *d, char *str)
 {
