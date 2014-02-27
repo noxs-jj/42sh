@@ -6,7 +6,7 @@
 /*   By: nmohamed <nmohamed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/27 12:39:35 by nmohamed          #+#    #+#             */
-/*   Updated: 2014/02/27 15:46:39 by nmohamed         ###   ########.fr       */
+/*   Updated: 2014/02/27 16:03:44 by nmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ void	ft_putenv(char ***env, char *var, char *val)
 		ft_putendl("Malloc error: could not allocate new variable");
 		return ;
 	}
+	*env = ft_realloc(*env, sizeof(char *) * (arraylen(*env) + 1));
 	(*env)[arraylen(*env)] = tmp;
 }
 
