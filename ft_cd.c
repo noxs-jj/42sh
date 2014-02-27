@@ -6,7 +6,7 @@
 /*   By: nmohamed <nmohamed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/25 16:24:35 by nmohamed          #+#    #+#             */
-/*   Updated: 2014/02/26 15:44:47 by nmohamed         ###   ########.fr       */
+/*   Updated: 2014/02/27 15:42:38 by nmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 **	- int	env_setenv(const char *name, const char *value, t_data *d);
 ** TESTING
 */
-
 
 static int	is_dir(const char *path)
 {
@@ -93,7 +92,7 @@ int			ft_cd(t_data *data, char *str)
 	else if (ft_strcmp(cmd[1], "-") == 0)
 		error = ft_cd_dash(data, cmd);
 	else if (cmd[1] != NULL)
-		 error = ft_cd_normal(data, cmd);
+		error = ft_cd_normal(data, cmd);
 	if (error != FT_CD_SUCCESS)
 		WR(2, "Chdir failed\n");
 	return (error);
