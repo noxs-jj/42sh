@@ -6,7 +6,7 @@
 /*   By: nmohamed <nmohamed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/25 16:24:35 by nmohamed          #+#    #+#             */
-/*   Updated: 2014/02/26 14:56:56 by nmohamed         ###   ########.fr       */
+/*   Updated: 2014/02/26 15:44:47 by nmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 ** Dependencies:
 **	- char	*env_getenv(const char *name, t_data *d);
 **	- int	env_setenv(const char *name, const char *value, t_data *d);
-** TEST seems ok. Needs team approval
+** TESTING
 */
 
 
@@ -40,11 +40,11 @@ static int	ft_check_dir(char *dir)
 	return (FT_CD_SUCCESS);
 }
 
-static int	ft_cd_tilde(t_data *data)
+static int	ft_cd_tilde(t_data *data, char **cmd)
 {
 	int		error;
 
-	error = ft_check_dir(data->cmd[1]);
+	error = ft_check_dir(cmd[1]);
 	if (chdir(env_getenv("HOME", data)) == 0)
 	{
 		env_setenv("OLDPWD", env_getenv("PWD", data), data);
@@ -53,12 +53,12 @@ static int	ft_cd_tilde(t_data *data)
 	return (error);
 }
 
-static int	ft_cd_dash(t_data *data)
+static int	ft_cd_dash(t_data *data, char **cmd)
 {
 	int		error;
 	char	*tmp;
 
-	error = ft_check_dir(data->cmd[1]);
+	error = ft_check_dir(cmd[1]);
 	if (chdir(env_getenv("OLDPWD", data)) == 0)
 	{
 		tmp = env_getenv("PWD", data);
@@ -68,64 +68,68 @@ static int	ft_cd_dash(t_data *data)
 	return (error);
 }
 
-static int	ft_cd_normal(t_data *data)
+static int	ft_cd_normal(t_data *data, char **cmd)
 {
 	int		error;
 
-	error = ft_check_dir(data->cmd[1]);
-	if (chdir(data->cmd[1]) == 0 && error == FT_CD_SUCCESS)
+	error = ft_check_dir(cmd[1]);
+	if (chdir(cmd[1]) == 0 && error == FT_CD_SUCCESS)
 	{
 		env_setenv("OLDPWD", env_getenv("PWD", data), data);
-		env_setenv("PWD", data->cmd[1], data);
+		env_setenv("PWD", cmd[1], data);
 	}
 	return (error);
 }
 
-int			ft_cd(t_data *data)
+int			ft_cd(t_data *data, char *str)
 {
 	int		error;
+	char	**cmd;
 
+	cmd = ft_strsplit(str, ' ');
 	error = FT_CD_SUCCESS;
-	if (data->cmd[1] == NULL || ft_strcmp(data->cmd[1], "~") == 0)
-		error = ft_cd_tilde(data);
-	else if (ft_strcmp(data->cmd[1], "-") == 0)
-		error = ft_cd_dash(data);
-	else if (data->cmd[1] != NULL)
-		 error = ft_cd_normal(data);
+	if (cmd[1] == NULL || ft_strcmp(cmd[1], "~") == 0)
+		error = ft_cd_tilde(data, cmd);
+	else if (ft_strcmp(cmd[1], "-") == 0)
+		error = ft_cd_dash(data, cmd);
+	else if (cmd[1] != NULL)
+		 error = ft_cd_normal(data, cmd);
 	if (error != FT_CD_SUCCESS)
 		WR(2, "Chdir failed\n");
 	return (error);
 }
 
-/*
-**  int			ft_cd_test(int ac, char **av)
-**  {
-**  	t_data	data;
-**  	char	*cmd[] = {"cd", av[1], NULL};
-**  	char	*cmd2[] = {"cd", av[2], NULL};
-**  	char	*cmd3[] = {"cd", av[3], NULL};
-**
-**  	data.cmd = cmd;
-**  	ft_printf("env_getenv HOME: %s\n", env_getenv("HOME"));
-**  	ft_printf("env_getenv PWD: %s\n", env_getenv("PWD"));
-**  	ft_printf("env_getenv OLDPWD: %s\n", env_getenv("OLDPWD"));
-**  	ft_printf("\n\ngoing to: %s\n", av[0 + 1]);
-**  	ft_cd(&data);
-**  	ft_printf("\n\ngetenv HOME: %s\n", env_getenv("HOME"));
-**  	ft_printf("env_getenv PWD: %s\n", env_getenv("PWD"));
-**  	ft_printf("env_getenv OLDPWD: %s\n", env_getenv("OLDPWD"));
-**  	data.cmd = cmd2;
-**  	ft_printf("\n\ngoing to: %s\n", av[1 + 1]);
-**  	ft_cd(&data);
-**  	ft_printf("\n\ngetenv HOME: %s\n", env_getenv("HOME"));
-**  	ft_printf("env_getenv PWD: %s\n", env_getenv("PWD"));
-**  	ft_printf("env_getenv OLDPWD: %s\n", env_getenv("OLDPWD"));
-**  	data.cmd = cmd3;
-**  	ft_printf("\n\ngoing to: %s\n", av[2 + 1]);
-**  	ft_cd(&data);
-**  	ft_printf("\n\ngetenv HOME: %s\n", env_getenv("HOME"));
-**  	ft_printf("env_getenv PWD: %s\n", env_getenv("PWD"));
-**  	ft_printf("env_getenv OLDPWD: %s\n", env_getenv("OLDPWD"));
-**  	return (1);
-**  }
-*/
+void		ft_cd_test(int ac, char **av)
+{
+	t_data	data;
+	char	*cmd = "cd /";
+	char	*cmd2 = "cd ~";
+	char	*cmd3 = "cd -";
+
+	ft_printf("getenv HOME: %s\n", getenv("HOME"));
+	ft_printf("getenv PWD: %s\n", getenv("PWD"));
+	ft_printf("getenv OLDPWD: %s\n", getenv("OLDPWD"));
+	ft_printf("\n\ngoing to: %s\n", av[0 + 1]);
+	ft_cd(&data, cmd);
+	ft_printf("\n\ngetenv HOME: %s\n", getenv("HOME"));
+	ft_printf("getenv PWD: %s\n", getenv("PWD"));
+	ft_printf("getenv OLDPWD: %s\n", getenv("OLDPWD"));
+	ft_printf("\n\ngoing to: %s\n", av[1 + 1]);
+	ft_cd(&data, cmd2);
+	ft_printf("\n\ngetenv HOME: %s\n", getenv("HOME"));
+	ft_printf("getenv PWD: %s\n", getenv("PWD"));
+	ft_printf("getenv OLDPWD: %s\n", getenv("OLDPWD"));
+	ft_printf("\n\ngoing to: %s\n", av[2 + 1]);
+	ft_cd(&data, cmd3);
+	ft_printf("\n\ngetenv HOME: %s\n", getenv("HOME"));
+	ft_printf("getenv PWD: %s\n", getenv("PWD"));
+	ft_printf("getenv OLDPWD: %s\n", getenv("OLDPWD"));
+	(void)av;
+	(void)ac;
+}
+
+int		main(int ac, char **av)
+{
+	ft_cd_test(ac, av);
+	return (0);
+}
