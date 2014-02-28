@@ -3,40 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   env_copy.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: scohen <scohen@student.42.fr>              +#+  +:+       +#+        */
+/*   By: vjacquie <vjacquie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/26 11:23:28 by scohen            #+#    #+#             */
-/*   Updated: 2014/02/26 13:45:53 by scohen           ###   ########.fr       */
+/*   Updated: 2014/02/28 16:51:11 by vjacquie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
 
-void			env_copy(char **environ, t_data *d)
+void	ft_envcpy(t_data *d)
 {
-	int			i;
-	int			y;
-	char		*tmp;
+	size_t	len;
+	size_t	i;
 
-	d->c_env = (char **)malloc(sizeof(char *) * env_tabheight(environ));
-	if (d->c_env == NULL)
+	i = 0;
+	len = arraylen(environ);
+	d->env = (char **)ft_memalloc(len * (sizeof(char *) + 2));
+	if (d->env == NULL)
 	{
-		WR(2, "Malloc error on env_copy\n");
-		_exit(1);
+		ft_putendl("Malloc error: could not copy environement");
+		return (NULL);
 	}
-	y = 0;
-	while (y != env_tabheight(environ))
+	while (i < len)
 	{
-		tmp = ft_strnew(ft_strlen(environ[y]) + 1);
-		i = 0;
-		while (environ[y][i] != '\0')
-		{
-			tmp[i] = environ[y][i];
-			i++;
-		}
-		tmp[i] = '\0';
-		d->c_env[y] = tmp;
-		y++;
+		d->env[i] = ft_strdup(environ[i]);
+		++i;
 	}
-	d->c_env[y] = NULL;
+	d->env[i] = ft_strdup("\0");
+	d->env[i + 1] = NULL;
 }

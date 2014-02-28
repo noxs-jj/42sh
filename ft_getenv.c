@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_getenv.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nmohamed <nmohamed@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vjacquie <vjacquie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/27 12:39:35 by nmohamed          #+#    #+#             */
-/*   Updated: 2014/02/27 18:04:03 by nmohamed         ###   ########.fr       */
+/*   Updated: 2014/02/28 16:51:19 by vjacquie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
 
-char	**ft_envcpy(char **env);
 char	*ft_getenv(char *str, char **env);
 void	ft_putenv(char ***env, char *var, char *val);
 int		ft_get_var_index(char **env, char *str);
@@ -23,30 +22,6 @@ void	*ft_realloc(void *ptr, size_t size);
 size_t	arraylen(char **array);
 void	ft_envdel(char ***env);
 void	ft_unsetenv(char *str, char **env);
-
-char	**ft_envcpy(char **env)
-{
-	char	**new;
-	size_t	len;
-	size_t	i;
-
-	i = 0;
-	len = arraylen(env);
-	new = (char **)ft_memalloc(len * (sizeof(char *) + 2));
-	if (new == NULL)
-	{
-		ft_putendl("Malloc error: could not copy environement");
-		return (NULL);
-	}
-	while (i < len)
-	{
-		new[i] = ft_strdup(env[i]);
-		++i;
-	}
-	new[i] = ft_strdup("\0");
-	new[i + 1] = NULL;
-	return (new);
-}
 
 /*
 ** Return values:
