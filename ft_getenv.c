@@ -6,11 +6,23 @@
 /*   By: nmohamed <nmohamed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/27 12:39:35 by nmohamed          #+#    #+#             */
-/*   Updated: 2014/02/27 16:03:44 by nmohamed         ###   ########.fr       */
+/*   Updated: 2014/02/27 18:04:03 by nmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
+
+char	**ft_envcpy(char **env);
+char	*ft_getenv(char *str, char **env);
+void	ft_putenv(char ***env, char *var, char *val);
+int		ft_get_var_index(char **env, char *str);
+void	ft_setenv(char ***env, char *var, char *val);
+void	ft_unsetenv(char *str, char **env);
+void	ft_printenv(char **env);
+void	*ft_realloc(void *ptr, size_t size);
+size_t	arraylen(char **array);
+void	ft_envdel(char ***env);
+void	ft_unsetenv(char *str, char **env);
 
 char	**ft_envcpy(char **env)
 {
@@ -144,31 +156,47 @@ void	ft_setenv(char ***env, char *var, char *val)
 	}
 }
 
+void	ft_unsetenv(char *str, char **env)
+{
+	size_t	len;
+	char	**ptr;
+
+	if (str == NULL || *str == '\0' || ft_strchr (str, '=') != NULL)
+		return ;
+	len = ft_strlen(str);
+	while (*env != NULL)
+	{
+		if (ft_strncmp(*env, str, len) == 0 && (*env)[len] == '=')
+		{
+			ptr = env;
+			while (*ptr)
+			{
+				ptr[0] = ptr[1];
+				++ptr;
+			}
+		}
+		else
+			++env;
+	}
+}
+
 /*
 int		main(int ac, char **av, char **old_env)
 {
 	char	**env;
 	char	**tofree;
-	char	*var;
 
 	tofree = env = ft_envcpy(old_env);
+	puts("\n\n\n\n\n\n\n\nBefore\n-------------------------------------------");
 	ft_printenv(env);
-	var = ft_getenv(env, av[1]);
-	puts(var);
-	ft_envdel(&env);
-	(void)ac;
-	(void)av;
-	return (0);
-}
-
-int		main(int ac, char **av, char **old_env)
-{
-	char	**env;
-	char	**tofree;
-
-	tofree = env = ft_envcpy(old_env);
-	//ft_printenv(env);
+	puts("Set\n----------------------------------------------");
 	ft_setenv(&env, av[1], av[2]);
+	ft_setenv(&env, av[1], av[2]);
+	ft_setenv(&env, av[1], av[2]);
+	ft_setenv(&env, av[1], av[2]);
+	ft_printenv(env);
+	puts("Unset\n--------------------------------------------");
+	ft_unsetenv(av[1], env);
 	ft_printenv(env);
 	ft_envdel(&env);
 	(void)ac;
@@ -176,4 +204,3 @@ int		main(int ac, char **av, char **old_env)
 	return (0);
 }
 */
-
