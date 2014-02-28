@@ -3,60 +3,84 @@
 /*                                                        :::      ::::::::   */
 /*   ope_pipe.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmoiroux <jmoiroux@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nmohamed <nmohamed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/26 18:06:53 by jmoiroux          #+#    #+#             */
-/*   Updated: 2014/02/26 18:46:31 by jmoiroux         ###   ########.fr       */
+/*   Updated: 2014/02/28 16:12:09 by nmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
+#include <stdlib.h>
+#include <unistd.h>
+#include <fcntl.h>
 
-int		ope_pipe(t_tree *t, char *file)
+static int		ft_pipex_left(char **cmd, int *pid, char **env, int *fd)
 {
-	int		father;
-	int		pfd[2];
-	int		fd;
-	char	*buff;
-
-	if (t->left != NULL)
+	pid[0] = fork();
+	if (pid[0] < 0)
 	{
-		if (fd = open(file, O_WRONLY, O_CREATE, O_TRUNC, 0777) == -1)
-		{
-			WR(2, "file open Failed (ope_pipe)\n");
-			return (-1);
-		}
-
-		if (pipe(pfd) == -1)
-		{
-			WR(2, "Pipe Failed (ope_pipe)\n");
-			return (-1);
-		}
-		close(fd); /* remove this maybe useless */
-
-		if (father = fork() < 0) /* exec fork () and check if failed */
-		{
-			WR(2, "Fork Failed (ope_pipe)\n");
-			return (-1);
-		}
-		if (father == 0) /* son */
-		{
-			close(pfd[1]); /* close doors father entry */
-			dup2(pfd[1], 1); /* STDOUT 1 go to pfd[1] */
-			close(pfd[1]);
-			parse_cmd(t->left->command);
-		}
-		else /* father */
-		{
-			close(pfd[0]); /* close doors son entry */
-			dup2(pfd[0], 0); /* pfd[0] go to STDIN */
-			close(pfd[0]);
-			if (read(0, &buff, 1) < 0) /* fill buff with result of son's execve */
-			{
-				WR(2, "Read failed (ope_pipe)");
-				return (-1);
-			}
-			t->command = buff; /* current command take result of son's execve*/
-		}
+		ft_putendl_fd("FORK ERROR (LEFT)", 2);
+		return (-2);
 	}
+	if (pid[0] == 0)
+	{
+		close(fd[0]);
+		dup2(fd[1], 1);
+		execve(cmd[0], cmd, env);
+		return (-3);
+	}
+	return (1);
+}
+
+static int		ft_pipex_right(char **cmd, int *pid, char **env, int *fd)
+{
+	int				tmp;
+
+	tmp = -2;
+	pid[1] = fork();
+	if (pid[1] < 0)
+	{
+		ft_putendl_fd("FORK ERROR (RIGHT)", 2);
+		return (-2);
+	}
+	if (pid[1] == 0)
+	{
+		if ((tmp = open("/tmp/.jjmnmmlvjsc.pipe",
+			O_CREAT | O_WRONLY, 0777)) < 0)
+		{
+			ft_putendl_fd("open error", 2);
+			return (-1);
+		}
+		close(fd[1]);
+		dup2(fd[0], 0);
+		dup2(tmp, 1);
+		execve(cmd[0], cmd, env);
+		return (-3);
+	}
+	else
+		wait(NULL);
+	return (1);
+}
+
+int				ope_pipe(t_tree *t, t_data *d)
+{
+	char			**split;
+	char			**cmd[2];
+	int				pid[2];
+	int				fd[2];
+	int				error;
+
+	error = 1;
+	split = ft_strsplit(t->command, '|');
+	cmd[0] = ft_strsplit(split[0], ' ');
+	cmd[1] = ft_strsplit(split[1], ' ');
+	if ((error = pipe(fd)) < 0)
+		return (error);
+	if ((error = ft_pipex_left(cmd[0], pid, d->env, fd)) < 0)
+		exit(error);
+	if ((error = ft_pipex_right(cmd[1], pid, d->env, fd)) < 0)
+		exit(error);
+	t->command = ft_strdup("cat /tmp/.jjmnmmlvjsc.pipe");
+	return (error);
 }

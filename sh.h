@@ -6,7 +6,7 @@
 /*   By: nmohamed <nmohamed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/18 14:16:49 by mlaize            #+#    #+#             */
-/*   Updated: 2014/02/27 17:29:59 by mlaize           ###   ########.fr       */
+/*   Updated: 2014/02/28 16:09:38 by nmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ typedef struct		s_tree
 	int				response; /* response of child's action */
 	int				ope; /* What operator is it */
 	char			*command; /* The command string */
-	struct s_tree	*father
+	struct s_tree	*father;
 	struct s_tree	*left; /* link to left next node */
 	struct s_tree	*right; /* link to right next node */
 }					t_tree;
