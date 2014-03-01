@@ -3,40 +3,57 @@
 /*                                                        :::      ::::::::   */
 /*   env_copy.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nmohamed <nmohamed@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vjacquie <vjacquie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/28 19:23:50 by nmohamed          #+#    #+#             */
-/*   Updated: 2014/02/28 19:23:58 by nmohamed         ###   ########.fr       */
+/*   Updated: 2014/03/01 14:25:18 by vjacquie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
 
-static char	**ft_envcpy(char **env)
+// static char	**ft_envcpy(char **env)
+// {
+// 	char	**new;
+// 	size_t	len;
+// 	size_t	i;
+
+// 	i = 0;
+// 	len = arraylen(environ);
+// 	new = (char **)ft_memalloc(len * (sizeof(char *) + 2));
+// 	if (new == NULL)
+// 	{
+// 		ft_putendl("Malloc error: could not copy environement");
+// 		return (NULL);
+// 	}
+// 	while (i < len)
+// 	{
+// 		new[i] = ft_strdup(env[i]);
+// 		++i;
+// 	}
+// 	new[i] = ft_strdup("\0");
+// 	new[i + 1] = NULL;
+// 	return (new);
+// }
+
+void	env_copy(t_data *d)
 {
-	char	**new;
 	size_t	len;
 	size_t	i;
 
 	i = 0;
-	len = arraylen(env);
-	new = (char **)ft_memalloc(len * (sizeof(char *) + 2));
-	if (new == NULL)
+	len = arraylen(environ);
+	d->env = (char **)ft_memalloc(len * (sizeof(char *) + 2));
+	if (d->env == NULL)
 	{
 		ft_putendl("Malloc error: could not copy environement");
-		return (NULL);
+		return ;
 	}
 	while (i < len)
 	{
-		new[i] = ft_strdup(env[i]);
+		d->env[i] = ft_strdup(environ[i]);
 		++i;
 	}
-	new[i] = ft_strdup("\0");
-	new[i + 1] = NULL;
-	return (new);
-}
-
-char		**env_copy(t_data *d)
-{
-	return (ft_envcpy(d->env));
+	d->env[i] = ft_strdup("\0");
+	d->env[i + 1] = NULL;
 }

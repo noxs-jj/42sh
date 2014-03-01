@@ -14,7 +14,7 @@
 # Makefile parent who call Makefile soon from libft
 # add llvm- in CC= line if you need depends update of computer
 
-CC = llvm-gcc -Wall -Wextra -Werror
+CC = llvm-gcc -g -Wall -Wextra -Werror
 
 RM = rm -rf
 
@@ -22,7 +22,26 @@ HEADER = sh.h
 
 NAME = 42sh
 
-SRCS = 
+SRCS = \
+arraylen.c \
+build_check.c \
+build_echo.c \
+build_exit.c \
+build_setenv.c \
+env_copy.c \
+env_envdel.c \
+env_getenv.c \
+env_getvarindex.c \
+env_printenv.c \
+env_putenv.c \
+env_setenv.c \
+env_unsetenv.c \
+exe_execve.c \
+exe_getexe.c \
+ft_exit.c \
+ft_is.c \
+ft_realloc.c \
+main.c
 
 OBJS = $(SRCS:.c=.o)
 
@@ -43,6 +62,11 @@ clean:
 fclean: clean
 	@$(RM) $(NAME)
 	@make fclean -C libft
+
+exe:
+	@clear
+	@echo "--------clang compil-------"
+	@clang -Wall -Werror -Wextra -g -o $(NAME) libft.a $(SRCS)
 
 re: fclean all
 

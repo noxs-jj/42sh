@@ -1,28 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   arraylen.c                                         :+:      :+:    :+:   */
+/*   build_setenv.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vjacquie <vjacquie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/02/27 15:41:27 by nmohamed          #+#    #+#             */
-/*   Updated: 2014/03/01 16:39:04 by vjacquie         ###   ########.fr       */
+/*   Created: 2014/03/01 15:29:45 by vjacquie          #+#    #+#             */
+/*   Updated: 2014/03/01 16:59:50 by vjacquie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
 
-size_t	arraylen(char **array)
+void	build_setenv(t_data *d)
 {
-	size_t	i;
+	printf("--------build setenv--------\n");
+	char **tmp;
 
-	i = 0;
-	if (array != NULL)
-	{
-		while (array[i] != NULL && array[i][0] != '\0')
-			++i;
-	}
-	else
-		ft_putendl("Could not get length of NULL array");
-	return (i);
+	tmp = ft_strsplit(d->line, ' ');
+	if (tmp == NULL)
+		ft_exit(d, "split error (build_env)\n");
+	d->varenv = tmp[1];
+	d->valenv = tmp[2];
+
+	env_setenv(d);
+	//ft_memdel((void **)&tmp[0]);
+	//ft_memdel((void **)&tmp);
 }

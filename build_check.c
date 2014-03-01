@@ -1,35 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env_printenv.c                                     :+:      :+:    :+:   */
+/*   build_check.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vjacquie <vjacquie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/02/27 15:41:22 by nmohamed          #+#    #+#             */
-/*   Updated: 2014/03/01 16:14:47 by vjacquie         ###   ########.fr       */
+/*   Created: 2014/02/26 14:53:25 by jmoiroux          #+#    #+#             */
+/*   Updated: 2014/03/01 15:39:51 by vjacquie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
 
-// static void	ft_printenv(char **env)
-// {
-// 	while (*env && **env)
-// 	{
-// 		ft_putendl(*env);
-// 		++env;
-// 	}
-// }
+/*
+** Check what builtin is used et lunch function
+** TEST
+*/
 
-void	env_printenv(t_data *d)
+int		build_check(t_data *d)
 {
 	int		i;
+	size_t	len;
 
 	i = 0;
-	printf("%s\n", "printenv");
-	while (d->env[i] != NULL)
+	len = 0;
+	if (d->line != NULL && d->line[0] != '\0')
 	{
-		ft_putendl(d->env[i]);
-		++i;
+		while (tab[i].str != '\0')
+		{
+			len = ft_strlen(tab[i].str);
+			if ((ft_strnequ(tab[i].str, d->line, len) == 1)
+				&& (len <= ft_strlen(d->line))
+				&& (d->line[len] == '\0' || d->line[len] == ' '))
+			{
+				tab[i].fptr(d);
+				return (1);
+			}
+			i++;
+		}
 	}
+	return (0);
 }

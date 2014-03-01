@@ -1,28 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   arraylen.c                                         :+:      :+:    :+:   */
+/*   ft_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vjacquie <vjacquie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jmoiroux <jmoiroux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/02/27 15:41:27 by nmohamed          #+#    #+#             */
-/*   Updated: 2014/03/01 16:39:04 by vjacquie         ###   ########.fr       */
+/*   Created: 2014/02/26 13:48:39 by jmoiroux          #+#    #+#             */
+/*   Updated: 2014/02/26 13:56:19 by jmoiroux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
 
-size_t	arraylen(char **array)
+void	ft_exit(t_data *d, char *s)
 {
-	size_t	i;
-
-	i = 0;
-	if (array != NULL)
-	{
-		while (array[i] != NULL && array[i][0] != '\0')
-			++i;
-	}
-	else
-		ft_putendl("Could not get length of NULL array");
-	return (i);
+	if (d != NULL)
+		ft_memdel((void **)&d);
+	ft_putendl(s);
+	_exit(1);
 }

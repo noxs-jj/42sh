@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_putenv.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nmohamed <nmohamed@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vjacquie <vjacquie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/28 19:28:09 by nmohamed          #+#    #+#             */
-/*   Updated: 2014/02/28 19:50:22 by nmohamed         ###   ########.fr       */
+/*   Updated: 2014/03/01 16:56:35 by vjacquie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,9 @@ void		ft_putenv(char ***env, char *var, char *val)
 		ft_putendl("Malloc error: could not allocate new variable");
 		return ;
 	}
-	*env = ft_realloc(*env, sizeof(char *) * (arraylen(*env) + 1));
+	*env = ft_realloc(*env, sizeof(char *) * (arraylen(*env) + 3));
 	(*env)[arraylen(*env)] = tmp;
+	(*env)[arraylen(*env) + 1] = NULL;
 }
 
 void		env_putenv(t_data *d)
