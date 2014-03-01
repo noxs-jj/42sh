@@ -1,0 +1,44 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   env_putenv.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nmohamed <nmohamed@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2014/02/28 19:28:09 by nmohamed          #+#    #+#             */
+/*   Updated: 2014/02/28 19:50:22 by nmohamed         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "sh.h"
+
+/*
+** Takes the ADDRESS of a string of strings
+** Frees each strings one by one
+** Frees main string of strings
+** Set value of the main pointer to NULL
+*/
+
+void		ft_putenv(char ***env, char *var, char *val)
+{
+	char	*tmp;
+
+	if ((tmp = ft_memalloc(ft_strlen(var) + ft_strlen(val) + 1)) != NULL)
+	{
+		tmp = ft_strcpy(tmp, var);
+		tmp = ft_strcat(tmp, "=");
+		tmp = ft_strcat(tmp, val);
+	}
+	else
+	{
+		ft_putendl("Malloc error: could not allocate new variable");
+		return ;
+	}
+	*env = ft_realloc(*env, sizeof(char *) * (arraylen(*env) + 1));
+	(*env)[arraylen(*env)] = tmp;
+}
+
+void		env_putenv(t_data *d)
+{
+	ft_putenv(&d->env, d->varenv, d->valenv);
+}
