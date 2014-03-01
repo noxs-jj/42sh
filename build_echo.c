@@ -6,7 +6,7 @@
 /*   By: vjacquie <vjacquie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/27 12:05:40 by vjacquie          #+#    #+#             */
-/*   Updated: 2014/03/01 18:09:39 by vjacquie         ###   ########.fr       */
+/*   Updated: 2014/03/01 19:44:16 by vjacquie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,44 +14,86 @@
 
 /*
 ** test ok
-** First we check if the str is null or if the ft_strsplit haven't work
 ** We write all arg until the end of cmd
 ** We write a '\n' at the end if needed
 */
 
-void	build_echo(t_data *d)
-{
-	char	**cmd;
-	int		i;
-	int		j;
+/*
+** search "-n", return the place, or 4 if not found
+*/
 
-	if (d->line == NULL)
-		ft_exit(d, "Null str in build_echo\n");
-	cmd = ft_strsplit(d->line, ' ');
-	if (cmd == NULL)
-		ft_exit(d, "Error in echo split\n");
-	i = 0;
-	if (cmd[1] != '\0')
+static int	is_option(char *str)
+{
+	int		i;
+
+	i = 4;
+	while (str[i])
 	{
-		(ft_strcmp(cmd[1], "-n") == 0) ? (i = 2) : (i = 1);
-		while (cmd[i] && ft_strcmp(cmd[i], "-n") == 0)
-			i++;
-		while (cmd[i])
+		if (str[i] == '-' && str[i + 1] && str[i + 1] == 'n'
+			&& ((!str[i + 2]) || str[i + 2] == ' ' || str[i + 2] == '\t'))
+			return (i + 2);
+		if (str[i] != ' ' && str[i] != '\t')
+			return (4);
+		i++;
+	}
+	return (4);
+}
+
+/*
+** print the string until ' ', '\t', 34 or 39
+** return the actual place
+*/
+
+static int	ft_print_echo(char *str, int i)
+{
+	int		quote;
+
+	quote = (str[i] == 34 ? 34 : 0);
+	quote = (str[i] == 39 ? 39 : quote);
+	if (quote == 0)
+	{
+		while (str[i] && (str[i] != ' ' && str[i] != '\t'))
 		{
-			j = 0;
-			while (cmd[i][j])
-			{
-				if (cmd[i][j] == 34 || cmd[i][j] == 39)
-					j++;
-				else if (cmd[i][j])
-					ft_putchar(cmd[i][j]);
-				j++;
-			}
+			ft_putchar(str[i]);
 			i++;
-			if (cmd[i])
-				ft_putchar(' ');
 		}
 	}
-	if (cmd[1] == '\0' || ft_strcmp(cmd[1], "-n") != 0)
+	else if (quote != 0)
+	{
+		i++;
+		while (str[i] && str[i] != quote)
+		{
+			ft_putchar(str[i]);
+			i++;
+		}
+		return (i);
+	}
+	return (i);
+}
+
+void		build_echo(t_data *d)
+{
+	int		i;
+	int		first;
+
+	i = 4;
+	first = 0;
+	if (d->line[i])
+	{
+		i = is_option(d->line);
+		while (d->line[i])
+		{
+			while (d->line[i] == ' ' || d->line[i] == '\t')
+				i++;
+			if (first == 1)
+				ft_putchar(' ');
+			if (d->line[i])
+				i = ft_print_echo(d->line, i);
+			if (d->line[i])
+				i++;
+			first = 1;
+		}
+	}
+	if (is_option(d->line) == 4)
 		ft_putchar('\n');
 }
