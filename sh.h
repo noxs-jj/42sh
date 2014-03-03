@@ -119,25 +119,31 @@ char	**ft_getexe(char *str, char **env);
 char	*env_getenv(t_data *d);
 char	*ft_getenv(char *str, char **env);
 
+int		build_check(t_data *d);
 int		env_getvarindex(t_data *d);
+int		exe_execve(t_data *d);
+int		ft_get_var_index(char **env, char *str);
 int		is_absolute(char *path);
 int		is_dir(const char *path);
 int		is_dotslash(char *path);
-int		exe_execve(t_data *d);
-int		ft_get_var_index(char **env, char *str);
-int		build_check(t_data *d);
+int		prs_build_me_tree(char *str, t_tree **tree);
+int		prs_cut_last_str(t_tree *tree, t_ope operation);
 
 size_t	arraylen(char **array);
 
+t_tree	*prs_create_tree_node(int type, int ope, char *command);
+
+void	*ft_realloc(void *ptr, size_t size);
 void	check_exit(t_data *d);
-void	env_envdel(t_data *d);
 void	env_copy(t_data *d);
+void	env_envdel(t_data *d);
 void	env_putenv(t_data *d);
 void	env_unsetenv(t_data *d);
 void	ft_exit(t_data *d, char *s);
-void	ft_putenv(t_data *d);
-void	*ft_realloc(void *ptr, size_t size);
 void	ft_exit(t_data *d, char *s);
+void	ft_putenv(t_data *d);
 void	init_start(t_data *d);
+void	prs_parse_my_tree_bro(t_data *data, t_tree *tree);
+void	prs_parser_lexer(t_data *data, char *str);
 
 #endif
