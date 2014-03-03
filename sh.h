@@ -6,7 +6,7 @@
 /*   By: vjacquie <vjacquie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/18 14:16:49 by mlaize            #+#    #+#             */
-/*   Updated: 2014/03/03 13:06:29 by jmoiroux         ###   ########.fr       */
+/*   Updated: 2014/03/03 16:01:05 by mlaize           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,6 @@ typedef struct		s_tree
 	struct s_tree	*right; /* link to right next node */
 }					t_tree;
 
-typedef struct	s_ope
-{
-	char		*operand;
-	int			code;
-	int			priority;
-}				t_ope;
 
 typedef struct	s_data
 {
@@ -60,6 +54,14 @@ typedef struct	s_data
 	char		*varenv; /* var name before '=' */
 	char		*valenv; /* content of the var */
 }				t_data;
+
+typedef struct	s_ope
+{
+	char		*operand;
+	int			code;
+	int			priority;
+	void		(*f)(t_data *, t_tree *);
+}				t_ope;
 
 typedef struct	s_build
 {
@@ -102,13 +104,13 @@ static const t_build	tab[] =
 /*
 static t_ope	list_ope[] =
 {
-	{"|", 0, 0},
-	{"<", 1, 0},
-	{">>", 2, 1},
-	{">", 3, 1},
-	{"&&", 4, 2},
-	{"||", 5, 2},
-	{NULL, -1, -1}
+	{"|", 0, 0, NULL},
+	{"<", 1, 0, NULL},
+	{">>", 2, 1, NULL},
+	{">", 3, 1, NULL},
+	{"&&", 4, 2, NULL},
+	{"||", 5, 2, NULL},
+	{NULL, -1, -1, NULL}
 };
 */
 
