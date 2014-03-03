@@ -6,35 +6,16 @@
 /*   By: vjacquie <vjacquie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/28 19:23:50 by nmohamed          #+#    #+#             */
-/*   Updated: 2014/03/01 14:25:18 by vjacquie         ###   ########.fr       */
+/*   Updated: 2014/03/03 12:53:07 by jmoiroux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
 
-// static char	**ft_envcpy(char **env)
-// {
-// 	char	**new;
-// 	size_t	len;
-// 	size_t	i;
-
-// 	i = 0;
-// 	len = arraylen(environ);
-// 	new = (char **)ft_memalloc(len * (sizeof(char *) + 2));
-// 	if (new == NULL)
-// 	{
-// 		ft_putendl("Malloc error: could not copy environement");
-// 		return (NULL);
-// 	}
-// 	while (i < len)
-// 	{
-// 		new[i] = ft_strdup(env[i]);
-// 		++i;
-// 	}
-// 	new[i] = ft_strdup("\0");
-// 	new[i + 1] = NULL;
-// 	return (new);
-// }
+/*
+** get extern environ and copy it on char **env in struct data
+** TEST OK jmoiroux
+*/
 
 void	env_copy(t_data *d)
 {

@@ -6,7 +6,7 @@
 /*   By: vjacquie <vjacquie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/26 14:53:25 by jmoiroux          #+#    #+#             */
-/*   Updated: 2014/03/01 15:39:51 by vjacquie         ###   ########.fr       */
+/*   Updated: 2014/03/03 12:34:58 by jmoiroux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 /*
 ** Check what builtin is used et lunch function
-** TEST
+** TEST OK jmoiroux
 */
 
 int		build_check(t_data *d)
