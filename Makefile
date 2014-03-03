@@ -6,7 +6,7 @@
 #    By: jmoiroux <jmoiroux@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/03/01 12:01:41 by jmoiroux          #+#    #+#              #
-#    Updated: 2014/03/01 12:02:04 by jmoiroux         ###   ########.fr        #
+#    Updated: 2014/03/03 13:06:39 by jmoiroux         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -28,6 +28,8 @@ build_check.c \
 build_echo.c \
 build_exit.c \
 build_setenv.c \
+build_unsetenv.c \
+check_exit.c \
 env_copy.c \
 env_envdel.c \
 env_getenv.c \
@@ -41,6 +43,7 @@ exe_getexe.c \
 ft_exit.c \
 ft_is.c \
 ft_realloc.c \
+init_start.c \
 main.c
 
 OBJS = $(SRCS:.c=.o)

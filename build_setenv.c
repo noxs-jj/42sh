@@ -6,24 +6,37 @@
 /*   By: vjacquie <vjacquie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/01 15:29:45 by vjacquie          #+#    #+#             */
-/*   Updated: 2014/03/01 16:59:50 by vjacquie         ###   ########.fr       */
+/*   Updated: 2014/03/03 12:51:09 by jmoiroux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
 
+/*
+** Add entry from command, call env_setenv()
+** TEST OK jmoiroux check free valenv line 37
+*/
+
 void	build_setenv(t_data *d)
 {
-	printf("--------build setenv--------\n");
 	char **tmp;
 
 	tmp = ft_strsplit(d->line, ' ');
 	if (tmp == NULL)
-		ft_exit(d, "split error (build_env)\n");
-	d->varenv = tmp[1];
-	d->valenv = tmp[2];
-
+	{
+		ft_exit(d, "Split error (build_env)\n");
+		return ;
+	}
+	if (tmp[1] != NULL)
+		d->varenv = tmp[1];
+	if (tmp[2] != NULL)
+		d->valenv = tmp[2];
 	env_setenv(d);
-	//ft_memdel((void **)&tmp[0]);
-	//ft_memdel((void **)&tmp);
+	if (d->varenv != NULL)
+		ft_memdel((void **)&(d->varenv));
+	d->valenv = NULL;
+	if (tmp != NULL && tmp[0] != NULL)
+		ft_memdel((void **)&tmp[0]);
+	if (tmp != NULL)
+	ft_memdel((void **)&tmp);
 }

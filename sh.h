@@ -6,7 +6,7 @@
 /*   By: vjacquie <vjacquie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/18 14:16:49 by mlaize            #+#    #+#             */
-/*   Updated: 2014/03/01 15:56:45 by vjacquie         ###   ########.fr       */
+/*   Updated: 2014/03/03 13:06:29 by jmoiroux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # define ERR_DENIED 3
 # define ERR_CMDNOTFOUND 4
 
-extern char			**environ;
+extern char	**environ;
 
 /*
 **	type :	0 = for sort
@@ -85,6 +85,7 @@ void	build_exit(t_data *d);
 void	env_printenv(t_data *d);
 void	env_setenv(t_data *d);
 void	build_setenv(t_data *d);
+void	build_unsetenv(t_data *d);
 
 static const t_build	tab[] =
 {
@@ -94,6 +95,7 @@ static const t_build	tab[] =
 	{"env", &env_printenv},
 	{"env ", &env_printenv},
 	{"setenv", &build_setenv},
+	{"unsetenv", &build_unsetenv},
 	{'\0', NULL}
 };
 
@@ -125,13 +127,15 @@ int		build_check(t_data *d);
 
 size_t	arraylen(char **array);
 
+void	check_exit(t_data *d);
 void	env_envdel(t_data *d);
 void	env_copy(t_data *d);
 void	env_putenv(t_data *d);
 void	env_unsetenv(t_data *d);
 void	ft_exit(t_data *d, char *s);
-void	ft_putenv(char ***env, char *var, char *val);
+void	ft_putenv(t_data *d);
 void	*ft_realloc(void *ptr, size_t size);
 void	ft_exit(t_data *d, char *s);
+void	init_start(t_data *d);
 
 #endif
