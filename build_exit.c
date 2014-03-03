@@ -6,15 +6,19 @@
 /*   By: vjacquie <vjacquie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/28 17:48:02 by vjacquie          #+#    #+#             */
-/*   Updated: 2014/03/01 15:07:25 by vjacquie         ###   ########.fr       */
+/*   Updated: 2014/03/03 11:00:34 by jmoiroux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
 
+/*
+** Exit on command
+** TEST OK
+*/
+
 void	build_exit(t_data *d)
 {
-	printf("build exit\n");
 	if (d != NULL)
 		ft_memdel((void **)&d);
 	_exit(1);

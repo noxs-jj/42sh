@@ -1,31 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env_printenv.c                                     :+:      :+:    :+:   */
+/*   init_start.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vjacquie <vjacquie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jmoiroux <jmoiroux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/02/27 15:41:22 by nmohamed          #+#    #+#             */
-/*   Updated: 2014/03/03 12:55:12 by jmoiroux         ###   ########.fr       */
+/*   Created: 2014/03/03 12:55:55 by jmoiroux          #+#    #+#             */
+/*   Updated: 2014/03/03 13:02:29 by jmoiroux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
 
 /*
-** print envcopy
+** init all vars on struct data
 ** TEST OK jmoiroux
 */
 
-void	env_printenv(t_data *d)
+void	init_start(t_data *d)
 {
-	int		i;
-
-	i = 0;
-	printf("%s\n", "printenv");
-	while (d->env[i] != NULL && d->env[i][0] != '\0')
-	{
-		ft_putendl(d->env[i]);
-		++i;
-	}
+	d->env = NULL;
+	d->buff = NULL;
+	d->line = NULL;
+	d->tree = NULL;
+	d->varenv = NULL;
+	d->valenv = NULL;
 }
