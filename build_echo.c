@@ -6,7 +6,7 @@
 /*   By: vjacquie <vjacquie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/27 12:05:40 by vjacquie          #+#    #+#             */
-/*   Updated: 2014/03/01 19:44:16 by vjacquie         ###   ########.fr       */
+/*   Updated: 2014/03/03 15:16:02 by vjacquie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,24 +19,27 @@
 */
 
 /*
-** search "-n", return the place, or 4 if not found
+** search "-n", if found, recall the function until it find an other char
 */
 
-static int	is_option(char *str)
+static int	is_option(char *str, int j)
 {
 	int		i;
 
-	i = 4;
+	i = j;
 	while (str[i])
 	{
 		if (str[i] == '-' && str[i + 1] && str[i + 1] == 'n'
 			&& ((!str[i + 2]) || str[i + 2] == ' ' || str[i + 2] == '\t'))
-			return (i + 2);
+		{
+			i += 2;
+			return (is_option(str, i));
+		}
 		if (str[i] != ' ' && str[i] != '\t')
-			return (4);
+			return (j);
 		i++;
 	}
-	return (4);
+	return (j);
 }
 
 /*
@@ -80,7 +83,7 @@ void		build_echo(t_data *d)
 	first = 0;
 	if (d->line[i])
 	{
-		i = is_option(d->line);
+		i = is_option(d->line, i);
 		while (d->line[i])
 		{
 			while (d->line[i] == ' ' || d->line[i] == '\t')
@@ -94,6 +97,6 @@ void		build_echo(t_data *d)
 			first = 1;
 		}
 	}
-	if (is_option(d->line) == 4)
+	if (is_option(d->line, 4) == 4)
 		ft_putchar('\n');
 }

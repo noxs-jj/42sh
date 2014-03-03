@@ -6,7 +6,7 @@
 /*   By: vjacquie <vjacquie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/26 14:53:25 by jmoiroux          #+#    #+#             */
-/*   Updated: 2014/03/01 15:39:51 by vjacquie         ###   ########.fr       */
+/*   Updated: 2014/03/03 15:16:39 by vjacquie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int		build_check(t_data *d)
 			len = ft_strlen(tab[i].str);
 			if ((ft_strnequ(tab[i].str, d->line, len) == 1)
 				&& (len <= ft_strlen(d->line))
-				&& (d->line[len] == '\0' || d->line[len] == ' '))
+				&& (d->line[len] == '\0' || d->line[len] == ' ' || d->line[len] == '\t'))
 			{
 				tab[i].fptr(d);
 				return (1);
