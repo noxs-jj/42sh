@@ -6,7 +6,7 @@
 #    By: jmoiroux <jmoiroux@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/03/01 12:01:41 by jmoiroux          #+#    #+#              #
-#    Updated: 2014/03/03 13:06:39 by jmoiroux         ###   ########.fr        #
+#    Updated: 2014/03/04 13:48:17 by nmohamed         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -39,7 +39,6 @@ env_putenv.c \
 env_setenv.c \
 env_unsetenv.c \
 exe_execve.c \
-exe_getexe.c \
 ft_exit.c \
 ft_is.c \
 ft_realloc.c \

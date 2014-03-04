@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sh.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vjacquie <vjacquie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nmohamed <nmohamed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/18 14:16:49 by mlaize            #+#    #+#             */
-/*   Updated: 2014/03/03 16:01:05 by mlaize           ###   ########.fr       */
+/*   Updated: 2014/03/04 13:58:20 by nmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ typedef struct		s_tree
 typedef struct	s_data
 {
 	char		**env; /* contain an env copy */
+	char		**argv;
 	char		*buff;
 	char		*line;
 	t_tree		*tree; /* chain list, contain the cmd line */
@@ -114,8 +115,6 @@ static t_ope	list_ope[] =
 };
 */
 
-char	**env_getexe(t_data *d);
-char	**ft_getexe(char *str, char **env);
 char	*env_getenv(t_data *d);
 char	*ft_getenv(char *str, char **env);
 
