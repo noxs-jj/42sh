@@ -6,7 +6,7 @@
 /*   By: nmohamed <nmohamed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/28 18:15:27 by nmohamed          #+#    #+#             */
-/*   Updated: 2014/03/04 15:22:06 by nmohamed         ###   ########.fr       */
+/*   Updated: 2014/03/04 15:45:24 by nmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ static int	exe_check_exist(char *tmp)
 		return (ERR_DENIED);
 	return (SUCCESS);
 }
+
 static char	*exe_search_exe(t_data *d)
 {
 	char		**path;
