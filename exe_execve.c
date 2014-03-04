@@ -6,7 +6,7 @@
 /*   By: nmohamed <nmohamed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/28 18:15:27 by nmohamed          #+#    #+#             */
-/*   Updated: 2014/03/04 14:38:55 by nmohamed         ###   ########.fr       */
+/*   Updated: 2014/03/04 14:45:17 by nmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ static char	*exe_search_exe(t_data *d)
 		ft_strdel(&tofree);
 		++i;
 	}
+	ft_strdel(&found);
 	return (NULL);
 }
 
@@ -70,7 +71,9 @@ int			exe_execve(t_data *d)
 		if (error == ERR_DENIED)
 			WR(2, "access denied\n");
 	}
-	if (d->argv != NULL)
+	if (d->argv != NULL && d->argv[0] != NULL)
 		execve(d->argv[0], d->argv, d->env);
+	else if (d->argv[0] == NULL)
+		WR(2, "command not found\n");
 	return (-1);
 }
