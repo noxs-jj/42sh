@@ -6,21 +6,19 @@
 /*   By: nmohamed <nmohamed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/28 18:15:27 by nmohamed          #+#    #+#             */
-/*   Updated: 2014/03/04 14:51:38 by nmohamed         ###   ########.fr       */
+/*   Updated: 2014/03/04 14:55:31 by nmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
 
-//static char	**exe_make_argv(t_data *d);
-
-static int	exe_check_exist(char *cmd)
+static int	exe_check_exist(char *tmp)
 {
-	if (is_dir(cmd))
+	if (is_dir(tmp))
 		return (ERR_ISDIR);
-	if (access(cmd, F_OK) != 0)
+	if (access(tmp, F_OK) != 0)
 		return (ERR_NOEXIST);
-	if (access(cmd, X_OK) != 0)
+	if (access(tmp, X_OK) != 0)
 		return (ERR_DENIED);
 	return (SUCCESS);
 }
@@ -29,7 +27,7 @@ static char	*exe_search_exe(t_data *d)
 {
 	char		**path;
 	char		*var;
-	char		*found;
+	char		*tmp;
 	char		*tofree;
 	size_t		i;
 
@@ -37,23 +35,23 @@ static char	*exe_search_exe(t_data *d)
 	var = ft_getenv("PATH", d->env);
 	path = ft_strsplit(var, ':');
 	free(var);
-	found = NULL;
+	tmp = NULL;
 	while (path[i])
 	{
-		tofree = found;
-		found = ft_strnew(ft_strlen(path[i]) + 1 + ft_strlen(d->argv[0]));
-		ft_strcat(found, path[i]);
-		ft_strcat(found, "/");
-		ft_strcat(found, d->argv[0]);
-		if (exe_check_exist(found) == SUCCESS)
+		tofree = tmp;
+		tmp = ft_strnew(ft_strlen(path[i]) + 1 + ft_strlen(d->argv[0]));
+		ft_strcat(tmp, path[i]);
+		ft_strcat(tmp, "/");
+		ft_strcat(tmp, d->argv[0]);
+		if (exe_check_exist(tmp) == SUCCESS)
 		{
 			ft_strdel(&d->argv[0]);
-			return (found);
+			return (tmp);
 		}
 		ft_strdel(&tofree);
 		++i;
 	}
-	ft_strdel(&found);
+	ft_strdel(&tmp);
 	return (NULL);
 }
 
@@ -77,6 +75,6 @@ int			exe_execve(t_data *d)
 	if (d->argv != NULL && d->argv[0] != NULL)
 		execve(d->argv[0], d->argv, d->env);
 	else if (d->argv[0] == NULL)
-		WR(2, "command not found\n");
+		WR(2, "command not tmp\n");
 	return (-1);
 }
