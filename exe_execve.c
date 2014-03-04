@@ -6,12 +6,11 @@
 /*   By: nmohamed <nmohamed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/28 18:15:27 by nmohamed          #+#    #+#             */
-/*   Updated: 2014/03/04 15:45:24 by nmohamed         ###   ########.fr       */
+/*   Updated: 2014/03/04 16:03:29 by nmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
-
 
 static int	exe_check_exist(char *tmp)
 {
