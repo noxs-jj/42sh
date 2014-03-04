@@ -6,7 +6,7 @@
 /*   By: nmohamed <nmohamed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/28 18:15:27 by nmohamed          #+#    #+#             */
-/*   Updated: 2014/03/04 14:45:17 by nmohamed         ###   ########.fr       */
+/*   Updated: 2014/03/04 14:51:38 by nmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,10 @@ static char	*exe_search_exe(t_data *d)
 		ft_strcat(found, "/");
 		ft_strcat(found, d->argv[0]);
 		if (exe_check_exist(found) == SUCCESS)
+		{
+			ft_strdel(&d->argv[0]);
 			return (found);
+		}
 		ft_strdel(&tofree);
 		++i;
 	}
