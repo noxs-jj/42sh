@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sh.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nmohamed <nmohamed@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vjacquie <vjacquie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/18 14:16:49 by mlaize            #+#    #+#             */
-/*   Updated: 2014/03/04 13:58:20 by nmohamed         ###   ########.fr       */
+/*   Updated: 2014/03/05 15:27:03 by vjacquie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,33 @@ extern char	**environ;
 **			3 = response
 */
 
+/*
+** str : contain the cmd + arg
+** end : contain the op after str, 1 = |, 2 = <, 3 = >, 4 = >>
+*/
+
+typedef struct		s_more
+{
+	char			*str;
+	int				end;
+	struct s_more	*next;
+	struct s_more	*prev;
+}					t_more;
+
+/*
+** cmd : contain the line after the split (";", "&&" and "||")
+** i : 1 if the op next is "&&", 2 if "||", else 0
+** more : contain the detail of cmd
+*/
+
+typedef struct		s_cmd
+{
+	char			*cmd;
+	int				i;
+	t_more			*more;
+	struct s_cmd	*next;
+}					t_cmd;
+
 typedef struct		s_tree
 {
 	int				type; /* type */
@@ -54,6 +81,7 @@ typedef struct	s_data
 	t_tree		*tree; /* chain list, contain the cmd line */
 	char		*varenv; /* var name before '=' */
 	char		*valenv; /* content of the var */
+	t_cmd		*lst_line; /* contain the cmd chain list (lexer) */
 }				t_data;
 
 typedef struct	s_ope
@@ -125,10 +153,16 @@ int		ft_get_var_index(char **env, char *str);
 int		is_absolute(char *path);
 int		is_dir(const char *path);
 int		is_dotslash(char *path);
+int		lx_is_op(char *str);
+int		lx_pos_op(char *str, char *cmp);
 int		prs_build_me_tree(char *str, t_tree **tree);
 int		prs_cut_last_str(t_tree *tree, t_ope operation);
 
 size_t	arraylen(char **array);
+
+t_cmd	*lx_new_cmd(char *str, int n);
+
+t_more	*lx_new_more(char *str, int n);
 
 t_tree	*prs_create_tree_node(int type, int ope, char *command);
 
@@ -142,7 +176,13 @@ void	ft_exit(t_data *d, char *s);
 void	ft_exit(t_data *d, char *s);
 void	ft_putenv(t_data *d);
 void	init_start(t_data *d);
+void	lx_add_cmd(t_data *data, t_cmd *new);
+void	lx_add_more(t_cmd *op, t_more *new);
+void	lx_detail(t_cmd *op);
+void	lx_lex_line(char *line, t_data *data);
+void	lx_lexer(char *line, t_data *data);
 void	prs_parse_my_tree_bro(t_data *data, t_tree *tree);
 void	prs_parser_lexer(t_data *data, char *str);
+void	lx_full_free(t_data *d);
 
 #endif

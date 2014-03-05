@@ -1,31 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strsub.c                                        :+:      :+:    :+:   */
+/*   lx_lexer.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vjacquie <vjacquie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/01/25 11:03:43 by jmoiroux          #+#    #+#             */
-/*   Updated: 2014/03/05 15:40:21 by vjacquie         ###   ########.fr       */
+/*   Created: 2014/03/05 12:50:08 by vjacquie          #+#    #+#             */
+/*   Updated: 2014/03/05 15:04:56 by vjacquie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/libft.h"
+#include "sh.h"
 
-char	*ft_strsub(char const *s, unsigned int start, size_t len)
+/*
+** main function for lexing
+** TEST OK vjacquie
+*/
+
+void	lx_lexer(char *line, t_data *d)
 {
-	char	*new;
-	size_t	i;
+	t_cmd	*tmp;
 
-	if (s == NULL)
-		return (NULL);
-	new = (char *)malloc(sizeof(char) * len + 1);
-	i = 0;
-	while (i < len && s[start + i] != '\0')
+	lx_lex_line(line, d);
+	tmp = d->lst_line;
+	while (tmp != NULL)
 	{
-		new[i] = s[start + i];
-		i++;
+		lx_detail(tmp);
+		tmp = tmp->next;
 	}
-	new[i] = '\0';
-	return (new);
 }

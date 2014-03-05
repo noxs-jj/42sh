@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_start.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmoiroux <jmoiroux@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vjacquie <vjacquie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/03 12:55:55 by jmoiroux          #+#    #+#             */
-/*   Updated: 2014/03/03 13:02:29 by jmoiroux         ###   ########.fr       */
+/*   Updated: 2014/03/05 15:32:26 by vjacquie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,4 +25,5 @@ void	init_start(t_data *d)
 	d->tree = NULL;
 	d->varenv = NULL;
 	d->valenv = NULL;
+	d->lst_line = NULL;
 }

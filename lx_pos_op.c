@@ -1,31 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strsub.c                                        :+:      :+:    :+:   */
+/*   lx_pos_op.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vjacquie <vjacquie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/01/25 11:03:43 by jmoiroux          #+#    #+#             */
-/*   Updated: 2014/03/05 15:40:21 by vjacquie         ###   ########.fr       */
+/*   Created: 2014/03/05 12:56:24 by vjacquie          #+#    #+#             */
+/*   Updated: 2014/03/05 15:04:58 by vjacquie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/libft.h"
+#include "sh.h"
 
-char	*ft_strsub(char const *s, unsigned int start, size_t len)
+/*
+** return the cmp pos in str, else return 0
+** TEST OK vjacquie
+*/
+
+int	lx_pos_op(char *str, char *cmp)
 {
-	char	*new;
-	size_t	i;
+	int		i;
 
-	if (s == NULL)
-		return (NULL);
-	new = (char *)malloc(sizeof(char) * len + 1);
 	i = 0;
-	while (i < len && s[start + i] != '\0')
+	while (str[i])
 	{
-		new[i] = s[start + i];
+		if (str[i] == cmp[0])
+			return (i - 1);
 		i++;
 	}
-	new[i] = '\0';
-	return (new);
+	return (0);
 }

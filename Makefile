@@ -43,7 +43,16 @@ ft_exit.c \
 ft_is.c \
 ft_realloc.c \
 init_start.c \
-main.c
+lx_cmd_link.c \
+lx_detail.c \
+lx_detail_link.c \
+lx_is_op.c \
+lx_lex_line.c \
+lx_lexer.c \
+lx_pos_op.c \
+main.c \
+prs_parser.c \
+lx_free_lst.c
 
 OBJS = $(SRCS:.c=.o)
 
