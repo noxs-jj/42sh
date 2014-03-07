@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vjacquie <vjacquie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nmohamed <nmohamed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/28 16:35:27 by vjacquie          #+#    #+#             */
-/*   Updated: 2014/03/05 15:38:03 by vjacquie         ###   ########.fr       */
+/*   Updated: 2014/03/07 16:02:57 by nmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 **
 */
 
-/*static void	ft_print(t_data *d)
+static void	ft_print(t_data *d)
 {
 	t_cmd *tmp;
 	t_more *tmp2;
@@ -34,7 +34,7 @@
 		}
 		tmp = tmp->next;
 	}
-}*/
+}
 
 int		main(void)
 {
@@ -48,11 +48,16 @@ int		main(void)
 	while (1)
 	{
 		ft_putstr(PROMPT);
-		get_next_line(0, &d->line);
+		d->line = ft_strnew(BUFF_SIZE);
+		read(0, d->line, BUFF_SIZE);
 		d->line = ft_strtrim(d->line);
 		check_exit(d);
-		lx_lexer(d->line, d);
-		prs_parser(d);
+		if (d->line[0] != '\0')
+		{
+			lx_lexer(d->line, d);
+			ft_print(d);
+			prs_parser(d);
+		}
 		ft_memdel((void **)&d->line);
 		lx_full_free(d);
 	}

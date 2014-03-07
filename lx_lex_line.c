@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lx_lex_line.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vjacquie <vjacquie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nmohamed <nmohamed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/05 12:54:43 by vjacquie          #+#    #+#             */
-/*   Updated: 2014/03/05 15:04:53 by vjacquie         ###   ########.fr       */
+/*   Updated: 2014/03/07 15:28:13 by nmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,8 @@ void	lx_lex_line(char *line, t_data *d)
 		if (lx_pos_str(cmd[i], "||") != 0 || lx_pos_str(cmd[i], "&&") != 0)
 		{
 			if (lx_pos_str(cmd[i], "&&") == 0
-				|| lx_pos_str(cmd[i], "||") < lx_pos_str(cmd[i], "&&"))
+				|| (lx_pos_str(cmd[i], "||") != 0
+				&& lx_pos_str(cmd[i], "||") < lx_pos_str(cmd[i], "&&")))
 				cmd[i] = lx_or_and(cmd[i], d, "||", 2);
 			else
 				cmd[i] = lx_or_and(cmd[i], d, "&&", 1);

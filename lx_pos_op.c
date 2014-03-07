@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lx_pos_op.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vjacquie <vjacquie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nmohamed <nmohamed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/05 12:56:24 by vjacquie          #+#    #+#             */
-/*   Updated: 2014/03/05 15:04:58 by vjacquie         ###   ########.fr       */
+/*   Updated: 2014/03/07 16:01:08 by nmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	lx_pos_op(char *str, char *cmp)
 	while (str[i])
 	{
 		if (str[i] == cmp[0])
-			return (i - 1);
+			return (i);
 		i++;
 	}
 	return (0);

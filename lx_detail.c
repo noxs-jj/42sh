@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lx_detail.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vjacquie <vjacquie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nmohamed <nmohamed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/05 12:49:50 by vjacquie          #+#    #+#             */
-/*   Updated: 2014/03/05 15:04:44 by vjacquie         ###   ########.fr       */
+/*   Updated: 2014/03/07 16:00:50 by nmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,9 @@ static char	*lx_op(char *str, t_cmd *op, int n)
 	tmp = ft_strsub(str, 0, start);
 	lx_add_more(op, lx_new_more(tmp, n));
 	if (n == 4)
-		cpy = ft_strsub(str, start + 3, ft_strlen(str) - start);
-	else
 		cpy = ft_strsub(str, start + 2, ft_strlen(str) - start);
+	else
+		cpy = ft_strsub(str, start + 1, ft_strlen(str) - start);
 	free(str);
 	return (cpy);
 }
