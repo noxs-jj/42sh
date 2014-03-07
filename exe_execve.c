@@ -59,7 +59,7 @@ int			exe_execve(t_data *d)
 {
 	int			error;
 
-	d->argv = ft_strsplit(d->line, ' ');
+	d->argv = ft_strsplit(d->toexec, ' ');
 	error = SUCCESS;
 	if (!is_dotslash(d->argv[0]) && !is_absolute(d->argv[0]))
 		d->argv[0] = exe_search_exe(d);

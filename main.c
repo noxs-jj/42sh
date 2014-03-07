@@ -17,7 +17,7 @@
 **
 */
 
-static void	ft_print(t_data *d)
+/*static void	ft_print(t_data *d)
 {
 	t_cmd *tmp;
 	t_more *tmp2;
@@ -34,12 +34,11 @@ static void	ft_print(t_data *d)
 		}
 		tmp = tmp->next;
 	}
-}
+}*/
 
 int		main(void)
 {
 	t_data	*d;
-	pid_t	father;
 
 	d = (t_data *)malloc(sizeof(t_data));
 	if (d == NULL)
@@ -53,22 +52,7 @@ int		main(void)
 		d->line = ft_strtrim(d->line);
 		check_exit(d);
 		lx_lexer(d->line, d);
-		ft_print(d);
-		if (build_check(d) != 1)
-		{
-			if (d->line[0] != '\0')
-			{
-				if ((father = fork()) == -1)
-					ft_exit(d, "fork error in main\n");
-				if (father == 0)
-				{
-					exe_execve(d);
-					_exit(1);
-				}
-				else
-					wait(NULL);
-			}
-		}
+		prs_parser(d);
 		ft_memdel((void **)&d->line);
 		lx_full_free(d);
 	}

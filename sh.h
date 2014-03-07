@@ -78,6 +78,7 @@ typedef struct	s_data
 	char		**argv;
 	char		*buff;
 	char		*line;
+	char		*toexec; /* pat of line, to lunch with execve in s_more */
 	t_tree		*tree; /* chain list, contain the cmd line */
 	char		*varenv; /* var name before '=' */
 	char		*valenv; /* content of the var */
@@ -183,6 +184,7 @@ void	lx_lex_line(char *line, t_data *data);
 void	lx_lexer(char *line, t_data *data);
 void	prs_parse_my_tree_bro(t_data *data, t_tree *tree);
 void	prs_parser_lexer(t_data *data, char *str);
+void	prs_parser(t_data *d);
 void	lx_full_free(t_data *d);
 
 #endif
