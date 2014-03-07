@@ -6,7 +6,7 @@
 /*   By: nmohamed <nmohamed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/28 16:35:27 by vjacquie          #+#    #+#             */
-/*   Updated: 2014/03/07 16:07:47 by nmohamed         ###   ########.fr       */
+/*   Updated: 2014/03/07 17:35:45 by nmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@
 int		main(void)
 {
 	t_data	*d;
+	int		pid;
 
 	d = (t_data *)malloc(sizeof(t_data));
 	if (d == NULL)
@@ -54,9 +55,19 @@ int		main(void)
 		check_exit(d);
 		if (d->line[0] != '\0')
 		{
-			lx_lexer(d->line, d);
-//			ft_print(d);
-			prs_parser(d);
+			pid = fork();
+			if (pid == 0)
+			{
+				lx_lexer(d->line, d);
+				prs_parser(d);
+				WR(2, "_______________KID FINISHED_______________");
+				_exit(0);
+			}
+			else
+			{
+				wait(NULL);
+				WR(2, "_______________FATHER FINISHED_______________");
+			}
 		}
 		ft_memdel((void **)&d->line);
 		lx_full_free(d);
