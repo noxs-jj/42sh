@@ -6,7 +6,7 @@
 /*   By: nmohamed <nmohamed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/05 13:15:04 by vjacquie          #+#    #+#             */
-/*   Updated: 2014/03/07 16:02:11 by nmohamed         ###   ########.fr       */
+/*   Updated: 2014/03/07 16:30:54 by nmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	prs_parser(t_data *d)
 		{
 			if (tmpmore->prev->end == 1) /* if previous chainlink is a '|' */
 			{
-				;//recurse_pipe(d, tmpmore);
+				recurse_pipe(d, tmpmore);
 			}
 			else if (tmpmore->prev->end == 2) /* if previous chainlink is a '<' */
 				recurse_left(d, tmpmore->prev);
@@ -76,26 +76,25 @@ void	prs_parser(t_data *d)
 	}
 }
 
-/*void	recurse_pipe(t_data *d, t_more *link)
+void	recurse_pipe(t_data *d, t_more *link)
 {
 	t_more	*tmp;
 	int		pfd[2];
-	int		father;
+	int		pid_left;
+	int		pid_right;
 
+	if (pipe(pfd) < 0)
+		WR(2, "Pipe error");
 	tmp = link;
-	while (tmp != NULL)
+	while (tmp)
 	{
-		pipe(pfd);
-		father = fork();
-		if (father == 0)
-		{
-			close(pfd[1]);
-			dup2();
-		}
-		tmp = tmp->prev;
+		if ((pid_left = fork) < 0)
+			WR(2, "Fork error");
+		if (pid_left)
+		tmp = tmp->next;
 	}
 
-}*/
+}
 
 // void	recurse_pipe(t_data *d, t_more *link)
 // {

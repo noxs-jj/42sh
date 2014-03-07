@@ -6,7 +6,7 @@
 /*   By: nmohamed <nmohamed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/28 16:35:27 by vjacquie          #+#    #+#             */
-/*   Updated: 2014/03/07 16:02:57 by nmohamed         ###   ########.fr       */
+/*   Updated: 2014/03/07 16:07:47 by nmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 **
 */
 
-static void	ft_print(t_data *d)
+/*static void	ft_print(t_data *d)
 {
 	t_cmd *tmp;
 	t_more *tmp2;
@@ -34,7 +34,7 @@ static void	ft_print(t_data *d)
 		}
 		tmp = tmp->next;
 	}
-}
+}*/
 
 int		main(void)
 {
@@ -55,7 +55,7 @@ int		main(void)
 		if (d->line[0] != '\0')
 		{
 			lx_lexer(d->line, d);
-			ft_print(d);
+//			ft_print(d);
 			prs_parser(d);
 		}
 		ft_memdel((void **)&d->line);
