@@ -6,7 +6,7 @@
 /*   By: nmohamed <nmohamed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/28 16:35:27 by vjacquie          #+#    #+#             */
-/*   Updated: 2014/03/07 17:35:45 by nmohamed         ###   ########.fr       */
+/*   Updated: 2014/03/07 18:33:52 by nmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,8 @@ int		main(void)
 	{
 		ft_putstr(PROMPT);
 		d->line = ft_strnew(BUFF_SIZE);
-		read(0, d->line, BUFF_SIZE);
+		if (read(0, d->line, BUFF_SIZE) <= 0)
+			ft_exit(d, "");
 		d->line = ft_strtrim(d->line);
 		check_exit(d);
 		if (d->line[0] != '\0')
@@ -60,14 +61,10 @@ int		main(void)
 			{
 				lx_lexer(d->line, d);
 				prs_parser(d);
-				WR(2, "_______________KID FINISHED_______________");
 				_exit(0);
 			}
 			else
-			{
 				wait(NULL);
-				WR(2, "_______________FATHER FINISHED_______________");
-			}
 		}
 		ft_memdel((void **)&d->line);
 		lx_full_free(d);

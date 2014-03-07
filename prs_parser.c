@@ -6,7 +6,7 @@
 /*   By: nmohamed <nmohamed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/05 13:15:04 by vjacquie          #+#    #+#             */
-/*   Updated: 2014/03/07 17:43:25 by nmohamed         ###   ########.fr       */
+/*   Updated: 2014/03/07 19:28:45 by nmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,20 @@ void	prs_parser(t_data *d)
 				return ;
 			}
 			else if (tmpmore->prev->end == 2) /* if previous chainlink is a '<' */
-				recurse_left(d, tmpmore->prev);
+			{
+				recurse_left(d, tmpmore);
+				return ;
+			}
 			else if (tmpmore->prev->end == 3) /* if previous chainlink is a '>' */
-				recurse_right(d, tmpmore->prev);
+			{
+				recurse_right(d, tmpmore);
+				return ;
+			}
 			else if (tmpmore->prev->end == 4) /* if previous chainlink is a '>>' */
-				recurse_rright(d, tmpmore->prev);
+			{
+				recurse_rright(d, tmpmore);
+				return ;
+			}
 			else
 				ft_exit(d, "Operator error (prs_parser else if)\n");
 		}
@@ -75,6 +84,32 @@ void	prs_parser(t_data *d)
 		}
 		tmpcmd = tmpcmd->next;
 	}
+}
+
+void	prev_operator(t_data *d, t_more *link)
+{
+	if (link->prev->end == 1) /* if previous chainlink is a '|' */
+	{
+		recurse_pipe(d, link->prev);
+		return ;
+	}
+	else if (link->prev->end == 2) /* if previous chainlink is a '<' */
+	{
+		recurse_left(d, link->prev);
+		return ;
+	}
+	else if (link->prev->end == 3) /* if previous chainlink is a '>' */
+	{
+		recurse_right(d, link->prev);
+		return ;
+	}
+	else if (link->prev->end == 4) /* if previous chainlink is a '>>' */
+	{
+		recurse_rright(d, link->prev);
+		return ;
+	}
+	else
+		ft_exit(d, "Operator error (prs_parser else if)\n");
 }
 
 void	recurse_pipe(t_data *d, t_more *link)
@@ -101,9 +136,34 @@ void	recurse_pipe(t_data *d, t_more *link)
 	{
 		close(pfd[0]);
 		dup2(pfd[1], 1);
-		if (link->prev != NULL)
-			recurse_pipe(d, link->prev);
+		if (link->prev != NULL) /* if previous cmd present */
+			prev_operator(d, link);
 //		close(0);
+	}
+}
+
+void	recurse_right(t_data *d, t_more *link)
+{
+
+	int	father;
+	int	pfd[2];
+	int	fd;
+
+	fd = open(ft_strtrim(link->str), O_CREAT | O_WRONLY | O_TRUNC, 0777);
+	pipe(pfd);
+	father = fork();
+	if (father == 0)
+	{
+		close(pfd[1]);
+		dup2(fd, pfd[0]);
+	}
+	else
+	{
+		if (link->prev != NULL /* if previous cmd present */
+		&& link->prev->prev != NULL) /* if previous previous cmd present */
+			prev_operator(d, link->prev);
+		else
+			d->toexec = link->prev->str;
 	}
 }
 
@@ -112,13 +172,6 @@ void	recurse_left(t_data *d, t_more *link)
 	(void)d;
 	(void)link;
 	ft_printf("left\n");
-}
-
-void	recurse_right(t_data *d, t_more *link)
-{
-	(void)d;
-	(void)link;
-	ft_printf("right\n");
 }
 
 void	recurse_rright(t_data *d, t_more *link)
