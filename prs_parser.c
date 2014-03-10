@@ -6,7 +6,7 @@
 /*   By: nmohamed <nmohamed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/05 13:15:04 by vjacquie          #+#    #+#             */
-/*   Updated: 2014/03/07 19:28:45 by nmohamed         ###   ########.fr       */
+/*   Updated: 2014/03/10 20:00:29 by jmoiroux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ void	prs_parser(t_data *d)
 		}
 		else /* if cmd is alone exec it */
 		{
-//			ft_printf("else fork() execve\n");
 			if ((father = fork()) < 0)
 				ft_exit(d, "Fork error (prs_parser)\n");
 			if (father == 0) /* son */
@@ -117,8 +116,6 @@ void	recurse_pipe(t_data *d, t_more *link)
 	int	father;
 	int	pfd[2];
 
-
-//	ft_printf("current:[%s]\n", link->str);
 	if (pipe(pfd) == -1)
 		ft_exit(d, "Pipe error (recurse_pipe)");
 	if ((father = fork()) < 0)
@@ -126,9 +123,9 @@ void	recurse_pipe(t_data *d, t_more *link)
 	if (father == 0) /* son */
 	{
 		d->toexec = link->str;
-//		printf("toexec:[%s]\n", d->toexec);
 		close(pfd[1]);
 		dup2(pfd[0], 0);
+		close(pfd[0]);
 		exe_execve(d);
 		_exit(0);
 	}
@@ -136,34 +133,34 @@ void	recurse_pipe(t_data *d, t_more *link)
 	{
 		close(pfd[0]);
 		dup2(pfd[1], 1);
+		close(pfd[1]);
 		if (link->prev != NULL) /* if previous cmd present */
 			prev_operator(d, link);
-//		close(0);
 	}
 }
 
 void	recurse_right(t_data *d, t_more *link)
 {
+	int		father;
+	int		fd;
+	char	*tmp;
 
-	int	father;
-	int	pfd[2];
-	int	fd;
-
-	fd = open(ft_strtrim(link->str), O_CREAT | O_WRONLY | O_TRUNC, 0777);
-	pipe(pfd);
-	father = fork();
+	tmp = ft_strtrim(link->str);
+	free(tmp);
+	if ((fd = open(tmp, O_WRONLY | O_CREAT | O_TRUNC, 0777)) == -1)
+		ft_exit(d, "File open error (recurse_right)\n");
+	if ((father = fork()) < 0)
+		ft_exit(d, "Fork() error (recurse_right)\n");
+	d->toexec = link->prev->str;
 	if (father == 0)
 	{
-		close(pfd[1]);
-		dup2(fd, pfd[0]);
+		dup2(fd, 1);
+		exe_execve(d);
+		_exit(0);
 	}
 	else
 	{
-		if (link->prev != NULL /* if previous cmd present */
-		&& link->prev->prev != NULL) /* if previous previous cmd present */
-			prev_operator(d, link->prev);
-		else
-			d->toexec = link->prev->str;
+		wait(NULL);
 	}
 }
 
