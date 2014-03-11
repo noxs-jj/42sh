@@ -23,6 +23,13 @@
 ** TEST OK jmoiroux
 */
 
+void		ft_setenv(t_data *d, char *var, char *val)
+{
+	d->varenv = var;
+	d->valenv = val;
+	env_setenv(d);
+}
+
 static void	env_setenv2(t_data *d)
 {
 	char	*tmp;

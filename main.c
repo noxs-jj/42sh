@@ -53,7 +53,7 @@ int		main(void)
 		d->line = ft_strtrim(d->line);
 		ft_memdel((void **)&tmp);
 		check_exit(d);
-		if (d->line[0] != '\0')
+		if (d->line[0] != '\0' && !build_check(d))
 		{
 			pid = fork();
 			if (pid == 0)

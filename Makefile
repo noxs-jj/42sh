@@ -6,7 +6,7 @@
 #    By: jmoiroux <jmoiroux@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/03/01 12:01:41 by jmoiroux          #+#    #+#              #
-#    Updated: 2014/03/11 12:14:34 by jmoiroux         ###   ########.fr        #
+#    Updated: 2014/03/11 14:17:19 by scohen           ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -29,6 +29,13 @@ build_echo.c \
 build_exit.c \
 build_setenv.c \
 build_unsetenv.c \
+build_cd.c \
+cd_change_pwd.c \
+cd_dash.c \
+cd_double_dot.c \
+cd_error.c \
+cd_only.c \
+ft_replace.c \
 check_exit.c \
 env_copy.c \
 env_envdel.c \

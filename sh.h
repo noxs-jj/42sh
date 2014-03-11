@@ -114,6 +114,7 @@ static const	t_build[] =
 	{'\0', NULL}
 }*/
 
+void	build_cd(t_data *d);
 void	build_echo(t_data *d);
 void	build_exit(t_data *d);
 void	env_printenv(t_data *d);
@@ -130,6 +131,7 @@ static const t_build	tab[] =
 	{"env ", &env_printenv},
 	{"setenv", &build_setenv},
 	{"unsetenv", &build_unsetenv},
+	{"cd", &build_cd},
 	{'\0', NULL}
 };
 
@@ -189,5 +191,14 @@ void	prs_parse_my_tree_bro(t_data *data, t_tree *tree);
 void	prs_parser_lexer(t_data *data, char *str);
 void	prs_parser(t_data *d);
 void	lx_full_free(t_data *d);
+void	ft_setenv(t_data *d, char *var, char *val);
+
+int		cd_error(char *name);
+void	cd_only(t_data *d, char *name);
+void	cd_dash(t_data *d, char *name);
+void	cd_double_dot(t_data *d);
+void	cd_change_pwd(t_data *d, char *add);
+void	ft_replace(char tr, char rw, char *str);
+
 
 #endif
