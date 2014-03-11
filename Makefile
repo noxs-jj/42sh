@@ -6,7 +6,7 @@
 #    By: jmoiroux <jmoiroux@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/03/01 12:01:41 by jmoiroux          #+#    #+#              #
-#    Updated: 2014/03/04 13:48:17 by nmohamed         ###   ########.fr        #
+#    Updated: 2014/03/11 12:14:34 by jmoiroux         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -41,6 +41,7 @@ env_unsetenv.c \
 exe_execve.c \
 ft_exit.c \
 ft_is.c \
+ft_ctrl_c.c \
 ft_realloc.c \
 init_start.c \
 lx_cmd_link.c \

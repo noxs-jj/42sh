@@ -6,7 +6,7 @@
 /*   By: nmohamed <nmohamed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/18 14:16:49 by mlaize            #+#    #+#             */
-/*   Updated: 2014/03/07 17:34:42 by nmohamed         ###   ########.fr       */
+/*   Updated: 2014/03/11 12:13:23 by jmoiroux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "libft/includes/libft.h"
 # include <sys/stat.h>
 # include <sys/wait.h>
+# include <signal.h>
 # define MAX_PRIORITY 2
 # define BUFF 20000000
 # define PROMPT "$> "
@@ -176,6 +177,7 @@ void	env_putenv(t_data *d);
 void	env_unsetenv(t_data *d);
 void	ft_exit(t_data *d, char *s);
 void	ft_exit(t_data *d, char *s);
+void	ft_ctrl_c(int i);
 void	ft_putenv(t_data *d);
 void	init_start(t_data *d);
 void	lx_add_cmd(t_data *data, t_cmd *new);

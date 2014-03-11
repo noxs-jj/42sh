@@ -6,16 +6,11 @@
 /*   By: nmohamed <nmohamed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/28 16:35:27 by vjacquie          #+#    #+#             */
-/*   Updated: 2014/03/10 18:14:54 by jmoiroux         ###   ########.fr       */
+/*   Updated: 2014/03/11 12:09:21 by jmoiroux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
-
-/*
-**
-**
-*/
 
 /*static void	ft_print(t_data *d)
 {
@@ -43,6 +38,7 @@ int		main(void)
 	char	*tmp;
 
 	d = NULL;
+	signal(SIGINT, ft_ctrl_c);
 	if (!(d = (t_data *)malloc(sizeof(t_data))))
 		ft_exit(d, "Malloc error struct data (main)\n");
 	init_start(d);
