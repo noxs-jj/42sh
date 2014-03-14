@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sh.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nmohamed <nmohamed@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vjacquie <vjacquie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/18 14:16:49 by mlaize            #+#    #+#             */
-/*   Updated: 2014/03/11 12:13:23 by jmoiroux         ###   ########.fr       */
+/*   Updated: 2014/03/14 12:36:21 by vjacquie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ typedef struct	s_data
 	char		*varenv; /* var name before '=' */
 	char		*valenv; /* content of the var */
 	t_cmd		*lst_line; /* contain the cmd chain list (lexer) */
+	int			backup[2]; /* contain the backup of output and input */
 }				t_data;
 
 typedef struct	s_ope
@@ -152,6 +153,7 @@ char	*env_getenv(t_data *d);
 char	*ft_getenv(char *str, char **env);
 
 int		build_check(t_data *d);
+int		cd_error(char *name);
 int		env_getvarindex(t_data *d);
 int		exe_execve(t_data *d);
 int		ft_get_var_index(char **env, char *str);
@@ -164,41 +166,42 @@ int		prs_build_me_tree(char *str, t_tree **tree);
 int		prs_cut_last_str(t_tree *tree, t_ope operation);
 
 size_t	arraylen(char **array);
-
 t_cmd	*lx_new_cmd(char *str, int n);
-
 t_more	*lx_new_more(char *str, int n);
 
 t_tree	*prs_create_tree_node(int type, int ope, char *command);
 
 void	*ft_realloc(void *ptr, size_t size);
+void	cd_change_pwd(t_data *d, char *add);
+void	cd_dash(t_data *d, char *name);
+void	cd_double_dot(t_data *d);
+void	cd_only(t_data *d, char *name);
 void	check_exit(t_data *d);
 void	env_copy(t_data *d);
 void	env_envdel(t_data *d);
 void	env_putenv(t_data *d);
 void	env_unsetenv(t_data *d);
-void	ft_exit(t_data *d, char *s);
-void	ft_exit(t_data *d, char *s);
 void	ft_ctrl_c(int i);
+void	ft_exit(t_data *d, char *s);
+void	ft_exit(t_data *d, char *s);
 void	ft_putenv(t_data *d);
+void	ft_replace(char tr, char rw, char *str);
+void	ft_setenv(t_data *d, char *var, char *val);
 void	init_start(t_data *d);
 void	lx_add_cmd(t_data *data, t_cmd *new);
 void	lx_add_more(t_cmd *op, t_more *new);
 void	lx_detail(t_cmd *op);
+void	lx_full_free(t_data *d);
 void	lx_lex_line(char *line, t_data *data);
 void	lx_lexer(char *line, t_data *data);
+void	prev_operator(t_data *d, t_more *link);
 void	prs_parse_my_tree_bro(t_data *data, t_tree *tree);
-void	prs_parser_lexer(t_data *data, char *str);
 void	prs_parser(t_data *d);
-void	lx_full_free(t_data *d);
-void	ft_setenv(t_data *d, char *var, char *val);
-
-int		cd_error(char *name);
-void	cd_only(t_data *d, char *name);
-void	cd_dash(t_data *d, char *name);
-void	cd_double_dot(t_data *d);
-void	cd_change_pwd(t_data *d, char *add);
-void	ft_replace(char tr, char rw, char *str);
+void	prs_parser_lexer(t_data *data, char *str);
+void	recurse_left(t_data *d, t_more *link);
+void	recurse_pipe(t_data *d, t_more *link, int fd);
+void	recurse_right(t_data *d, t_more *link);
+void	recurse_rright(t_data *d, t_more *link);
 
 
 #endif

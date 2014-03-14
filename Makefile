@@ -24,18 +24,17 @@ NAME = 42sh
 
 SRCS = \
 arraylen.c \
+build_cd.c \
 build_check.c \
 build_echo.c \
 build_exit.c \
 build_setenv.c \
 build_unsetenv.c \
-build_cd.c \
 cd_change_pwd.c \
 cd_dash.c \
 cd_double_dot.c \
 cd_error.c \
 cd_only.c \
-ft_replace.c \
 check_exit.c \
 env_copy.c \
 env_envdel.c \
@@ -46,21 +45,26 @@ env_putenv.c \
 env_setenv.c \
 env_unsetenv.c \
 exe_execve.c \
+ft_ctrl_c.c \
 ft_exit.c \
 ft_is.c \
-ft_ctrl_c.c \
 ft_realloc.c \
+ft_replace.c \
 init_start.c \
 lx_cmd_link.c \
 lx_detail.c \
 lx_detail_link.c \
+lx_free_lst.c \
 lx_is_op.c \
 lx_lex_line.c \
 lx_lexer.c \
 lx_pos_op.c \
 main.c \
 prs_parser.c \
-lx_free_lst.c
+prs_prev_operator.c \
+prs_recurse_pipe.c \
+prs_recurse_right.c \
+prs_recurse_rright.c
 
 OBJS = $(SRCS:.c=.o)
 
