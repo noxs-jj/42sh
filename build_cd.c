@@ -6,7 +6,7 @@
 /*   By: scohen <scohen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/11 13:58:34 by scohen            #+#    #+#             */
-/*   Updated: 2014/03/11 13:58:36 by scohen           ###   ########.fr       */
+/*   Updated: 2014/03/14 16:44:57 by jmoiroux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,11 @@ void	build_cd(t_data *d)
 {
 	char	**av;
 
-	ft_replace('\t', ' ', d->line);
-	av = ft_strsplit(d->line, ' ');
+	ft_putstr_fd(d->toexec, 2);
+	ft_replace('\t', ' ', d->toexec);
+	av = ft_strsplit(d->toexec, ' ');
+	ft_putstr_fd(av[0], 2);
+	ft_putstr_fd(av[1], 2);
 	if (av[1] != NULL && ft_strcmp(av[1], ".") != 0)
 	{
 		if (ft_strcmp(av[1], "-") == 0)
@@ -35,6 +38,6 @@ void	build_cd(t_data *d)
 			}
 		}
 	}
-	if (av[1] == NULL) /* If cd only */
+	if (av[1] == NULL)
 		cd_only(d, av[1]);
 }

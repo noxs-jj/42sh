@@ -6,7 +6,7 @@
 /*   By: vjacquie <vjacquie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/27 12:05:40 by vjacquie          #+#    #+#             */
-/*   Updated: 2014/03/03 15:24:15 by vjacquie         ###   ########.fr       */
+/*   Updated: 2014/03/14 14:50:34 by jmoiroux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 ** test ok
 ** We write all arg until the end of cmd
 ** We write a '\n' at the end if needed
+** TEST OK jmoiroux
 */
 
 /*
@@ -56,7 +57,7 @@ static int	ft_print_echo(char *str, int i)
 	quote = (str[i] == 39 ? 39 : quote);
 	if (quote == 0)
 	{
-		while (str[i] && (str[i] != ' ' && str[i] != '\t'))
+		while (str[i] != '\0' && (str[i] != ' ' && str[i] != '\t'))
 		{
 			ft_putchar(str[i]);
 			i++;
@@ -65,7 +66,7 @@ static int	ft_print_echo(char *str, int i)
 	else if (quote != 0)
 	{
 		i++;
-		while (str[i] && str[i] != quote)
+		while (str[i] != '\0' && str[i] != quote)
 		{
 			ft_putchar(str[i]);
 			i++;
@@ -82,22 +83,22 @@ void		build_echo(t_data *d)
 
 	i = 4;
 	first = 0;
-	if (d->line[i])
+	if (d->toexec[i])
 	{
-		i = is_option(d->line, i);
-		while (d->line[i])
+		i = is_option(d->toexec, i);
+		while (d->toexec[i])
 		{
-			while (d->line[i] == ' ' || d->line[i] == '\t')
+			while (d->toexec[i] == ' ' || d->toexec[i] == '\t')
 				i++;
-			if (first == 1)
+			if (first == 1 && d->toexec[i] != '\0')
 				ft_putchar(' ');
-			if (d->line[i])
-				i = ft_print_echo(d->line, i);
-			if (d->line[i])
+			if (d->toexec[i])
+				i = ft_print_echo(d->toexec, i);
+			if (d->toexec[i])
 				i++;
 			first = 1;
 		}
 	}
-	if (is_option(d->line, 4) == 4)
+	if (is_option(d->toexec, 4) == 4)
 		ft_putchar('\n');
 }

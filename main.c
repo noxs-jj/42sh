@@ -6,13 +6,14 @@
 /*   By: nmohamed <nmohamed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/28 16:35:27 by vjacquie          #+#    #+#             */
-/*   Updated: 2014/03/11 12:09:21 by jmoiroux         ###   ########.fr       */
+/*   Updated: 2014/03/14 17:21:31 by jmoiroux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
 
-/*static void	ft_print(t_data *d)
+/*
+static void	ft_print(t_data *d)
 {
 	t_cmd *tmp;
 	t_more *tmp2;
@@ -29,7 +30,8 @@
 		}
 		tmp = tmp->next;
 	}
-}*/
+}
+*/
 
 int		main(void)
 {
@@ -53,7 +55,7 @@ int		main(void)
 		d->line = ft_strtrim(d->line);
 		ft_memdel((void **)&tmp);
 		check_exit(d);
-		if (d->line[0] != '\0' && !build_check(d))
+		if (d->line[0] != '\0')
 		{
 			pid = fork();
 			if (pid == 0)

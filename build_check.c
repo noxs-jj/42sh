@@ -6,7 +6,7 @@
 /*   By: vjacquie <vjacquie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/26 14:53:25 by jmoiroux          #+#    #+#             */
-/*   Updated: 2014/03/03 15:24:01 by vjacquie         ###   ########.fr       */
+/*   Updated: 2014/03/14 16:37:46 by jmoiroux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 /*
 ** Check what builtin is used et lunch function
-** TEST
+** TEST OK jmoiroux
 */
 
 int		build_check(t_data *d)
@@ -24,14 +24,15 @@ int		build_check(t_data *d)
 
 	i = 0;
 	len = 0;
-	if (d->line != NULL && d->line[0] != '\0')
+	if (d->line != NULL && d->toexec[0] != '\0')
 	{
 		while (tab[i].str != '\0')
 		{
 			len = ft_strlen(tab[i].str);
-			if ((ft_strnequ(tab[i].str, d->line, len) == 1)
-				&& (len <= ft_strlen(d->line))
-				&& (d->line[len] == '\0' || d->line[len] == ' ' || d->line[len] == '\t'))
+			if ((ft_strnequ(tab[i].str, d->toexec, len) == 1)
+				&& (len <= ft_strlen(d->toexec))
+				&& (d->toexec[len] == '\0' || d->toexec[len] == ' '
+				|| d->toexec[len] == '\t'))
 			{
 				tab[i].fptr(d);
 				return (1);

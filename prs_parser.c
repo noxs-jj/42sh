@@ -6,24 +6,19 @@
 /*   By: vjacquie <vjacquie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/05 13:15:04 by vjacquie          #+#    #+#             */
-/*   Updated: 2014/03/14 12:37:01 by vjacquie         ###   ########.fr       */
+/*   Updated: 2014/03/14 17:24:23 by jmoiroux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
 
-/* typedef struct		s_more
-**{
-**	char			*str;
-**	int				end;
-**	struct s_more	*next;
-**	struct s_more	*prev;
-**}					t_more;
-**
-** end : contain the op after str, 1 = |, 2 = <, 3 = >, 4 = >>
-*/
-
 static void	prs_operator(t_data *d, t_more *link);
+
+/*
+** main parser, check chaininglist and lunch function operator
+** end : contain the op after str, 1 = |, 2 = <, 3 = >, 4 = >>
+** TEST OK jmoiroux
+*/
 
 void	prs_parser(t_data *d)
 {
@@ -33,27 +28,24 @@ void	prs_parser(t_data *d)
 
 	tmpcmd = d->lst_line;
 	while (tmpcmd != NULL)
-	{ /* run the first chainlink (read from left to right) */
-		tmpmore = tmpcmd->more; /* take full str cmdline */
-		while (tmpmore->next != NULL) /* go to last cmd (full right) */
+	{
+		tmpmore = tmpcmd->more;
+		while (tmpmore->next != NULL)
 			tmpmore = tmpmore->next;
-		if (tmpmore->prev != NULL) /* if previous cmd present */
+		if (tmpmore->prev != NULL)
 			prs_operator(d, tmpmore);
-		else /* if cmd is alone exec it */
+		else
 		{
 			if ((father = fork()) < 0)
 				ft_exit(d, "Fork error (prs_parser)\n");
-			if (father == 0) /* son */
-			{ /* toexec take value of chainlink str */
+			if (father == 0)
+			{
 				d->toexec = tmpmore->str;
-				exe_execve(d);
+				exe_build_system(d);
 				_exit(0);
 			}
-			else /* father */
-			{
+			else
 				wait(NULL);
-				return ;
-			}
 		}
 		tmpcmd = tmpcmd->next;
 	}
@@ -71,11 +63,4 @@ static void	prs_operator(t_data *d, t_more *link)
 		recurse_rright(d, link);
 	else
 		ft_exit(d, "Operator error (prs_parser else if)\n");
-}
-
-void	recurse_left(t_data *d, t_more *link)
-{
-	(void)d;
-	(void)link;
-	ft_printf("left\n");
 }

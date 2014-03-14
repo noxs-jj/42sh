@@ -6,11 +6,16 @@
 /*   By: vjacquie <vjacquie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/14 12:29:00 by vjacquie          #+#    #+#             */
-/*   Updated: 2014/03/14 12:34:22 by vjacquie         ###   ########.fr       */
+/*   Updated: 2014/03/14 16:13:12 by jmoiroux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
+
+/*
+** Do double right arrow
+** TEST OK jmoiroux
+*/
 
 void	recurse_rright(t_data *d, t_more *link)
 {
@@ -32,7 +37,7 @@ void	recurse_rright(t_data *d, t_more *link)
 		else
 		{
 			dup2(fd, 1);
-			exe_execve(d);
+			exe_build_system(d);
 		}
 		_exit(0);
 	}

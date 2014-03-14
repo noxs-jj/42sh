@@ -6,11 +6,25 @@
 /*   By: nmohamed <nmohamed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/28 18:15:27 by nmohamed          #+#    #+#             */
-/*   Updated: 2014/03/07 16:54:29 by nmohamed         ###   ########.fr       */
+/*   Updated: 2014/03/14 16:37:22 by jmoiroux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
+
+typedef struct	s_searchexe
+{
+	char		**path;
+	char		*var;
+	char		*tmp;
+	char		*tofree;
+	size_t		i;
+}				t_searchexe;
+
+/*
+** do execve, check if bin is present, check acces
+** TEST OK jmoiroux
+*/
 
 static int	exe_check_exist(char *tmp)
 {
@@ -25,33 +39,29 @@ static int	exe_check_exist(char *tmp)
 
 static char	*exe_search_exe(t_data *d)
 {
-	char		**path;
-	char		*var;
-	char		*tmp;
-	char		*tofree;
-	size_t		i;
+	t_searchexe	s;
 
-	i = 0;
-	var = ft_getenv("PATH", d->env);
-	path = ft_strsplit(var, ':');
-	free(var);
-	tmp = NULL;
-	while (path[i])
+	s.i = 0;
+	s.var = ft_getenv("PATH", d->env);
+	s.path = ft_strsplit(s.var, ':');
+	free(s.var);
+	s.tmp = NULL;
+	while ((s.path)[s.i])
 	{
-		tofree = tmp;
-		tmp = ft_strnew(ft_strlen(path[i]) + 1 + ft_strlen(d->argv[0]));
-		ft_strcat(tmp, path[i]);
-		ft_strcat(tmp, "/");
-		ft_strcat(tmp, d->argv[0]);
-		if (exe_check_exist(tmp) == SUCCESS)
+		s.tofree = s.tmp;
+		s.tmp = ft_strnew(ft_strlen(s.path[s.i]) + 1 + ft_strlen(d->argv[0]));
+		ft_strcat(s.tmp, (s.path)[s.i]);
+		ft_strcat(s.tmp, "/");
+		ft_strcat(s.tmp, d->argv[0]);
+		if (exe_check_exist(s.tmp) == SUCCESS)
 		{
 			ft_strdel(&d->argv[0]);
-			return (tmp);
+			return (s.tmp);
 		}
-		ft_strdel(&tofree);
-		++i;
+		ft_strdel(&(s.tofree));
+		++(s.i);
 	}
-	ft_strdel(&tmp);
+	ft_strdel(&(s.tmp));
 	return (NULL);
 }
 

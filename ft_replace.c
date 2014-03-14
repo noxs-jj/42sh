@@ -6,17 +6,19 @@
 /*   By: scohen <scohen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/11 18:04:23 by scohen            #+#    #+#             */
-/*   Updated: 2014/03/11 18:04:24 by scohen           ###   ########.fr       */
+/*   Updated: 2014/03/14 16:43:47 by jmoiroux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "sh.h"
 
 void	ft_replace(char tr, char rw, char *str)
 {
 	int	i;
 
 	i = 0;
-	while(str[i] !='\0')
-	{	
+	while (str[i] != '\0')
+	{
 		if (str[i] == tr)
 			str[i] = rw;
 		i++;

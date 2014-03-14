@@ -6,7 +6,7 @@
 #    By: jmoiroux <jmoiroux@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/03/01 12:01:41 by jmoiroux          #+#    #+#              #
-#    Updated: 2014/03/11 14:17:19 by scohen           ###   ########.fr        #
+#    Updated: 2014/03/14 15:11:51 by jmoiroux         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -44,6 +44,7 @@ env_printenv.c \
 env_putenv.c \
 env_setenv.c \
 env_unsetenv.c \
+exe_buildorsystem.c \
 exe_execve.c \
 ft_ctrl_c.c \
 ft_exit.c \
@@ -62,6 +63,7 @@ lx_pos_op.c \
 main.c \
 prs_parser.c \
 prs_prev_operator.c \
+prs_recurse_left.c \
 prs_recurse_pipe.c \
 prs_recurse_right.c \
 prs_recurse_rright.c

@@ -6,7 +6,7 @@
 /*   By: vjacquie <vjacquie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/18 14:16:49 by mlaize            #+#    #+#             */
-/*   Updated: 2014/03/14 12:36:21 by vjacquie         ###   ########.fr       */
+/*   Updated: 2014/03/14 16:24:41 by jmoiroux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,30 +62,49 @@ typedef struct		s_cmd
 	struct s_cmd	*next;
 }					t_cmd;
 
+/*
+** - type
+** - response of child's action
+** - What operator is it
+** -
+** - The command string
+** - link to left next node
+** - link to right next node
+*/
 typedef struct		s_tree
 {
-	int				type; /* type */
-	int				response; /* response of child's action */
-	int				ope; /* What operator is it */
-	char			*command; /* The command string */
+	int				type;
+	int				response;
+	int				ope;
+	char			*command;
 	struct s_tree	*father;
-	struct s_tree	*left; /* link to left next node */
-	struct s_tree	*right; /* link to right next node */
+	struct s_tree	*left;
+	struct s_tree	*right;
 }					t_tree;
 
+/*
+** - contain an env copy
+** - used for env
+** - line command vufered
+** - pat of line, to lunch with execve in s_more
+** - chain list, contain the cmd line
+** - var name before '='
+** - content of the var
+** - contain the cmd chain list (lexer)
+** - contain the backup of output and input
+*/
 
 typedef struct	s_data
 {
-	char		**env; /* contain an env copy */
+	char		**env;
 	char		**argv;
-	char		*buff;
 	char		*line;
-	char		*toexec; /* pat of line, to lunch with execve in s_more */
-	t_tree		*tree; /* chain list, contain the cmd line */
-	char		*varenv; /* var name before '=' */
-	char		*valenv; /* content of the var */
-	t_cmd		*lst_line; /* contain the cmd chain list (lexer) */
-	int			backup[2]; /* contain the backup of output and input */
+	char		*toexec;
+	t_tree		*tree;
+	char		*varenv;
+	char		*valenv;
+	t_cmd		*lst_line;
+	int			backup[2];
 }				t_data;
 
 typedef struct	s_ope
@@ -102,18 +121,6 @@ typedef struct	s_build
 	void	(*fptr)(t_data *d);
 }				t_build;
 
-/*
-static const	t_build[] =
-{
-	{"cd\n", &ft_cd},
-	{"cd ", &ft_cd},
-	{"setenv ", &env_callsetenv},
-	{"unsetenv ", &env_callunsetenv},
-	{"echo ", &build_echo},
-	{"exit ", &ft_cd},
-	{"exit\n", &ft_cd},
-	{'\0', NULL}
-}*/
 
 void	build_cd(t_data *d);
 void	build_echo(t_data *d);
@@ -136,18 +143,6 @@ static const t_build	tab[] =
 	{'\0', NULL}
 };
 
-/*
-static t_ope	list_ope[] =
-{
-	{"|", 0, 0, NULL},
-	{"<", 1, 0, NULL},
-	{">>", 2, 1, NULL},
-	{">", 3, 1, NULL},
-	{"&&", 4, 2, NULL},
-	{"||", 5, 2, NULL},
-	{NULL, -1, -1, NULL}
-};
-*/
 
 char	*env_getenv(t_data *d);
 char	*ft_getenv(char *str, char **env);
@@ -155,6 +150,7 @@ char	*ft_getenv(char *str, char **env);
 int		build_check(t_data *d);
 int		cd_error(char *name);
 int		env_getvarindex(t_data *d);
+int		exe_build_system(t_data *d);
 int		exe_execve(t_data *d);
 int		ft_get_var_index(char **env, char *str);
 int		is_absolute(char *path);
@@ -164,11 +160,11 @@ int		lx_is_op(char *str);
 int		lx_pos_op(char *str, char *cmp);
 int		prs_build_me_tree(char *str, t_tree **tree);
 int		prs_cut_last_str(t_tree *tree, t_ope operation);
+int		recurse_left(t_data *d, t_more *link);
 
 size_t	arraylen(char **array);
 t_cmd	*lx_new_cmd(char *str, int n);
 t_more	*lx_new_more(char *str, int n);
-
 t_tree	*prs_create_tree_node(int type, int ope, char *command);
 
 void	*ft_realloc(void *ptr, size_t size);
@@ -198,10 +194,8 @@ void	prev_operator(t_data *d, t_more *link);
 void	prs_parse_my_tree_bro(t_data *data, t_tree *tree);
 void	prs_parser(t_data *d);
 void	prs_parser_lexer(t_data *data, char *str);
-void	recurse_left(t_data *d, t_more *link);
 void	recurse_pipe(t_data *d, t_more *link, int fd);
 void	recurse_right(t_data *d, t_more *link);
 void	recurse_rright(t_data *d, t_more *link);
-
 
 #endif

@@ -1,29 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cd_change_pwd.c                                    :+:      :+:    :+:   */
+/*   exe_buildorsystem.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: scohen <scohen@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jmoiroux <jmoiroux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/03/11 18:04:07 by scohen            #+#    #+#             */
-/*   Updated: 2014/03/14 14:54:39 by jmoiroux         ###   ########.fr       */
+/*   Created: 2014/03/14 13:38:08 by jmoiroux          #+#    #+#             */
+/*   Updated: 2014/03/14 16:08:07 by jmoiroux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
 
-void	cd_change_pwd(t_data *d, char *add)
-{
-	char	*pwd;
-	char	*fj;
-	char	*sj;
+/*
+** check md to exec, lubch it by build or execve in fork()
+** TEST jmoiroux
+*/
 
-	pwd = ft_getenv("PWD", d->env);
-	ft_setenv(d, "OLDPWD", pwd);
-	fj = ft_strjoin(pwd, "/");
-	sj = ft_strjoin(fj, add);
-	free(pwd);
-	free(fj);
-	ft_setenv(d, "PWD", sj);
-	free(sj);
+int		exe_build_system(t_data *d)
+{
+	if (build_check(d) == 1)
+		return (1);
+	return (exe_execve(d));
 }
