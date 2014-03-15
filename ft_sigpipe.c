@@ -1,29 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cd_change_pwd.c                                    :+:      :+:    :+:   */
+/*   ft_sigpipe.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: scohen <scohen@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jmoiroux <jmoiroux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/03/11 18:04:07 by scohen            #+#    #+#             */
-/*   Updated: 2014/03/15 15:00:56 by jmoiroux         ###   ########.fr       */
+/*   Created: 2014/03/15 12:27:13 by jmoiroux          #+#    #+#             */
+/*   Updated: 2014/03/15 12:33:31 by jmoiroux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
 
-void	cd_change_pwd(t_data *d, char *add)
+void	ft_sigpipe(int i)
 {
-	char	*pwd;
-	char	*fj;
-	char	*sj;
-
-	pwd = ft_getenv("PWD", d->env);
-	ft_setenv(d, "OLDPWD", pwd);
-	fj = ft_strjoin(pwd, "/");
-	sj = ft_strjoin(fj, add);
-	free(pwd);
-	free(fj);
-	ft_setenv(d, "PWD", sj);
-	free(sj);
+	ft_putstr("SIGPIPE\n");
+	(void)i;
+	ft_putstr(PROMPT);
 }

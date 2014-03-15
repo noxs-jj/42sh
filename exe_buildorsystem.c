@@ -6,7 +6,7 @@
 /*   By: jmoiroux <jmoiroux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/14 13:38:08 by jmoiroux          #+#    #+#             */
-/*   Updated: 2014/03/14 16:08:07 by jmoiroux         ###   ########.fr       */
+/*   Updated: 2014/03/15 12:20:54 by jmoiroux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,6 @@ int		exe_build_system(t_data *d)
 {
 	if (build_check(d) == 1)
 		return (1);
-	return (exe_execve(d));
+	else
+		return (exe_execve(d));
 }

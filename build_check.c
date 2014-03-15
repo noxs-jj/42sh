@@ -6,7 +6,7 @@
 /*   By: vjacquie <vjacquie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/26 14:53:25 by jmoiroux          #+#    #+#             */
-/*   Updated: 2014/03/14 16:37:46 by jmoiroux         ###   ########.fr       */
+/*   Updated: 2014/03/15 11:53:51 by jmoiroux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ int		build_check(t_data *d)
 				&& (d->toexec[len] == '\0' || d->toexec[len] == ' '
 				|| d->toexec[len] == '\t'))
 			{
+				WR(2, "------------------------------------BUILD CHECK EXEC\n");
 				tab[i].fptr(d);
 				return (1);
 			}

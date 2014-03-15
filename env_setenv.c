@@ -6,7 +6,7 @@
 /*   By: vjacquie <vjacquie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/27 12:39:35 by nmohamed          #+#    #+#             */
-/*   Updated: 2014/03/03 12:03:12 by jmoiroux         ###   ########.fr       */
+/*   Updated: 2014/03/15 12:08:50 by jmoiroux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,10 @@ static void	env_setenv2(t_data *d)
 
 	d->env = ft_realloc(d->env, sizeof(char *) * (arraylen(d->env) + 3));
 	if (d->env == NULL)
-		ft_exit(d, "Malloc error on (ft_realloc env_setenv)");
+	{
+		WR(2, "Malloc error on (ft_realloc env_setenv)");
+		return ;
+	}
 	if ((tmp = ft_memalloc(ft_strlen(d->varenv)
 			+ ft_strlen(d->valenv) + 1)) != NULL)
 	{

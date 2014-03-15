@@ -6,7 +6,7 @@
 /*   By: vjacquie <vjacquie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/05 13:15:04 by vjacquie          #+#    #+#             */
-/*   Updated: 2014/03/14 17:24:23 by jmoiroux         ###   ########.fr       */
+/*   Updated: 2014/03/15 16:07:42 by jmoiroux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,23 +29,33 @@ void	prs_parser(t_data *d)
 	tmpcmd = d->lst_line;
 	while (tmpcmd != NULL)
 	{
-		tmpmore = tmpcmd->more;
-		while (tmpmore->next != NULL)
-			tmpmore = tmpmore->next;
-		if (tmpmore->prev != NULL)
-			prs_operator(d, tmpmore);
+		if (tmpcmd->more != NULL && check_cmdparam(d, tmpcmd->more) == 1)
+			;
 		else
 		{
-			if ((father = fork()) < 0)
-				ft_exit(d, "Fork error (prs_parser)\n");
-			if (father == 0)
-			{
-				d->toexec = tmpmore->str;
-				exe_build_system(d);
-				_exit(0);
-			}
+			tmpmore = tmpcmd->more;
+			while (tmpmore->next != NULL)
+				tmpmore = tmpmore->next;
+			if (tmpmore->prev != NULL)
+				prs_operator(d, tmpmore);
 			else
-				wait(NULL);
+			{
+				if ((father = fork()) < 0)
+				{
+					WR(2, "Fork error (prs_parser)\n");
+					return ;
+				}
+				if (father == 0)
+				{
+					d->toexec = tmpmore->str;
+					exe_build_system(d);
+					_exit(1);
+				}
+				else
+				{
+					wait(NULL);
+				}
+			}
 		}
 		tmpcmd = tmpcmd->next;
 	}
@@ -62,5 +72,5 @@ static void	prs_operator(t_data *d, t_more *link)
 	else if (link->prev->end == 4)
 		recurse_rright(d, link);
 	else
-		ft_exit(d, "Operator error (prs_parser else if)\n");
+		WR(2, "Operator error (prs_operator else)\n");
 }

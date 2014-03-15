@@ -6,7 +6,7 @@
 /*   By: vjacquie <vjacquie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/14 12:29:00 by vjacquie          #+#    #+#             */
-/*   Updated: 2014/03/14 16:13:12 by jmoiroux         ###   ########.fr       */
+/*   Updated: 2014/03/15 12:20:04 by jmoiroux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 ** TEST OK jmoiroux
 */
 
-void	recurse_rright(t_data *d, t_more *link)
+int	recurse_rright(t_data *d, t_more *link)
 {
 	int		father;
 	int		fd;
@@ -25,10 +25,16 @@ void	recurse_rright(t_data *d, t_more *link)
 
 	tmp = ft_strtrim(link->str);
 	if ((fd = open(tmp, O_RDWR | O_CREAT | O_APPEND, 0777)) == -1)
-		ft_exit(d, "File open error (recurse_right)\n");
+	{
+		WR(2, "File open error (recurse_rright)\n");
+		return (-1);
+	}
 	ft_memdel((void **)&tmp);
 	if ((father = fork()) < 0)
-		ft_exit(d, "Fork() error (recurse_right)\n");
+	{
+		WR(2, "Fork() error (recurse_rright)\n");
+		return (-1);
+	}
 	if (father == 0)
 	{
 		d->toexec = link->prev->str;
@@ -41,6 +47,5 @@ void	recurse_rright(t_data *d, t_more *link)
 		}
 		_exit(0);
 	}
-	else
-		wait(NULL);
+	return (1);
 }

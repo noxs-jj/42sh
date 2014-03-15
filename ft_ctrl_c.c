@@ -6,7 +6,7 @@
 /*   By: scohen <scohen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/10 16:14:38 by scohen            #+#    #+#             */
-/*   Updated: 2014/03/10 16:14:42 by scohen           ###   ########.fr       */
+/*   Updated: 2014/03/15 15:12:49 by jmoiroux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,7 @@
 
 void			ft_ctrl_c(int i)
 {
-	char	*str;
-
-	str = PROMPT;
 	(void)i;
 	write(1, "\n", 1);
-	write(1, str, ft_strlen(str));
+	ft_putstr(PROMPT);
 }

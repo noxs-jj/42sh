@@ -6,7 +6,7 @@
 /*   By: vjacquie <vjacquie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/01 15:29:45 by vjacquie          #+#    #+#             */
-/*   Updated: 2014/03/03 12:51:09 by jmoiroux         ###   ########.fr       */
+/*   Updated: 2014/03/15 12:17:22 by jmoiroux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	build_setenv(t_data *d)
 	tmp = ft_strsplit(d->line, ' ');
 	if (tmp == NULL)
 	{
-		ft_exit(d, "Split error (build_env)\n");
+		WR(2, "Split error (build_env)\n");
 		return ;
 	}
 	if (tmp[1] != NULL)

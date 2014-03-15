@@ -6,7 +6,7 @@
 /*   By: vjacquie <vjacquie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/14 12:24:50 by vjacquie          #+#    #+#             */
-/*   Updated: 2014/03/14 17:15:17 by jmoiroux         ###   ########.fr       */
+/*   Updated: 2014/03/15 12:04:40 by jmoiroux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 ** TEST OK jmoiroux
 */
 
-void	recurse_right(t_data *d, t_more *link)
+int	recurse_right(t_data *d, t_more *link)
 {
 	int		father;
 	int		fd;
@@ -25,10 +25,16 @@ void	recurse_right(t_data *d, t_more *link)
 
 	tmp = ft_strtrim(link->str);
 	if ((fd = open(tmp, O_RDWR | O_CREAT | O_TRUNC, 0777)) == -1)
-		ft_exit(d, "File open error (recurse_right)\n");
+	{
+		WR(2, "File open error (recurse_right)\n");
+		return (-1);
+	}
 	ft_memdel((void **)&tmp);
 	if ((father = fork()) < 0)
-		ft_exit(d, "Fork() error (recurse_right)\n");
+	{
+		WR(2, "Fork() error (recurse_right)\n");
+		return (-1);
+	}
 	if (father == 0)
 	{
 		d->toexec = link->prev->str;
@@ -39,8 +45,7 @@ void	recurse_right(t_data *d, t_more *link)
 			dup2(fd, 1);
 			exe_build_system(d);
 		}
-		_exit(0);
+		_exit(1);
 	}
-	else
-		wait(NULL);
+	return (1);
 }

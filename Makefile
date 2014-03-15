@@ -6,7 +6,7 @@
 #    By: jmoiroux <jmoiroux@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/03/01 12:01:41 by jmoiroux          #+#    #+#              #
-#    Updated: 2014/03/14 15:11:51 by jmoiroux         ###   ########.fr        #
+#    Updated: 2014/03/15 13:34:07 by jmoiroux         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -35,6 +35,7 @@ cd_dash.c \
 cd_double_dot.c \
 cd_error.c \
 cd_only.c \
+check_cmdparam.c \
 check_exit.c \
 env_copy.c \
 env_envdel.c \
@@ -51,6 +52,7 @@ ft_exit.c \
 ft_is.c \
 ft_realloc.c \
 ft_replace.c \
+ft_sigpipe.c \
 init_start.c \
 lx_cmd_link.c \
 lx_detail.c \

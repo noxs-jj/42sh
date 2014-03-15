@@ -6,7 +6,7 @@
 /*   By: vjacquie <vjacquie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/28 19:23:50 by nmohamed          #+#    #+#             */
-/*   Updated: 2014/03/03 12:53:07 by jmoiroux         ###   ########.fr       */
+/*   Updated: 2014/03/15 10:51:23 by jmoiroux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 /*
 ** get extern environ and copy it on char **env in struct data
+** if no environement soft say to trtry with env
 ** TEST OK jmoiroux
 */
 
@@ -27,7 +28,8 @@ void	env_copy(t_data *d)
 	d->env = (char **)ft_memalloc(len * (sizeof(char *) + 2));
 	if (d->env == NULL)
 	{
-		ft_putendl("Malloc error: could not copy environement");
+		WR(2, "Malloc error: could not copy environement, ");
+		WR(2, "use 'exit' and retry with environement\n");
 		return ;
 	}
 	while (i < len)

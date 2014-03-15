@@ -6,7 +6,7 @@
 /*   By: vjacquie <vjacquie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/05 15:12:12 by vjacquie          #+#    #+#             */
-/*   Updated: 2014/03/05 15:33:54 by vjacquie         ###   ########.fr       */
+/*   Updated: 2014/03/15 15:46:22 by jmoiroux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	lx_free_cmd(t_cmd *line)
 	{
 		todel = tmp;
 		tmp = tmp->next;
-		if (todel && todel->str)
+		if (todel != NULL && todel->str != NULL)
 			ft_memdel((void **)&todel->str);
 		if (todel)
 			ft_memdel((void **)&todel);
