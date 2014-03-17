@@ -6,7 +6,7 @@
 /*   By: vjacquie <vjacquie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/05 13:15:04 by vjacquie          #+#    #+#             */
-/*   Updated: 2014/03/17 17:54:19 by jmoiroux         ###   ########.fr       */
+/*   Updated: 2014/03/17 18:30:13 by jmoiroux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,6 @@ static int	prs_parseralone(t_data *d, t_more *tmpmore)
 	{
 		d->toexec = tmpmore->str;
 		exe_build_system(d);
-		return (-1);
 		_exit(1);
 	}
 	else
