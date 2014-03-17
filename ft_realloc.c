@@ -6,7 +6,7 @@
 /*   By: vjacquie <vjacquie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/27 15:41:40 by nmohamed          #+#    #+#             */
-/*   Updated: 2014/03/14 14:57:24 by jmoiroux         ###   ########.fr       */
+/*   Updated: 2014/03/17 13:18:28 by jmoiroux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,5 @@ void	*ft_realloc(void *ptr, size_t size)
 		WR(2, "Malloc error (ft_realloc)");
 		return (NULL);
 	}
-	ft_memcpy(new_ptr, ptr, size);
-	return (new_ptr);
+	return (ft_memcpy(new_ptr, ptr, size));
 }

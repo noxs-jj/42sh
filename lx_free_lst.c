@@ -6,7 +6,7 @@
 /*   By: vjacquie <vjacquie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/05 15:12:12 by vjacquie          #+#    #+#             */
-/*   Updated: 2014/03/15 15:46:22 by jmoiroux         ###   ########.fr       */
+/*   Updated: 2014/03/17 17:52:30 by jmoiroux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static void	lx_free_cmd(t_cmd *line)
 	}
 }
 
-void	lx_full_free(t_data *d)
+void		lx_full_free(t_data *d)
 {
 	t_cmd	*tmp;
 	t_cmd	*todel;

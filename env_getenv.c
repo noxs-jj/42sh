@@ -6,7 +6,7 @@
 /*   By: nmohamed <nmohamed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/28 19:26:46 by nmohamed          #+#    #+#             */
-/*   Updated: 2014/03/04 14:00:07 by nmohamed         ###   ########.fr       */
+/*   Updated: 2014/03/17 12:35:41 by jmoiroux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,18 +31,17 @@ char		*ft_getenv(char *str, char **env)
 	}
 	else
 	{
-		ft_putendl("Malloc error: could not allocate tmp");
+		WR(2, "Malloc error: could not allocate tmp\n");
 		return (NULL);
 	}
 	i = 0;
 	while (env[i] && *env[i] != '\0'
 		&& ft_strncmp(env[i], tmp, ft_strlen(tmp)) != 0)
 		++i;
-	free(tmp);
+	if (tmp != NULL)
+		ft_memdel((void **)&tmp);
 	if (env[i] == NULL || env[i][0] == '\0')
-	{
 		return (NULL);
-	}
 	return (ft_strdup(ft_strchr(env[i], '=') + 1));
 }
 

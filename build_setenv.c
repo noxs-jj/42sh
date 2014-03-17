@@ -6,7 +6,7 @@
 /*   By: vjacquie <vjacquie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/01 15:29:45 by vjacquie          #+#    #+#             */
-/*   Updated: 2014/03/15 12:17:22 by jmoiroux         ###   ########.fr       */
+/*   Updated: 2014/03/17 17:50:31 by jmoiroux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 void	build_setenv(t_data *d)
 {
-	char **tmp;
+	char	**tmp;
 
 	tmp = ft_strsplit(d->line, ' ');
 	if (tmp == NULL)

@@ -6,13 +6,13 @@
 /*   By: jmoiroux <jmoiroux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/19 14:54:34 by jmoiroux          #+#    #+#             */
-/*   Updated: 2013/12/07 16:32:44 by jmoiroux         ###   ########.fr       */
+/*   Updated: 2014/03/17 12:18:22 by jmoiroux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/libft.h"
 
-char	*ft_strcpy(char *s1, char const *s2)
+char	*ft_strcpy(char *s1, const char *s2)
 {
 	int	i;
 

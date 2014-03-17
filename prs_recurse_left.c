@@ -6,23 +6,26 @@
 /*   By: jmoiroux <jmoiroux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/14 14:59:36 by jmoiroux          #+#    #+#             */
-/*   Updated: 2014/03/15 12:04:39 by jmoiroux         ###   ########.fr       */
+/*   Updated: 2014/03/17 17:54:36 by jmoiroux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
+
+static int	recurse_leftfork(t_data *d, int father, int fd, t_more *link);
 
 /*
 ** open link and dup2 it on prev link cmd
 ** TEST OK jmoiroux
 */
 
-int	recurse_left(t_data *d, t_more *link)
+int			recurse_left(t_data *d, t_more *link)
 {
 	int		father;
 	int		fd;
 	char	*tmp;
 
+	father = -1;
 	tmp = ft_strtrim(link->str);
 	if ((fd = open(tmp, O_RDONLY)) == -1)
 	{
@@ -35,6 +38,13 @@ int	recurse_left(t_data *d, t_more *link)
 		return (-1);
 	}
 	ft_memdel((void **)&tmp);
+	if (recurse_leftfork(d, father, fd, link) == -1)
+		return (-1);
+	return (1);
+}
+
+static int	recurse_leftfork(t_data *d, int father, int fd, t_more *link)
+{
 	if ((father = fork()) < 0)
 	{
 		WR(2, "Fork() error (recurse_left)\n");

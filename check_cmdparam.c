@@ -6,7 +6,7 @@
 /*   By: jmoiroux <jmoiroux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/15 13:33:48 by jmoiroux          #+#    #+#             */
-/*   Updated: 2014/03/15 17:58:55 by jmoiroux         ###   ########.fr       */
+/*   Updated: 2014/03/17 13:08:19 by jmoiroux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,10 @@ int			check_cmdparam(t_data *d, t_more *link)
 		else if (ft_strnequ("exit", tmp, ft_strlen("exit")) == 1)
 			return (param_exit(d, tmp));
 		else
+		{
+			ft_memdel((void **)&tmp);
 			return (0);
+		}
 	}
 	return (0);
 }

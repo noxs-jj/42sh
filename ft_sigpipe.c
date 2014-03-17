@@ -6,7 +6,7 @@
 /*   By: jmoiroux <jmoiroux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/15 12:27:13 by jmoiroux          #+#    #+#             */
-/*   Updated: 2014/03/15 12:33:31 by jmoiroux         ###   ########.fr       */
+/*   Updated: 2014/03/17 17:22:54 by jmoiroux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_sigpipe(int i)
 {
-	ft_putstr("SIGPIPE\n");
 	(void)i;
-	ft_putstr(PROMPT);
+	ft_putstr_fd("SIGPIPE\n", 2);
+	ft_putstr_fd(PROMPT, 2);
 }

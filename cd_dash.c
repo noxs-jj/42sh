@@ -6,7 +6,7 @@
 /*   By: vjacquie <vjacquie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/11 18:02:56 by scohen            #+#    #+#             */
-/*   Updated: 2014/03/14 16:45:55 by jmoiroux         ###   ########.fr       */
+/*   Updated: 2014/03/17 12:24:53 by jmoiroux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,9 @@ void	cd_dash(t_data *d, char *name)
 	{
 		ft_setenv(d, "PWD", oldpwd);
 		ft_setenv(d, "OLDPWD", pwd);
-		free(pwd);
-		free(oldpwd);
 	}
+	if (pwd != NULL)
+		ft_memdel((void **)&pwd);
+	if (pwd != NULL)
+		ft_memdel((void **)&oldpwd);
 }

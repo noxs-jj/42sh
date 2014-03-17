@@ -6,7 +6,7 @@
 /*   By: vjacquie <vjacquie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/03 12:55:55 by jmoiroux          #+#    #+#             */
-/*   Updated: 2014/03/15 16:00:44 by jmoiroux         ###   ########.fr       */
+/*   Updated: 2014/03/17 14:39:44 by jmoiroux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,6 @@ void	init_start(t_data *d)
 	d->lst_line = NULL;
 	d->statprev = 0;
 	signal(SIGINT, ft_ctrl_c);
-//	signal(SIGPIPE, SIG_IGN);
+	signal(SIGPIPE, ft_sigpipe);
 	env_copy(d);
 }

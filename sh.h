@@ -6,7 +6,7 @@
 /*   By: vjacquie <vjacquie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/18 14:16:49 by mlaize            #+#    #+#             */
-/*   Updated: 2014/03/15 16:00:11 by jmoiroux         ###   ########.fr       */
+/*   Updated: 2014/03/17 15:59:02 by jmoiroux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,14 @@ typedef struct		s_more
 ** cmd : contain the line after the split (";", "&&" and "||")
 ** i : 1 if the op next is "&&", 2 if "||", else 0
 ** more : contain the detail of cmd
+** exedone  1 EXECSUCCESS / 0 EXECERROR
 */
 
 typedef struct		s_cmd
 {
 	char			*cmd;
 	int				i;
+	int				exedone;
 	t_more			*more;
 	struct s_cmd	*next;
 }					t_cmd;

@@ -6,13 +6,13 @@
 /*   By: nmohamed <nmohamed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/28 19:30:51 by nmohamed          #+#    #+#             */
-/*   Updated: 2014/02/28 19:32:27 by nmohamed         ###   ########.fr       */
+/*   Updated: 2014/03/17 17:51:31 by jmoiroux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
 
-int			ft_get_var_index(char **env, char *str)
+int	ft_get_var_index(char **env, char *str)
 {
 	size_t	i;
 	char	*tmp;
@@ -24,21 +24,19 @@ int			ft_get_var_index(char **env, char *str)
 	}
 	else
 	{
-		ft_putendl("Malloc error: could not allocate tmp");
+		WR(2, "Malloc error: could not allocate tmp\n");
 		return (-1);
 	}
 	i = 0;
 	while (*env[i] != '\0' && ft_strncmp(env[i], tmp, ft_strlen(tmp)) != 0)
-	{
 		++i;
-	}
-	free(tmp);
+	ft_memdel((void **)&tmp);
 	if (env[i][0] == '\0')
 		return (-1);
 	return (i);
 }
 
-int				env_getvarindex(t_data *d)
+int	env_getvarindex(t_data *d)
 {
 	return (ft_get_var_index(d->env, d->varenv));
 }
