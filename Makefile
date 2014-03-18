@@ -14,7 +14,7 @@
 # Makefile parent who call Makefile soon from libft
 # add llvm- in CC= line if you need depends update of computer
 
-CC = llvm-gcc -g -Wall -Wextra -Werror
+CC = gcc -Wall -Wextra -Werror
 
 RM = rm -rf
 

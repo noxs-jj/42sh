@@ -34,7 +34,6 @@ int		build_check(t_data *d)
 				&& (d->toexec[len] == '\0' || d->toexec[len] == ' '
 				|| d->toexec[len] == '\t'))
 			{
-				WR(2, "------------------------------------BUILD CHECK EXEC\n");
 				tab[i].fptr(d);
 				return (1);
 			}

@@ -12,24 +12,24 @@
 
 #include "sh.h"
 
-// static void	ft_print(t_data *d)
-// {
-// 	t_cmd	*tmp;
-// 	t_more	*tmp2;
+/*static void	ft_print(t_data *d)
+{
+	t_cmd	*tmp;
+	t_more	*tmp2;
 
-// 	tmp = d->lst_line;
-// 	while (tmp != NULL)
-// 	{
-// 		ft_printf("[%s][%d]\n", tmp->cmd, tmp->i);
-// 		tmp2 = tmp->more;
-// 		while (tmp2 != NULL)
-// 		{
-// 			ft_printf("		[%s][%d]\n", tmp2->str, tmp2->end);
-// 			tmp2 = tmp2->next;
-// 		}
-// 		tmp = tmp->next;
-// 	}
-// }
+	tmp = d->lst_line;
+	while (tmp != NULL)
+	{
+		ft_printf("[%s][%d]\n", tmp->cmd, tmp->i);
+		tmp2 = tmp->more;
+		while (tmp2 != NULL)
+		{
+			ft_printf("		[%s][%d]\n", tmp2->str, tmp2->end);
+			tmp2 = tmp2->next;
+		}
+		tmp = tmp->next;
+	}
+}*/
 
 static void	prompt_exit(t_data *d);
 
@@ -56,8 +56,8 @@ static void	prompt_exit(t_data *d)
 
 	ft_putstr(PROMPT);
 	d->line = ft_strnew(BUFF_SIZE);
-	if (read(0, d->line, BUFF_SIZE) <= 0)
-		WR(2, "Read error (main)\n");
+	if (read(0, d->line, BUFF_SIZE) <= 0 && errno != EINTR)
+		ft_exit(d, "End of transmission\n");
 	tmp = d->line;
 	d->line = ft_strtrim(d->line);
 	ft_memdel((void **)&tmp);

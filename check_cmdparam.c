@@ -29,13 +29,13 @@ int			check_cmdparam(t_data *d, t_more *link)
 	if (link->str != NULL)
 	{
 		tmp = ft_strtrim(link->str);
-		if (ft_strnequ("cd", tmp, ft_strlen("cd")) == 1)
+		if (ft_strncmp("cd", tmp, ft_strlen("cd")) == 0)
 			return (param_cd(d, tmp));
-		else if (ft_strnequ("setenv", tmp, ft_strlen("setenv")) == 1)
+		else if (ft_strncmp("setenv", tmp, ft_strlen("setenv")) == 0)
 			return (param_setenv(d, tmp));
-		else if (ft_strnequ("unsetenv", tmp, ft_strlen("unsetenv")) == 1)
+		else if (ft_strncmp("unsetenv", tmp, ft_strlen("unsetenv")) == 0)
 			return (param_unsetenv(d, tmp));
-		else if (ft_strnequ("exit", tmp, ft_strlen("exit")) == 1)
+		else if (ft_strncmp("exit", tmp, ft_strlen("exit")) == 0)
 			return (param_exit(d, tmp));
 		else
 		{

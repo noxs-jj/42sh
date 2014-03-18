@@ -28,6 +28,7 @@
 # define ERR_CMDNOTFOUND 4
 
 extern char	**environ;
+extern int	errno;
 
 /*
 **	type :	0 = for sort

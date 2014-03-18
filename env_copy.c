@@ -23,15 +23,11 @@ void	env_copy(t_data *d)
 	size_t	len;
 	size_t	i;
 
+	if (*environ == NULL)
+		ft_exit(d, "Cannot run without an environement.");
 	i = 0;
 	len = arraylen(environ);
 	d->env = (char **)malloc(sizeof(char *) * (1 + len));
-	if (d->env == NULL)
-	{
-		WR(2, "Malloc error: could not copy environement, ");
-		WR(2, "use 'exit' and retry with environement\n");
-		return ;
-	}
 	while (i < len)
 	{
 		d->env[i] = ft_strdup(environ[i]);

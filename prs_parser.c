@@ -29,7 +29,10 @@ void		prs_parser(t_data *d)
 	tmpcmd = d->lst_line;
 	while (tmpcmd != NULL)
 	{
-		if (tmpcmd->more != NULL && check_cmdparam(d, tmpcmd->more) == 1)
+		if (tmpcmd->more != NULL
+			&& tmpcmd->more->str != NULL
+			&& tmpcmd->more->str[0] != '\0'
+			&& check_cmdparam(d, tmpcmd->more) == 1)
 			;
 		else
 		{
