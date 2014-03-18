@@ -28,7 +28,7 @@ void	build_cd(t_data *d)
 				cd_error(av[1]);
 			else
 			{
-				if (ft_strncmp(av[1], "..", 2) == 0 
+				if (ft_strncmp(av[1], "..", 2) == 0
 					&& (av[1][2] == '/' || av[1][2] == '\0'))
 					cd_double_dot(d, av[1]);
 				else
@@ -38,4 +38,20 @@ void	build_cd(t_data *d)
 	}
 	if (av[1] == NULL)
 		cd_only(d, av[1]);
+	free_tabtab(av);
+}
+
+void	free_tabtab(char **tab)
+{
+	int	i;
+
+	i = 0;
+	if (tab == NULL)
+		return ;
+	while (tab[i] != NULL)
+	{
+		ft_memdel((void **)&tab[i]);
+		++i;
+	}
+	ft_memdel((void **)&tab);
 }

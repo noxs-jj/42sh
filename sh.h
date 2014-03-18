@@ -166,4 +166,6 @@ void	prev_operator(t_data *d, t_more *link);
 void	prs_parser(t_data *d);
 void	prs_parser_lexer(t_data *data, char *str);
 
+void	free_tabtab(char **tab);
+
 #endif

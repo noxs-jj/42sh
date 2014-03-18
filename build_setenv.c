@@ -34,9 +34,8 @@ void	build_setenv(t_data *d)
 	env_setenv(d);
 	if (d->varenv != NULL)
 		ft_memdel((void **)&(d->varenv));
-	d->valenv = NULL;
-	if (tmp != NULL && tmp[0] != NULL)
-		ft_memdel((void **)&tmp[0]);
-	if (tmp != NULL)
-	ft_memdel((void **)&tmp);
+	if (d->valenv)
+		ft_memdel((void **)&d->valenv);
+	ft_memdel((void **)&tmp[0]);
+	free(tmp);
 }

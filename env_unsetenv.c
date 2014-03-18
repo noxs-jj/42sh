@@ -19,27 +19,22 @@
 
 void	env_unsetenv(t_data *d)
 {
-	size_t	len;
-	char	**ptr;
-	int		i;
+	char	*tofree;
+	int	i;
 
-	if (d->varenv == NULL || d->varenv == '\0'
-		|| ft_strchr (d->varenv, '=') != NULL)
-		return ;
-	len = ft_strlen(d->varenv);
 	i = 0;
-	while (d->env[i] != NULL)
+	tofree = NULL;
+	while (d->env[i] != NULL && (!ft_strnequ(d->env[i], d->varenv, ft_strlen(d->varenv))
+		|| (size_t)(ft_strchr(d->env[i], '=') - d->env[i]) != ft_strlen(d->varenv)))
+		++i;
+	if (d->env[i] != NULL)
 	{
-		if (ft_strncmp(d->env[i], d->varenv, len) == 0 && d->env[i][len] == '=')
+		tofree = d->env[i];
+		while (d->env[i] != NULL)
 		{
-			ptr = &(d->env[i]);
-			while (*ptr)
-			{
-				ptr[0] = ptr[1];
-				++ptr;
-			}
+			d->env[i] = d->env[i + 1];
+			++i;
 		}
-		else
-			i++;
 	}
+	ft_strdel(&tofree);
 }

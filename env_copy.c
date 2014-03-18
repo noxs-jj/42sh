@@ -25,7 +25,7 @@ void	env_copy(t_data *d)
 
 	i = 0;
 	len = arraylen(environ);
-	d->env = (char **)ft_memalloc(len * (sizeof(char *) + 2));
+	d->env = (char **)malloc(sizeof(char *) * (1 + len));
 	if (d->env == NULL)
 	{
 		WR(2, "Malloc error: could not copy environement, ");
@@ -37,6 +37,5 @@ void	env_copy(t_data *d)
 		d->env[i] = ft_strdup(environ[i]);
 		++i;
 	}
-	d->env[i] = ft_strdup("\0");
-	d->env[i + 1] = NULL;
+	d->env[i] = NULL;
 }

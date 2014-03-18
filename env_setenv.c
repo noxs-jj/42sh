@@ -25,45 +25,56 @@
 
 void		ft_setenv(t_data *d, char *var, char *val)
 {
-	d->varenv = var;
-	d->valenv = val;
-	env_setenv(d);
-}
+	char		**env;
+	char		*tofree;
+	char		*toset;
 
-static void	env_setenv2(t_data *d)
-{
-	char	*tmp;
-
-	d->env = ft_realloc(d->env, sizeof(char *) * (arraylen(d->env) + 3));
-	if (d->env == NULL)
+	env = d->env;
+	tofree = ft_getenv(var, env);
+	if (tofree == NULL)
 	{
-		WR(2, "Malloc error on (ft_realloc env_setenv)");
+		d->varenv = var;
+		d->valenv = val;
+		ft_strdel(&tofree);
+		return (ft_putenv(d));
+	}
+	if ((toset = ft_strnew(ft_strlen(var) + ft_strlen(val))) == NULL)
+	{
+		ft_strdel(&tofree);
 		return ;
 	}
-	if ((tmp = ft_memalloc(ft_strlen(d->varenv)
-			+ ft_strlen(d->valenv) + 1)) != NULL)
+	ft_strcpy(toset, var);
+	ft_strcat(toset, "=");
+	ft_strcat(toset, val);
+	env = d->env;
+	while (env != NULL && env[0] && (!ft_strnequ(*env, var, ft_strlen(var))
+		|| (size_t)(ft_strchr(*env, '=') - *env) != ft_strlen(var)))
+		++env;
+	if (env == NULL && !env[0])
 	{
-		tmp = ft_strcpy(tmp, d->varenv);
-		tmp = ft_strcat(tmp, "=");
-		tmp = ft_strcat(tmp, d->valenv);
-	}
-	else
-	{
-		WR(2, "Malloc error: could not allocate variable (env_setenv)");
+		ft_strdel(&tofree);
 		return ;
 	}
-	d->env[ft_get_var_index(d->env, d->varenv)] = tmp;
+	ft_strdel(&tofree);
+	tofree = *env;
+	*env = toset;
+	free(tofree);
 }
 
 void		env_setenv(t_data *d)
 {
+	char	*tofree;
+
+	tofree = ft_getenv(d->varenv, d->env);
 	if (d->varenv != NULL && d->valenv != NULL)
 	{
-		if (ft_getenv(d->varenv, d->env) == NULL)
+		if (tofree == NULL)
 			ft_putenv(d);
 		else
-			env_setenv2(d);
+			ft_setenv(d, d->varenv, d->valenv);
 	}
 	else
 		ft_putstr("setenv usage: 'setenv variable value'\n");
+	if (tofree)
+		ft_strdel(&tofree);
 }
