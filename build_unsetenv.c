@@ -36,4 +36,5 @@ void	build_unsetenv(t_data *d)
 	env_unsetenv(d);
 	if (tmp[0] != NULL)
 		ft_memdel((void **)&tmp[0]);
+	free(tmp);
 }

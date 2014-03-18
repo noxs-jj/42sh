@@ -36,5 +36,8 @@ void	env_unsetenv(t_data *d)
 			++i;
 		}
 	}
-	ft_strdel(&tofree);
+	if (tofree != NULL)
+		ft_strdel(&tofree);
+	if (d->varenv != NULL)
+		ft_strdel(&d->varenv);
 }

@@ -25,7 +25,7 @@ void	cd_only(t_data *d, char *name)
 	home = ft_getenv("HOME", d->env);
 	pwd = ft_getenv("PWD", d->env);
 	if (chdir(home) == -1)
-		cd_error(name);
+		cd_error("Home directory");
 	else
 	{
 		ft_setenv(d, "OLDPWD", pwd);
@@ -35,4 +35,5 @@ void	cd_only(t_data *d, char *name)
 		ft_memdel((void **)&home);
 	if (pwd != NULL)
 		ft_memdel((void **)&pwd);
+	(void)name;
 }
