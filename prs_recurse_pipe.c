@@ -6,7 +6,7 @@
 /*   By: vjacquie <vjacquie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/14 12:27:25 by vjacquie          #+#    #+#             */
-/*   Updated: 2014/03/17 17:22:42 by jmoiroux         ###   ########.fr       */
+/*   Updated: 2014/03/18 11:25:59 by vjacquie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int			recurse_pipe(t_data *d, t_more *link, int fd)
 		if (link->prev != NULL)
 			prev_operator(d, link);
 	}
-	dup2(d->backup[0], 1);
+	dup2(0, 1);
 	return (1);
 }
 

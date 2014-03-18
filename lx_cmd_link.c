@@ -6,7 +6,7 @@
 /*   By: vjacquie <vjacquie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/05 12:51:20 by vjacquie          #+#    #+#             */
-/*   Updated: 2014/03/05 15:06:11 by vjacquie         ###   ########.fr       */
+/*   Updated: 2014/03/18 11:59:15 by vjacquie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ t_cmd	*lx_new_cmd(char *str, int n)
 	new = (t_cmd *)malloc(sizeof(t_cmd));
 	new->cmd = str;
 	new->i = n;
+	new->exedone = 0;
 	new->next = NULL;
 	new->more = NULL;
 	return (new);

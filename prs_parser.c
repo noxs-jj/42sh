@@ -6,7 +6,7 @@
 /*   By: vjacquie <vjacquie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/05 13:15:04 by vjacquie          #+#    #+#             */
-/*   Updated: 2014/03/17 18:30:13 by jmoiroux         ###   ########.fr       */
+/*   Updated: 2014/03/18 12:17:52 by vjacquie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,12 @@ void		prs_parser(t_data *d)
 			else
 				prs_parseralone(d, tmpmore);
 		}
+		while (waitpid(WAIT_ANY, &tmpcmd->exedone, WNOHANG) != -1)
+			;
+		if (tmpcmd->exedone == 0 && tmpcmd->i == 2)
+			tmpcmd = tmpcmd->next;
+		else if (tmpcmd->exedone != 0 && tmpcmd->i == 1)
+			tmpcmd = tmpcmd->next;
 		tmpcmd = tmpcmd->next;
 	}
 }

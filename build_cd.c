@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   build_cd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: scohen <scohen@student.42.fr>              +#+  +:+       +#+        */
+/*   By: vjacquie <vjacquie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/11 13:58:34 by scohen            #+#    #+#             */
-/*   Updated: 2014/03/14 18:35:06 by jmoiroux         ###   ########.fr       */
+/*   Updated: 2014/03/18 13:18:10 by vjacquie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,9 @@ void	build_cd(t_data *d)
 				cd_error(av[1]);
 			else
 			{
-				if (ft_strcmp(av[1], "..") == 0)
-					cd_double_dot(d);
+				if (ft_strncmp(av[1], "..", 2) == 0 
+					&& (av[1][2] == '/' || av[1][2] == '\0'))
+					cd_double_dot(d, av[1]);
 				else
 					cd_change_pwd(d, av[1]);
 			}

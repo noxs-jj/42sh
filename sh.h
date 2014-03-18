@@ -6,7 +6,7 @@
 /*   By: vjacquie <vjacquie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/18 14:16:49 by mlaize            #+#    #+#             */
-/*   Updated: 2014/03/17 15:59:02 by jmoiroux         ###   ########.fr       */
+/*   Updated: 2014/03/18 13:18:34 by vjacquie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,6 @@ typedef struct	s_data
 	char		*varenv;
 	char		*valenv;
 	t_cmd		*lst_line;
-	int			backup[2];
 	int			statprev;
 }				t_data;
 
@@ -142,7 +141,7 @@ t_more	*lx_new_more(char *str, int n);
 void	*ft_realloc(void *ptr, size_t size);
 void	cd_change_pwd(t_data *d, char *add);
 void	cd_dash(t_data *d, char *name);
-void	cd_double_dot(t_data *d);
+void	cd_double_dot(t_data *d, char *av);
 void	cd_only(t_data *d, char *name);
 void	check_exit(t_data *d);
 void	env_copy(t_data *d);

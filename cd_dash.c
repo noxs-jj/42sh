@@ -6,7 +6,7 @@
 /*   By: vjacquie <vjacquie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/11 18:02:56 by scohen            #+#    #+#             */
-/*   Updated: 2014/03/17 12:24:53 by jmoiroux         ###   ########.fr       */
+/*   Updated: 2014/03/18 14:01:22 by vjacquie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	cd_dash(t_data *d, char *name)
 		cd_error(name);
 	else
 	{
+		ft_putendl(oldpwd);
 		ft_setenv(d, "PWD", oldpwd);
 		ft_setenv(d, "OLDPWD", pwd);
 	}
