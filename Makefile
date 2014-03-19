@@ -10,7 +10,6 @@
 #                                                                              #
 #******************************************************************************#
 
-
 # Makefile parent who call Makefile soon from libft
 # add llvm- in CC= line if you need depends update of computer
 

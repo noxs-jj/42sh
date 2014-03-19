@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sh.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nmohamed <nmohamed@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vjacquie <vjacquie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/18 14:16:49 by mlaize            #+#    #+#             */
-/*   Updated: 2014/03/19 16:50:12 by nmohamed         ###   ########.fr       */
+/*   Updated: 2014/03/19 19:02:01 by vjacquie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,9 +114,6 @@ static const t_build	tab[] =
 	{"env ", &env_printenv},
 	{'\0', NULL}
 };
-
-
-
 
 char	*env_getenv(t_data *d);
 char	*ft_getenv(char *str, char **env);
