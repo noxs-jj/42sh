@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd_dash.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vjacquie <vjacquie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nmohamed <nmohamed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/11 18:02:56 by scohen            #+#    #+#             */
-/*   Updated: 2014/03/18 14:01:22 by vjacquie         ###   ########.fr       */
+/*   Updated: 2014/03/19 12:52:03 by nmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,6 @@ void	cd_dash(t_data *d, char *name)
 	}
 	if (pwd != NULL)
 		ft_memdel((void **)&pwd);
-	if (pwd != NULL)
+	if (oldpwd != NULL)
 		ft_memdel((void **)&oldpwd);
 }
