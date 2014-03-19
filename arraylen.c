@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   arraylen.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vjacquie <vjacquie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nmohamed <nmohamed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/27 15:41:27 by nmohamed          #+#    #+#             */
-/*   Updated: 2014/03/01 16:39:04 by vjacquie         ###   ########.fr       */
+/*   Updated: 2014/03/19 13:23:43 by nmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ size_t	arraylen(char **array)
 	i = 0;
 	if (array != NULL)
 	{
-		while (array[i] != NULL && array[i][0] != '\0')
+		while (array[i] != NULL)
 			++i;
 	}
 	else

@@ -6,7 +6,7 @@
 /*   By: nmohamed <nmohamed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/28 19:08:01 by nmohamed          #+#    #+#             */
-/*   Updated: 2014/03/03 11:49:51 by jmoiroux         ###   ########.fr       */
+/*   Updated: 2014/03/19 14:23:21 by nmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,13 @@ void	env_unsetenv(t_data *d)
 
 	i = 0;
 	tofree = NULL;
-	while (d->env[i] != NULL && (!ft_strnequ(d->env[i], d->varenv, ft_strlen(d->varenv))
+	if (d->env == NULL)
+	{
+		WR(2, "env is null | ft_getenv\n");
+		_exit(1);
+	}
+	while (d->env[i] != NULL
+		&& (ft_strncmp(d->env[i], d->varenv, ft_strlen(d->varenv) != 0)
 		|| (size_t)(ft_strchr(d->env[i], '=') - d->env[i]) != ft_strlen(d->varenv)))
 		++i;
 	if (d->env[i] != NULL)
@@ -35,6 +41,7 @@ void	env_unsetenv(t_data *d)
 			d->env[i] = d->env[i + 1];
 			++i;
 		}
+		d->env[i] = NULL;
 	}
 	if (tofree != NULL)
 		ft_strdel(&tofree);

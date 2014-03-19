@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_setenv.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vjacquie <vjacquie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nmohamed <nmohamed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/27 12:39:35 by nmohamed          #+#    #+#             */
-/*   Updated: 2014/03/15 12:08:50 by jmoiroux         ###   ########.fr       */
+/*   Updated: 2014/03/19 14:33:03 by nmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void		ft_setenv(t_data *d, char *var, char *val)
 	ft_strcat(toset, "=");
 	ft_strcat(toset, val);
 	env = d->env;
-	while (env != NULL && env[0] && (!ft_strnequ(*env, var, ft_strlen(var))
+	while (env != NULL && env[0] && (ft_strncmp(*env, var, ft_strlen(var) != 0)
 		|| (size_t)(ft_strchr(*env, '=') - *env) != ft_strlen(var)))
 		++env;
 	if (env == NULL && !env[0])
@@ -63,18 +63,10 @@ void		ft_setenv(t_data *d, char *var, char *val)
 
 void		env_setenv(t_data *d)
 {
-	char	*tofree;
-
-	tofree = ft_getenv(d->varenv, d->env);
 	if (d->varenv != NULL && d->valenv != NULL)
 	{
-		if (tofree == NULL)
-			ft_putenv(d);
-		else
-			ft_setenv(d, d->varenv, d->valenv);
+		ft_setenv(d, d->varenv, d->valenv);
 	}
 	else
 		ft_putstr("setenv usage: 'setenv variable value'\n");
-	if (tofree)
-		ft_strdel(&tofree);
 }
