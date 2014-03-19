@@ -6,7 +6,7 @@
 /*   By: nmohamed <nmohamed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/28 18:15:27 by nmohamed          #+#    #+#             */
-/*   Updated: 2014/03/15 12:16:31 by jmoiroux         ###   ########.fr       */
+/*   Updated: 2014/03/19 18:11:44 by nmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ int			exe_execve(t_data *d)
 {
 	int			error;
 
+	ft_replace('\t', ' ', d->toexec);
 	d->argv = ft_strsplit(d->toexec, ' ');
 	error = SUCCESS;
 	if (!is_dotslash(d->argv[0]) && !is_absolute(d->argv[0]))

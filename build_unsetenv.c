@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   build_unsetenv.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmoiroux <jmoiroux@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nmohamed <nmohamed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/03 11:12:09 by jmoiroux          #+#    #+#             */
-/*   Updated: 2014/03/15 12:17:46 by jmoiroux         ###   ########.fr       */
+/*   Updated: 2014/03/19 18:09:41 by nmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	build_unsetenv(t_data *d)
 {
 	char	**tmp;
 
+	ft_replace('\t', ' ', d->line);
 	tmp = ft_strsplit(d->line, ' ');
 	if (tmp == NULL)
 	{

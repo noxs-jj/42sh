@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   build_setenv.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vjacquie <vjacquie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nmohamed <nmohamed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/01 15:29:45 by vjacquie          #+#    #+#             */
-/*   Updated: 2014/03/19 16:47:04 by nmohamed         ###   ########.fr       */
+/*   Updated: 2014/03/19 18:09:44 by nmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	build_setenv(t_data *d)
 {
 	char	**tmp;
 
+	ft_replace('\t', ' ', d->line);
 	tmp = ft_strsplit(d->line, ' ');
 	if (tmp == NULL)
 	{

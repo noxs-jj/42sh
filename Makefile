@@ -76,11 +76,11 @@ all : $(NAME)
 
 $(NAME): $(OBJS)
 	@make -C libft
-	@$(CC) $(OBJS) -o $(NAME) -I. -L /usr/lib -ltermcap -lncurses \
+	@$(CC) -g $(OBJS) -o $(NAME) -I. -L /usr/lib -ltermcap -lncurses \
 -L libft -lft $(HEADER)
 
 %.o: %.c
-	@$(CC) $(SRC) -I /usr/lib -I /libft -I /includes -c $<
+	@$(CC) -g $(SRC) -I /usr/lib -I /libft -I /includes -c $<
 
 clean:
 	@$(RM) $(OBJS)
