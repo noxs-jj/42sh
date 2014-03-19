@@ -6,7 +6,7 @@
 /*   By: vjacquie <vjacquie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/05 13:15:04 by vjacquie          #+#    #+#             */
-/*   Updated: 2014/03/18 12:17:52 by vjacquie         ###   ########.fr       */
+/*   Updated: 2014/03/19 15:48:32 by jmoiroux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 static void	prs_operator(t_data *d, t_more *link);
 static int	prs_parseralone(t_data *d, t_more *tmpmore);
+static void	prs_parser2(t_data *d, t_cmd *tmpcmd);
 
 /*
 ** main parser, check chaininglist and lunch function operator
@@ -24,26 +25,16 @@ static int	prs_parseralone(t_data *d, t_more *tmpmore);
 void		prs_parser(t_data *d)
 {
 	t_cmd	*tmpcmd;
-	t_more	*tmpmore;
 
 	tmpcmd = d->lst_line;
 	while (tmpcmd != NULL)
 	{
-		if (tmpcmd->more != NULL
-			&& tmpcmd->more->str != NULL
+		if (tmpcmd->more != NULL && tmpcmd->more->str != NULL
 			&& tmpcmd->more->str[0] != '\0'
 			&& check_cmdparam(d, tmpcmd->more) == 1)
 			;
 		else
-		{
-			tmpmore = tmpcmd->more;
-			while (tmpmore->next != NULL)
-				tmpmore = tmpmore->next;
-			if (tmpmore->prev != NULL)
-				prs_operator(d, tmpmore);
-			else
-				prs_parseralone(d, tmpmore);
-		}
+			prs_parser2(d, tmpcmd);
 		while (waitpid(WAIT_ANY, &tmpcmd->exedone, WNOHANG) != -1)
 			;
 		if (tmpcmd->exedone == 0 && tmpcmd->i == 2)
@@ -52,6 +43,19 @@ void		prs_parser(t_data *d)
 			tmpcmd = tmpcmd->next;
 		tmpcmd = tmpcmd->next;
 	}
+}
+
+static void	prs_parser2(t_data *d, t_cmd *tmpcmd)
+{
+	t_more	*tmpmore;
+
+	tmpmore = tmpcmd->more;
+	while (tmpmore->next != NULL)
+		tmpmore = tmpmore->next;
+	if (tmpmore->prev != NULL)
+		prs_operator(d, tmpmore);
+	else
+		prs_parseralone(d, tmpmore);
 }
 
 static void	prs_operator(t_data *d, t_more *link)

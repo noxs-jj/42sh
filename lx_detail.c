@@ -6,7 +6,7 @@
 /*   By: nmohamed <nmohamed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/05 12:49:50 by vjacquie          #+#    #+#             */
-/*   Updated: 2014/03/07 16:00:50 by nmohamed         ###   ########.fr       */
+/*   Updated: 2014/03/19 15:59:39 by jmoiroux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static char	*lx_op(char *str, t_cmd *op, int n)
 ** TEST OK vjacquie
 */
 
-void	lx_detail(t_cmd *op)
+void		lx_detail(t_cmd *op)
 {
 	char	*str;
 

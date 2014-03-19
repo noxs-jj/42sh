@@ -6,7 +6,7 @@
 /*   By: vjacquie <vjacquie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/01 15:29:45 by vjacquie          #+#    #+#             */
-/*   Updated: 2014/03/17 17:50:31 by jmoiroux         ###   ########.fr       */
+/*   Updated: 2014/03/19 16:14:19 by jmoiroux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	build_setenv(t_data *d)
 	env_setenv(d);
 	if (d->varenv != NULL)
 		ft_memdel((void **)&(d->varenv));
-	if (d->valenv)
+	if (d->valenv != NULL)
 		ft_memdel((void **)&d->valenv);
 	ft_memdel((void **)&tmp[0]);
 	free(tmp);

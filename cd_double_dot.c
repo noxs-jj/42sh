@@ -6,13 +6,15 @@
 /*   By: vjacquie <vjacquie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/11 18:03:31 by scohen            #+#    #+#             */
-/*   Updated: 2014/03/18 13:52:35 by vjacquie         ###   ########.fr       */
+/*   Updated: 2014/03/19 15:58:19 by jmoiroux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
 
-int		ft_count_strstr(char *str, char *cmp)
+static void	cd_double_dot2(char *av, int *i, int *j, char *pwd);
+
+int			ft_count_strstr(char *str, char *cmp)
 {
 	int		i;
 	int		number;
@@ -36,7 +38,7 @@ int		ft_count_strstr(char *str, char *cmp)
 	return (number);
 }
 
-void	cd_double_dot(t_data *d, char *av)
+void		cd_double_dot(t_data *d, char *av)
 {
 	char	*pwd;
 	int		i;
@@ -59,20 +61,22 @@ void	cd_double_dot(t_data *d, char *av)
 			pwd[i--] = '\0';
 	}
 	else if (av[2] == '/')
-	{
-		j = ft_count_strstr(av, "..");
-		while (pwd[i] != '\0')
-			i++;
-		while (i != 0 && j != 0)
-		{
-			if (pwd[i] == '/')
-				j--;
-			pwd[i] = '\0';
-			i--;
-		}
-		
-	}
+		cd_double_dot2(av, &i, &j, pwd);
 	ft_setenv(d, "PWD", pwd);
 	if (pwd != NULL)
 		ft_memdel((void **)&pwd);
+}
+
+static void	cd_double_dot2(char *av, int *i, int *j, char *pwd)
+{
+		*j = ft_count_strstr(av, "..");
+		while (pwd[*i] != '\0')
+			(*i)++;
+		while (*i != 0 && j != 0)
+		{
+			if (pwd[*i] == '/')
+				(*j)--;
+			pwd[*i] = '\0';
+			(*i)--;
+		}
 }

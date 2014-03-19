@@ -6,11 +6,14 @@
 /*   By: nmohamed <nmohamed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/28 19:08:01 by nmohamed          #+#    #+#             */
-/*   Updated: 2014/03/19 14:23:21 by nmohamed         ###   ########.fr       */
+/*   Updated: 2014/03/19 15:44:13 by jmoiroux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
+
+static void	env_unsetenv2(void);
+static void	env_unsetenv3(t_data *d, char *tofree);
 
 /*
 ** remove entry called fron build_unsetenv or cd
@@ -20,18 +23,16 @@
 void	env_unsetenv(t_data *d)
 {
 	char	*tofree;
-	int	i;
+	int		i;
 
 	i = 0;
 	tofree = NULL;
 	if (d->env == NULL)
-	{
-		WR(2, "env is null | ft_getenv\n");
-		_exit(1);
-	}
+		env_unsetenv2();
 	while (d->env[i] != NULL
-		&& (ft_strncmp(d->env[i], d->varenv, ft_strlen(d->varenv) != 0)
-		|| (size_t)(ft_strchr(d->env[i], '=') - d->env[i]) != ft_strlen(d->varenv)))
+			&& (ft_strncmp(d->env[i], d->varenv, ft_strlen(d->varenv) != 0)
+			|| (size_t)(ft_strchr(d->env[i], '=')
+			- d->env[i]) != ft_strlen(d->varenv)))
 		++i;
 	if (d->env[i] != NULL)
 	{
@@ -43,6 +44,17 @@ void	env_unsetenv(t_data *d)
 		}
 		d->env[i] = NULL;
 	}
+	env_unsetenv3(d, tofree);
+}
+
+static void	env_unsetenv2(void)
+{
+	WR(2, "env is null | ft_getenv\n");
+	_exit(1);
+}
+
+static void	env_unsetenv3(t_data *d, char *tofree)
+{
 	if (tofree != NULL)
 		ft_strdel(&tofree);
 	if (d->varenv != NULL)

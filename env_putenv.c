@@ -6,7 +6,7 @@
 /*   By: nmohamed <nmohamed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/28 19:28:09 by nmohamed          #+#    #+#             */
-/*   Updated: 2014/03/19 14:29:44 by nmohamed         ###   ########.fr       */
+/*   Updated: 2014/03/19 15:58:51 by jmoiroux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,16 +57,14 @@ void			ft_putenv(t_data *d)
 	}
 	else
 	{
-		ft_putendl("Malloc error: could not allocate new variable");
+		WR(2, "Malloc error: could not allocate new variable\n");
 		return ;
 	}
 	old_ptr = d->env;
-	printf("before %zu\n", arraylen(old_ptr));
 	d->env = realloc_2d(&old_ptr, arraylen(old_ptr) + 4);
 	i = 0;
 	while (d->env[i] != NULL)
 		++i;
 	d->env[i] = new_var;
 	d->env[i + 1] = NULL;
-	printf("after %zu\n", arraylen(d->env));
 }
