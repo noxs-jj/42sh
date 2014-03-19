@@ -45,13 +45,7 @@ fclean: clean
 
 re: fclean all
 
-exe:
-	clear
-	make re
-	@llvm-gcc -g $(CFLAGS) main.c -I. libft.a
-	@./a.out
-
 %.o: %.c
-	@llvm-gcc -g -c $< -o $@
+	@gcc -c $< -o $@
 
 .PHONY: all clean fclean re

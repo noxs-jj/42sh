@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sh.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vjacquie <vjacquie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nmohamed <nmohamed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/18 14:16:49 by mlaize            #+#    #+#             */
-/*   Updated: 2014/03/18 13:18:34 by vjacquie         ###   ########.fr       */
+/*   Updated: 2014/03/19 16:50:12 by nmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,11 +115,15 @@ static const t_build	tab[] =
 	{'\0', NULL}
 };
 
+
+
+
 char	*env_getenv(t_data *d);
 char	*ft_getenv(char *str, char **env);
 
 int		build_check(t_data *d);
 int		cd_error(char *name);
+int		check_cmdparam(t_data *d, t_more *link);
 int		env_getvarindex(t_data *d);
 int		exe_build_system(t_data *d);
 int		exe_execve(t_data *d);
@@ -133,9 +137,9 @@ int		recurse_left(t_data *d, t_more *link);
 int		recurse_pipe(t_data *d, t_more *link, int fd);
 int		recurse_right(t_data *d, t_more *link);
 int		recurse_rright(t_data *d, t_more *link);
-int		check_cmdparam(t_data *d, t_more *link);
 
 size_t	arraylen(char **array);
+
 t_cmd	*lx_new_cmd(char *str, int n);
 t_more	*lx_new_more(char *str, int n);
 
@@ -149,13 +153,14 @@ void	env_copy(t_data *d);
 void	env_envdel(t_data *d);
 void	env_putenv(t_data *d);
 void	env_unsetenv(t_data *d);
+void	free_tabtab(char **tab);
 void	ft_ctrl_c(int i);
 void	ft_exit(t_data *d, char *s);
 void	ft_exit(t_data *d, char *s);
-void	ft_sigpipe(int i);
 void	ft_putenv(t_data *d);
 void	ft_replace(char tr, char rw, char *str);
 void	ft_setenv(t_data *d, char *var, char *val);
+void	ft_sigpipe(int i);
 void	init_start(t_data *d);
 void	lx_add_cmd(t_data *data, t_cmd *new);
 void	lx_add_more(t_cmd *op, t_more *new);
@@ -166,7 +171,5 @@ void	lx_lexer(char *line, t_data *data);
 void	prev_operator(t_data *d, t_more *link);
 void	prs_parser(t_data *d);
 void	prs_parser_lexer(t_data *data, char *str);
-
-void	free_tabtab(char **tab);
 
 #endif

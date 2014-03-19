@@ -6,7 +6,7 @@
 /*   By: vjacquie <vjacquie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/01 15:29:45 by vjacquie          #+#    #+#             */
-/*   Updated: 2014/03/19 16:14:19 by jmoiroux         ###   ########.fr       */
+/*   Updated: 2014/03/19 16:47:04 by nmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,11 @@ void	build_setenv(t_data *d)
 		WR(2, "Split error (build_env)\n");
 		return ;
 	}
-	if (tmp[1] != NULL)
+	if (tmp[1] != NULL && tmp[2] != NULL)
+	{
 		d->varenv = tmp[1];
-	if (tmp[2] != NULL)
 		d->valenv = tmp[2];
+	}
 	env_setenv(d);
 	if (d->varenv != NULL)
 		ft_memdel((void **)&(d->varenv));
