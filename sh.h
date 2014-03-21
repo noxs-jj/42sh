@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sh.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vjacquie <vjacquie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nmohamed <nmohamed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/18 14:16:49 by mlaize            #+#    #+#             */
-/*   Updated: 2014/03/19 19:02:01 by vjacquie         ###   ########.fr       */
+/*   Updated: 2014/03/21 14:47:57 by jmoiroux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ typedef struct		s_cmd
 ** - contain the cmd chain list (lexer)
 ** - contain the backup of output and input
 ** - status of last cmdline chainlink 0 cmd success / < 0 cmd fail
+** - if cmd running 1 yes 0 no used for CTRL + 1
 */
 
 typedef struct	s_data
@@ -89,6 +90,7 @@ typedef struct	s_data
 	char		*valenv;
 	t_cmd		*lst_line;
 	int			statprev;
+	int			cmdrun;
 }				t_data;
 
 typedef struct	s_build
@@ -107,12 +109,24 @@ void	build_unsetenv(t_data *d);
 
 static const t_build	tab[] =
 {
-	{"echo", &build_echo},
-	{"exit ", &build_exit},
-	{"exit", &build_exit},
-	{"env", &env_printenv},
-	{"env ", &env_printenv},
-	{'\0', NULL}
+	{
+		"echo", &build_echo
+	},
+	{
+		"exit ", &build_exit
+	},
+	{
+		"exit", &build_exit
+	},
+	{
+		"env", &env_printenv
+	},
+	{
+		"env ", &env_printenv
+	},
+	{
+		'\0', NULL
+	}
 };
 
 char	*env_getenv(t_data *d);
@@ -139,8 +153,8 @@ size_t	arraylen(char **array);
 
 t_cmd	*lx_new_cmd(char *str, int n);
 t_more	*lx_new_more(char *str, int n);
+t_data	*dataptr(t_data *d);
 
-void	*ft_realloc(void *ptr, size_t size);
 void	cd_change_pwd(t_data *d, char *add);
 void	cd_dash(t_data *d, char *name);
 void	cd_double_dot(t_data *d, char *av);
@@ -157,7 +171,6 @@ void	ft_exit(t_data *d, char *s);
 void	ft_putenv(t_data *d);
 void	ft_replace(char tr, char rw, char *str);
 void	ft_setenv(t_data *d, char *var, char *val);
-void	ft_sigpipe(int i);
 void	init_start(t_data *d);
 void	lx_add_cmd(t_data *data, t_cmd *new);
 void	lx_add_more(t_cmd *op, t_more *new);

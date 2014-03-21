@@ -6,7 +6,7 @@
 /*   By: jmoiroux <jmoiroux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/14 14:59:36 by jmoiroux          #+#    #+#             */
-/*   Updated: 2014/03/17 17:54:36 by jmoiroux         ###   ########.fr       */
+/*   Updated: 2014/03/21 13:00:42 by jmoiroux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,13 @@ int			recurse_left(t_data *d, t_more *link)
 	if ((fd = open(tmp, O_RDONLY)) == -1)
 	{
 		WR(2, "File open error (recurse_left)\n");
+		ft_memdel((void **)&tmp);
 		return (-1);
 	}
 	if (link->prev->str == NULL)
 	{
 		WR(2, "< usage: [commandline < file]\n");
+		ft_memdel((void **)&tmp);
 		return (-1);
 	}
 	ft_memdel((void **)&tmp);

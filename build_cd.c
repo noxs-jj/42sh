@@ -6,15 +6,16 @@
 /*   By: nmohamed <nmohamed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/11 13:58:34 by scohen            #+#    #+#             */
-/*   Updated: 2014/03/19 17:59:59 by nmohamed         ###   ########.fr       */
+/*   Updated: 2014/03/21 12:24:34 by jmoiroux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
 
-static void		free_vars(char *home, char *pwd, char *oldpwd);
+static void	free_vars(char *home, char *pwd, char *oldpwd);
+static void	build_cd2(t_data *d, char **av);
 
-static int		build_cd_check_for_env(t_data *d)
+static int	build_cd_check_for_env(t_data *d)
 {
 	char	*home;
 	char	*pwd;
@@ -33,7 +34,7 @@ static int		build_cd_check_for_env(t_data *d)
 	return (1);
 }
 
-static void		free_vars(char *home, char *pwd, char *oldpwd)
+static void	free_vars(char *home, char *pwd, char *oldpwd)
 {
 	if (home != NULL)
 		free(home);
@@ -43,7 +44,7 @@ static void		free_vars(char *home, char *pwd, char *oldpwd)
 		free(oldpwd);
 }
 
-void			build_cd(t_data *d)
+void		build_cd(t_data *d)
 {
 	char	**av;
 
@@ -56,25 +57,28 @@ void			build_cd(t_data *d)
 		if (ft_strcmp(av[1], "-") == 0)
 			cd_dash(d, av[1]);
 		else
-		{
-			if (chdir(av[1]) == -1)
-				cd_error(av[1]);
-			else
-			{
-				if (ft_strncmp(av[1], "..", 2) == 0
-					&& (av[1][2] == '/' || av[1][2] == '\0'))
-					cd_double_dot(d, av[1]);
-				else
-					cd_change_pwd(d, av[1]);
-			}
-		}
+			build_cd2(d, av);
 	}
 	if (av[1] == NULL)
 		cd_only(d, av[1]);
 	free_tabtab(av);
 }
 
-void			free_tabtab(char **tab)
+static void	build_cd2(t_data *d, char **av)
+{
+	if (chdir(av[1]) == -1)
+		cd_error(av[1]);
+	else
+	{
+		if (ft_strncmp(av[1], "..", 2) == 0
+			&& (av[1][2] == '/' || av[1][2] == '\0'))
+			cd_double_dot(d, av[1]);
+		else
+			cd_change_pwd(d, av[1]);
+	}
+}
+
+void		free_tabtab(char **tab)
 {
 	int	i;
 

@@ -1,34 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_start.c                                       :+:      :+:    :+:   */
+/*   dataptr.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vjacquie <vjacquie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jmoiroux <jmoiroux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/03/03 12:55:55 by jmoiroux          #+#    #+#             */
-/*   Updated: 2014/03/21 14:47:43 by jmoiroux         ###   ########.fr       */
+/*   Created: 2014/03/21 12:42:59 by jmoiroux          #+#    #+#             */
+/*   Updated: 2014/03/21 12:45:56 by jmoiroux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
 
 /*
-** init all vars on struct data
-** Load signals
-** do env copy
+** if need data everywhere cal this to get ptr of data struct
 ** TEST OK jmoiroux
 */
 
-void	init_start(t_data *d)
+t_data	*dataptr(t_data *d)
 {
-	d->cmdrun = 0;
-	d->env = NULL;
-	d->line = NULL;
-	d->varenv = NULL;
-	d->valenv = NULL;
-	d->lst_line = NULL;
-	d->statprev = 0;
-	signal(SIGINT, ft_ctrl_c);
-	dataptr(d);
-	env_copy(d);
+	static t_data	*save = NULL;
+
+	if (save == NULL)
+		save = d;
+	else
+		return (save);
+	return (save);
 }

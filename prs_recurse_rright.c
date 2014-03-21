@@ -6,7 +6,7 @@
 /*   By: vjacquie <vjacquie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/14 12:29:00 by vjacquie          #+#    #+#             */
-/*   Updated: 2014/03/17 17:41:23 by jmoiroux         ###   ########.fr       */
+/*   Updated: 2014/03/21 13:02:31 by jmoiroux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int			recurse_rright(t_data *d, t_more *link)
 	if ((fd = open(tmp, O_RDWR | O_CREAT | O_APPEND, 0777)) == -1)
 	{
 		WR(2, "File open error (recurse_rright)\n");
+		ft_memdel((void **)&tmp);
 		return (-1);
 	}
 	ft_memdel((void **)&tmp);

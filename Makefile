@@ -6,7 +6,7 @@
 #    By: jmoiroux <jmoiroux@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/03/01 12:01:41 by jmoiroux          #+#    #+#              #
-#    Updated: 2014/03/15 13:34:07 by jmoiroux         ###   ########.fr        #
+#    Updated: 2014/03/21 14:47:50 by jmoiroux         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -36,6 +36,7 @@ SRCS =  \
 		cd_only.c \
 		check_cmdparam.c \
 		check_exit.c \
+		dataptr.c \
 		env_copy.c \
 		env_envdel.c \
 		env_getenv.c \
@@ -49,9 +50,7 @@ SRCS =  \
 		ft_ctrl_c.c \
 		ft_exit.c \
 		ft_is.c \
-		ft_realloc.c \
 		ft_replace.c \
-		ft_sigpipe.c \
 		init_start.c \
 		lx_cmd_link.c \
 		lx_detail.c \
@@ -88,6 +87,11 @@ clean:
 fclean: clean
 	@$(RM) $(NAME)
 	@make fclean -C libft
+
+exe:
+	@clear
+	@echo "--------clang compil-------"
+	@clang -Wall -Werror -Wextra -g -o $(NAME) libft.a $(SRCS)
 
 re: fclean all
 

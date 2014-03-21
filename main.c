@@ -6,7 +6,7 @@
 /*   By: nmohamed <nmohamed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/28 16:35:27 by vjacquie          #+#    #+#             */
-/*   Updated: 2014/03/19 16:51:04 by nmohamed         ###   ########.fr       */
+/*   Updated: 2014/03/21 12:48:34 by jmoiroux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,10 @@ int			main(void)
 	while (1)
 	{
 		prompt_exit(d);
+		d->cmdrun = 1;
 		lx_lexer(d->line, d);
 		prs_parser(d);
+		d->cmdrun = 0;
 		ft_memdel((void **)&d->line);
 		lx_full_free(d);
 	}
