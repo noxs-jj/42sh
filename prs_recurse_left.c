@@ -6,12 +6,13 @@
 /*   By: jmoiroux <jmoiroux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/14 14:59:36 by jmoiroux          #+#    #+#             */
-/*   Updated: 2014/03/21 13:00:42 by jmoiroux         ###   ########.fr       */
+/*   Updated: 2014/03/21 18:12:00 by jmoiroux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
 
+static int	recurse_leftalone(t_data *d, t_more *link);
 static int	recurse_leftfork(t_data *d, int father, int fd, t_more *link);
 
 /*
@@ -20,6 +21,21 @@ static int	recurse_leftfork(t_data *d, int father, int fd, t_more *link);
 */
 
 int			recurse_left(t_data *d, t_more *link)
+{
+	if (link->next != NULL)
+	{
+		WR(2, "Operator: < usage: 'executable < file' only\n");
+		return (-1);
+	}
+	else
+	{
+		if (recurse_leftalone(d, link) == -1)
+			return (-1);
+	}
+	return (1);
+}
+
+static int	recurse_leftalone(t_data *d, t_more *link)
 {
 	int		father;
 	int		fd;
@@ -33,9 +49,9 @@ int			recurse_left(t_data *d, t_more *link)
 		ft_memdel((void **)&tmp);
 		return (-1);
 	}
-	if (link->prev->str == NULL)
+	if (link->prev != NULL && link->prev->str == NULL)
 	{
-		WR(2, "< usage: [commandline < file]\n");
+		WR(2, "Operator: < usage: 'executable < file' only\n");
 		ft_memdel((void **)&tmp);
 		return (-1);
 	}
@@ -44,7 +60,6 @@ int			recurse_left(t_data *d, t_more *link)
 		return (-1);
 	return (1);
 }
-
 static int	recurse_leftfork(t_data *d, int father, int fd, t_more *link)
 {
 	if ((father = fork()) < 0)

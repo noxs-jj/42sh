@@ -6,7 +6,7 @@
 /*   By: nmohamed <nmohamed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/18 14:16:49 by mlaize            #+#    #+#             */
-/*   Updated: 2014/03/21 14:47:57 by jmoiroux         ###   ########.fr       */
+/*   Updated: 2014/03/21 18:15:13 by jmoiroux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,8 +95,8 @@ typedef struct	s_data
 
 typedef struct	s_build
 {
-	char	*str;
-	void	(*fptr)(t_data *d);
+	char		*str;
+	void		(*fptr)(t_data *d);
 }				t_build;
 
 void	build_cd(t_data *d);

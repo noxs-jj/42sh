@@ -6,7 +6,7 @@
 #    By: jmoiroux <jmoiroux@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/03/01 12:01:41 by jmoiroux          #+#    #+#              #
-#    Updated: 2014/03/21 14:47:50 by jmoiroux         ###   ########.fr        #
+#    Updated: 2014/03/21 15:10:43 by jmoiroux         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -75,7 +75,7 @@ all : $(NAME)
 $(NAME): $(OBJS)
 	@make -C libft
 	@$(CC) -g $(OBJS) -o $(NAME) -I. -L /usr/lib -ltermcap -lncurses \
--L libft -lft $(HEADER)
+	-L libft -lft $(HEADER)
 
 %.o: %.c
 	@$(CC) -g $(SRC) -I /usr/lib -I /libft -I /includes -c $<
