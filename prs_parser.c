@@ -6,7 +6,7 @@
 /*   By: vjacquie <vjacquie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/05 13:15:04 by vjacquie          #+#    #+#             */
-/*   Updated: 2014/03/19 15:48:32 by jmoiroux         ###   ########.fr       */
+/*   Updated: 2014/03/24 15:34:52 by vjacquie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,19 +29,21 @@ void		prs_parser(t_data *d)
 	tmpcmd = d->lst_line;
 	while (tmpcmd != NULL)
 	{
+		d->current = tmpcmd;
 		if (tmpcmd->more != NULL && tmpcmd->more->str != NULL
 			&& tmpcmd->more->str[0] != '\0'
 			&& check_cmdparam(d, tmpcmd->more) == 1)
 			;
 		else
 			prs_parser2(d, tmpcmd);
-		while (waitpid(WAIT_ANY, &tmpcmd->exedone, WNOHANG) != -1)
+		while (waitpid(-1, &d->current->exedone, WUNTRACED) > 0)
 			;
-		if (tmpcmd->exedone == 0 && tmpcmd->i == 2)
+		while (tmpcmd && d->current->exedone == 0 && d->current->i == 2)
 			tmpcmd = tmpcmd->next;
-		else if (tmpcmd->exedone != 0 && tmpcmd->i == 1)
+		while (tmpcmd && d->current->exedone != 0 && d->current->i == 1)
 			tmpcmd = tmpcmd->next;
-		tmpcmd = tmpcmd->next;
+		if (tmpcmd)
+			tmpcmd = tmpcmd->next;
 	}
 }
 
@@ -87,7 +89,5 @@ static int	prs_parseralone(t_data *d, t_more *tmpmore)
 		exe_build_system(d);
 		_exit(1);
 	}
-	else
-		wait(NULL);
 	return (1);
 }

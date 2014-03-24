@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   build_setenv.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nmohamed <nmohamed@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vjacquie <vjacquie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/01 15:29:45 by vjacquie          #+#    #+#             */
-/*   Updated: 2014/03/19 18:09:44 by nmohamed         ###   ########.fr       */
+/*   Updated: 2014/03/24 15:11:49 by vjacquie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	build_setenv(t_data *d)
 	if (tmp == NULL)
 	{
 		WR(2, "Split error (build_env)\n");
+		d->current->exedone = 1;
 		return ;
 	}
 	if (tmp[1] != NULL && tmp[2] != NULL)

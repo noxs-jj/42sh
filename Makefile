@@ -48,6 +48,7 @@ SRCS =  \
 		exe_buildorsystem.c \
 		exe_execve.c \
 		ft_ctrl_c.c \
+		ft_ctrl_d.c \
 		ft_exit.c \
 		ft_is.c \
 		ft_replace.c \

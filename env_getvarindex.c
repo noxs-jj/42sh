@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_getvarindex.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nmohamed <nmohamed@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vjacquie <vjacquie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/28 19:30:51 by nmohamed          #+#    #+#             */
-/*   Updated: 2014/03/17 17:51:31 by jmoiroux         ###   ########.fr       */
+/*   Updated: 2014/03/24 15:34:59 by vjacquie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,9 @@ int	ft_get_var_index(char **env, char *str)
 {
 	size_t	i;
 	char	*tmp;
+	t_data	*d;
 
+	d = dataptr(NULL);
 	if ((tmp = ft_memalloc(ft_strlen(str) + 1)) != NULL)
 	{
 		tmp = ft_strcpy(tmp, str);
@@ -25,6 +27,7 @@ int	ft_get_var_index(char **env, char *str)
 	else
 	{
 		WR(2, "Malloc error: could not allocate tmp\n");
+		d->current->exedone = 1;
 		return (-1);
 	}
 	i = 0;

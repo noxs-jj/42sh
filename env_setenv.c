@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_setenv.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nmohamed <nmohamed@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vjacquie <vjacquie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/27 12:39:35 by nmohamed          #+#    #+#             */
-/*   Updated: 2014/03/19 16:42:45 by nmohamed         ###   ########.fr       */
+/*   Updated: 2014/03/24 15:35:08 by vjacquie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,5 +82,8 @@ void		env_setenv(t_data *d)
 		ft_setenv(d, d->varenv, d->valenv);
 	}
 	else
+	{
+		d->current->exedone = 1;
 		ft_putstr("Setenv usage: 'setenv variable value'\n");
+	}
 }

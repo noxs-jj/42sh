@@ -1,36 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_start.c                                       :+:      :+:    :+:   */
+/*   ft_ctrl_d.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vjacquie <vjacquie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/03/03 12:55:55 by jmoiroux          #+#    #+#             */
-/*   Updated: 2014/03/24 15:41:18 by vjacquie         ###   ########.fr       */
+/*   Created: 2014/03/24 15:36:58 by vjacquie          #+#    #+#             */
+/*   Updated: 2014/03/24 15:41:53 by vjacquie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
 
-/*
-** init all vars on struct data
-** Load signals
-** do env copy
-** TEST OK jmoiroux
-*/
-
-void	init_start(t_data *d)
+void	ft_ctrl_d(int gis)
 {
-	d->cmdrun = 0;
-	d->env = NULL;
-	d->line = NULL;
-	d->varenv = NULL;
-	d->valenv = NULL;
-	d->lst_line = NULL;
-	d->statprev = 0;
-	d->current = NULL;
-	signal(SIGINT, ft_ctrl_c);
-	signal(SIGQUIT, ft_ctrl_d);
-	dataptr(d);
-	env_copy(d);
+	t_data	*d;
+
+	(void)gis;
+	WR(2, "ctrl d\n");
+	d = dataptr(NULL);
+	build_exit(d);
 }

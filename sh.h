@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sh.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nmohamed <nmohamed@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vjacquie <vjacquie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/18 14:16:49 by mlaize            #+#    #+#             */
-/*   Updated: 2014/03/21 18:15:13 by jmoiroux         ###   ########.fr       */
+/*   Updated: 2014/03/24 15:40:34 by vjacquie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ typedef struct	s_data
 	t_cmd		*lst_line;
 	int			statprev;
 	int			cmdrun;
+	t_cmd		*current;
 }				t_data;
 
 typedef struct	s_build
@@ -166,6 +167,7 @@ void	env_putenv(t_data *d);
 void	env_unsetenv(t_data *d);
 void	free_tabtab(char **tab);
 void	ft_ctrl_c(int i);
+void	ft_ctrl_d(int i);
 void	ft_exit(t_data *d, char *s);
 void	ft_exit(t_data *d, char *s);
 void	ft_putenv(t_data *d);

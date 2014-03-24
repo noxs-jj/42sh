@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_putenv.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nmohamed <nmohamed@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vjacquie <vjacquie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/28 19:28:09 by nmohamed          #+#    #+#             */
-/*   Updated: 2014/03/19 15:58:51 by jmoiroux         ###   ########.fr       */
+/*   Updated: 2014/03/24 15:35:04 by vjacquie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ void			ft_putenv(t_data *d)
 	else
 	{
 		WR(2, "Malloc error: could not allocate new variable\n");
+		d->current->exedone = 1;
 		return ;
 	}
 	old_ptr = d->env;

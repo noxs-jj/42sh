@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   build_unsetenv.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nmohamed <nmohamed@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vjacquie <vjacquie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/03 11:12:09 by jmoiroux          #+#    #+#             */
-/*   Updated: 2014/03/19 18:09:41 by nmohamed         ###   ########.fr       */
+/*   Updated: 2014/03/24 15:26:56 by vjacquie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,13 @@ void	build_unsetenv(t_data *d)
 	if (tmp == NULL)
 	{
 		WR(2, "Split error (build_unsetenv)\n");
+		d->current->exedone = 1;
 		return ;
 	}
 	if (tmp[1] == NULL)
 	{
 		ft_putstr("unsetenv usage: 'unsetenv variable'\n");
+		d->current->exedone = 1;
 		return ;
 	}
 	d->varenv = tmp[1];
