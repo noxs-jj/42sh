@@ -6,7 +6,7 @@
 #    By: jmoiroux <jmoiroux@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/03/01 12:01:41 by jmoiroux          #+#    #+#              #
-#    Updated: 2014/03/21 15:10:43 by jmoiroux         ###   ########.fr        #
+#    Updated: 2014/03/24 17:53:50 by jmoiroux         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -48,7 +48,6 @@ SRCS =  \
 		exe_buildorsystem.c \
 		exe_execve.c \
 		ft_ctrl_c.c \
-		ft_ctrl_d.c \
 		ft_exit.c \
 		ft_is.c \
 		ft_replace.c \

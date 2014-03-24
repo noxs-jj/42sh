@@ -6,7 +6,7 @@
 /*   By: vjacquie <vjacquie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/05 13:15:04 by vjacquie          #+#    #+#             */
-/*   Updated: 2014/03/24 17:26:36 by vjacquie         ###   ########.fr       */
+/*   Updated: 2014/03/24 17:53:22 by jmoiroux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ void		prs_parser(t_data *d)
 	{
 		d->current = tmpcmd;
 		if (tmpcmd->more != NULL && tmpcmd->more->str != NULL
-			&& tmpcmd->more->str[0] != '\0'
-			&& tmpcmd->more->next == NULL && check_cmdparam(d, tmpcmd->more) == 1)
+			&& tmpcmd->more->next == NULL && tmpcmd->more->str[0] != '\0'
+			&& check_cmdparam(d, tmpcmd->more) == 1)
 			;
 		else
 			prs_parser2(d, tmpcmd);
