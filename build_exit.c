@@ -6,7 +6,7 @@
 /*   By: vjacquie <vjacquie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/28 17:48:02 by vjacquie          #+#    #+#             */
-/*   Updated: 2014/03/24 15:44:37 by vjacquie         ###   ########.fr       */
+/*   Updated: 2014/03/24 16:31:45 by vjacquie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,11 @@ static void	freeall(t_data *d)
 	{
 		if (d->line != NULL)
 			ft_memdel((void **)&d->line);
-		if (d->toexec != NULL)
-			ft_memdel((void **)&d->toexec);
+		if (ft_strlen(d->toexec) > 0)
+		{
+			//free(d->toexec);
+			d->toexec = NULL;
+		}
 		if (d->argv != NULL)
 			ft_memdel((void **)&d->argv);
 		if (d->env != NULL)

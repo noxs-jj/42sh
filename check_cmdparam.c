@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_cmdparam.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmoiroux <jmoiroux@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vjacquie <vjacquie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/15 13:33:48 by jmoiroux          #+#    #+#             */
-/*   Updated: 2014/03/17 13:08:19 by jmoiroux         ###   ########.fr       */
+/*   Updated: 2014/03/24 17:23:20 by vjacquie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,20 @@ int			check_cmdparam(t_data *d, t_more *link)
 			return (param_unsetenv(d, tmp));
 		else if (ft_strncmp("exit", tmp, ft_strlen("exit")) == 0)
 			return (param_exit(d, tmp));
+		else if (ft_strncmp("echo", tmp, ft_strlen("echo")) == 0)
+		{
+			d->toexec = tmp;
+			build_echo(d);
+			ft_memdel((void **)&tmp);
+			return (1);
+		}
+		else if (ft_strncmp("env", tmp, ft_strlen("env")) == 0)
+		{
+			d->toexec = tmp;
+			env_printenv(d);
+			ft_memdel((void **)&tmp);
+			return (1);
+		}
 		else
 		{
 			ft_memdel((void **)&tmp);

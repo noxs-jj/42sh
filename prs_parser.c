@@ -6,7 +6,7 @@
 /*   By: vjacquie <vjacquie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/05 13:15:04 by vjacquie          #+#    #+#             */
-/*   Updated: 2014/03/24 15:34:52 by vjacquie         ###   ########.fr       */
+/*   Updated: 2014/03/24 17:26:36 by vjacquie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,15 +32,15 @@ void		prs_parser(t_data *d)
 		d->current = tmpcmd;
 		if (tmpcmd->more != NULL && tmpcmd->more->str != NULL
 			&& tmpcmd->more->str[0] != '\0'
-			&& check_cmdparam(d, tmpcmd->more) == 1)
+			&& tmpcmd->more->next == NULL && check_cmdparam(d, tmpcmd->more) == 1)
 			;
 		else
 			prs_parser2(d, tmpcmd);
-		while (waitpid(-1, &d->current->exedone, WUNTRACED) > 0)
+		while (waitpid(-1, &(d->current->exedone), WUNTRACED) > 0)
 			;
-		while (tmpcmd && d->current->exedone == 0 && d->current->i == 2)
+		while (tmpcmd && d->current->exedone == 0 && tmpcmd->i == 2)
 			tmpcmd = tmpcmd->next;
-		while (tmpcmd && d->current->exedone != 0 && d->current->i == 1)
+		while (tmpcmd && d->current->exedone != 0 && tmpcmd->i == 1)
 			tmpcmd = tmpcmd->next;
 		if (tmpcmd)
 			tmpcmd = tmpcmd->next;
