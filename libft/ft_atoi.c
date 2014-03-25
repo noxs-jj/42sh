@@ -12,7 +12,20 @@
 
 #include "includes/libft.h"
 
-static int	ft_clean_str(const char *str);
+static int	ft_clean_str(const char *str)
+{
+	int		i;
+
+	i = 0;
+	while (str[i] == ' '
+			|| str[i] == '\t'
+			|| str[i] == '\n'
+			|| str[i] == '\v'
+			|| str[i] == '\f'
+			|| str[i] == '\r')
+		i++;
+	return (i);
+}
 
 int			ft_atoi(const char *str)
 {
@@ -39,22 +52,4 @@ int			ft_atoi(const char *str)
 		return (result * negative);
 	}
 	return (0);
-}
-
-/*
-** remove special space characters from source, return the first '-' or '+'
-*/
-static int	ft_clean_str(const char *str)
-{
-	int		i;
-	i = 0;
-	while (str[i] == ' '
-			|| str[i] == '\t'
-			|| str[i] == '\n'
-			|| str[i] == '\v'
-			|| str[i] == '\f'
-			|| str[i] == '\r')
-
-		i++;
-	return (i);
 }

@@ -12,30 +12,6 @@
 
 #include "includes/libft.h"
 
-/* TEST OK */
-
-static int	ft_nbrlen(int f);
-static char	*ft_putnbr_char(long f);
-
-char		*ft_itoa(int n)
-{
-	char	*tmp;
-	long	f;
-
-	f = n;
-	if (n != 0)
-	{
-		tmp = ft_putnbr_char(f);
-		return (tmp);
-	}
-	if (n == 0)
-	{
-		tmp = "0";
-		return (tmp);
-	}
-	return (NULL);
-}
-
 static int	ft_nbrlen(int f)
 {
 	int	i;
@@ -78,4 +54,23 @@ static char	*ft_putnbr_char(long f)
 	if (negative == 1)
 		tmp[i] = '-';
 	return (tmp);
+}
+
+char		*ft_itoa(int n)
+{
+	char	*tmp;
+	long	f;
+
+	f = n;
+	if (n != 0)
+	{
+		tmp = ft_putnbr_char(f);
+		return (tmp);
+	}
+	if (n == 0)
+	{
+		tmp = "0";
+		return (tmp);
+	}
+	return (NULL);
 }

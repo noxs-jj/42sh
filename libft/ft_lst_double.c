@@ -12,20 +12,6 @@
 
 #include "includes/libft.h"
 
-/*
-** 5 fonctions
-** ft_free_list()
-** ft_ldlc_len()
-** ft_delone()
-** ft_ldlc()
-** ft_ldlcadd_end()
-*/
-
-/*
-** free all links on chained list and put alst to NULL
-** TEST OK
-*/
-
 void	ft_free_list(t_ldlc **alst)
 {
 	t_ldlc	*tmp;
@@ -44,11 +30,6 @@ void	ft_free_list(t_ldlc **alst)
 		ft_memdel((void **)alst);
 	}
 }
-
-/*
-** Count number of link present on chained list
-** TEST OK
-*/
 
 int		ft_ldlc_len(t_ldlc **alst)
 {
@@ -71,14 +52,6 @@ int		ft_ldlc_len(t_ldlc **alst)
 		return (0);
 }
 
-/*
-** delete one link
-** to delete call fonction with:
-** "ft_delone(tmp->next)" the next after where you are
-** "ft_delone(tmp1)" before where you are you have tmp = tmp->next before delete
-** TEST OK
-*/
-
 int		ft_delone(t_ldlc *todel)
 {
 	if (todel != todel->prev)
@@ -90,12 +63,6 @@ int		ft_delone(t_ldlc *todel)
 	}
 	return (0);
 }
-
-/*
-** Create elem for char with prev & next init to NULL
-** islect & cursed to 0
-** TEST OK
-*/
 
 t_ldlc	*ft_ldlc(char *str)
 {
@@ -113,13 +80,6 @@ t_ldlc	*ft_ldlc(char *str)
 	}
 	return (tmp);
 }
-
-/*
-** add link to end of chained list if list is NULL
-** if list got 1 link
-** if list got 2 or more links
-** TEST OK
-*/
 
 void	ft_ldlcadd_end(t_ldlc **alst, t_ldlc *new)
 {

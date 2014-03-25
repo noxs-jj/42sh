@@ -12,11 +12,6 @@
 
 #include "includes/libft.h"
 
-/*
-** content (int)
-** Create new elem
-*/
-
 t_lst_i	*ft_lstnew_i(int content)
 {
 	t_lst_i	*tmp;
@@ -26,11 +21,6 @@ t_lst_i	*ft_lstnew_i(int content)
 	tmp->next = NULL;
 	return (tmp);
 }
-
-/*
-** content (int)
-** Add elem to start of list
-*/
 
 void	ft_lstadd_i(t_lst_i **alst, t_lst_i *new)
 {
@@ -45,11 +35,6 @@ void	ft_lstadd_i(t_lst_i **alst, t_lst_i *new)
 		*alst = new;
 	}
 }
-
-/*
-** content (int)
-** Add elem to end of list
-*/
 
 void	ft_lstaddend_i(t_lst_i **alst, t_lst_i *new)
 {

@@ -12,7 +12,19 @@
 
 #include "includes/libft.h"
 
-static size_t	ft_next_char(char *c);
+static size_t	ft_next_char(char *c)
+{
+	size_t	i;
+
+	i = 0;
+	while ((c[i] == ' ' || c[i] == '\n' || c[i] == '\t') && c[i] != '\0')
+	{
+		i++;
+	}
+	if (c[i] == '\0')
+		return (0);
+	return (1);
+}
 
 char			*ft_strtrim(char const *s)
 {
@@ -28,26 +40,12 @@ char			*ft_strtrim(char const *s)
 		while (s[i] == ' ' || s[i] == '\t' || s[i] == '\n')
 			i++;
 		while (s[i + k] != '\0' && (ft_next_char(&((char *)s)[i + k]) == 1))
-			{
-				tmp[k] = s[k + i];
-				k++;
-			}
+		{
+			tmp[k] = s[k + i];
+			k++;
+		}
 		tmp[k] = '\0';
 		return (tmp);
 	}
 	return (NULL);
-}
-
-static size_t	ft_next_char(char *c)
-{
-	size_t	i;
-
-	i = 0;
-	while ((c[i] == ' ' || c[i] == '\n' || c[i] == '\t') && c[i] != '\0')
-	{
-		i++;
-	}
-	if (c[i] == '\0')
-		return (0);
-	return (1);
 }

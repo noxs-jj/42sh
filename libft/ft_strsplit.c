@@ -26,7 +26,7 @@ static char		*ft_replace_chr(char const *s, int c1, int c2)
 	return ((char *)s);
 }
 
-char		**ft_strsplit(char const *s, char c)
+char			**ft_strsplit(char const *s, char c)
 {
 	size_t		i;
 	size_t		j;
