@@ -6,7 +6,7 @@
 #    By: jmoiroux <jmoiroux@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/03/01 12:01:41 by jmoiroux          #+#    #+#              #
-#    Updated: 2014/03/25 11:45:50 by jmoiroux         ###   ########.fr        #
+#    Updated: 2014/03/25 15:23:48 by jmoiroux         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -73,24 +73,24 @@ OBJS = $(SRCS:.c=.o)
 all : $(NAME)
 
 $(NAME): $(OBJS)
-	@make -C libft
-	@$(CC) -g $(OBJS) -o $(NAME) -I. -L /usr/lib -ltermcap -lncurses \
+	make -C libft
+	$(CC) -g $(OBJS) -o $(NAME) -I. -L /usr/lib -ltermcap -lncurses \
 	-L libft -lft $(HEADER)
 
 %.o: %.c
-	@$(CC) -g $(SRC) -I /usr/lib -I /libft -I /includes -c $<
+	$(CC) -g $(SRC) -I /usr/lib -I /libft -I /includes -c $<
 
 clean:
-	@$(RM) $(OBJS)
-	@make clean -C libft
+	$(RM) $(OBJS)
+	make clean -C libft
 
 fclean: clean
-	@$(RM) $(NAME)
-	@make fclean -C libft
+	$(RM) $(NAME)
+	make fclean -C libft
 
 exe:
 	@clear
-	@echo "-----------------------GCC Compil-------------------------"
+	@echo "---------------------GCC Compil-----------------------"
 	@gcc -Wall -Werror -Wextra -g -o $(NAME) libft.a $(SRCS)
 
 re: fclean all
