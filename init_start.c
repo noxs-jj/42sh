@@ -22,7 +22,7 @@
 void	init_start(t_data *d)
 {
 	d->cmdrun = 0;
-	d->env = NULL;
+	d->cenv = NULL;
 	d->line = NULL;
 	d->varenv = NULL;
 	d->valenv = NULL;

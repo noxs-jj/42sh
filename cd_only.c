@@ -22,8 +22,8 @@ void	cd_only(t_data *d, char *name)
 	char	*home;
 	char	*pwd;
 
-	home = ft_getenv("HOME", d->env);
-	pwd = ft_getenv("PWD", d->env);
+	home = ft_getenv("HOME", d->cenv);
+	pwd = ft_getenv("PWD", d->cenv);
 	if (chdir(home) == -1)
 		cd_error("Home directory");
 	else

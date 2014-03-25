@@ -30,7 +30,7 @@ static int	exe_check_exist(char *tmp)
 
 static void	exe_search_exe2(t_data *d, t_searchexe *s)
 {
-	s->var = ft_getenv("PATH", d->env);
+	s->var = ft_getenv("PATH", d->cenv);
 	s->i = 0;
 	s->tmp = NULL;
 	if (s->var == NULL)
@@ -86,7 +86,7 @@ int			exe_execve(t_data *d)
 	}
 	if (d->argv != NULL && d->argv[0] != NULL && error == SUCCESS)
 	{
-		execve(d->argv[0], d->argv, d->env);
+		execve(d->argv[0], d->argv, d->cenv);
 		WR(2, "Could not execute");
 	}
 	else if (d->argv[0] == NULL)

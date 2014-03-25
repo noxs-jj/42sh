@@ -28,9 +28,9 @@ static int	build_cd_check_for_env(t_data *d)
 	char	*pwd;
 	char	*oldpwd;
 
-	home = ft_getenv("HOME", d->env);
-	oldpwd = ft_getenv("OLDPWD", d->env);
-	pwd = ft_getenv("PWD", d->env);
+	home = ft_getenv("HOME", d->cenv);
+	oldpwd = ft_getenv("OLDPWD", d->cenv);
+	pwd = ft_getenv("PWD", d->cenv);
 	if (oldpwd == NULL || pwd == NULL || home == NULL)
 	{
 		WR(2, "Cannot run `cd' without HOME or OLDPWD, PWD\n");

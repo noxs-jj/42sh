@@ -63,7 +63,7 @@ void		ft_setenv(t_data *d, char *var, char *val)
 	char		*tofree;
 	char		*toset;
 
-	env = d->env;
+	env = d->cenv;
 	tofree = ft_getenv(var, env);
 	ft_setenv2(d, tofree, var, val);
 	if ((toset = ft_strnew(ft_strlen(var) + ft_strlen(val))) == NULL)
@@ -72,7 +72,7 @@ void		ft_setenv(t_data *d, char *var, char *val)
 		return ;
 	}
 	ft_setenv3(toset, var, val);
-	env = d->env;
+	env = d->cenv;
 	while (env != NULL && env[0] && (ft_strncmp(*env, var, ft_strlen(var) != 0)
 			|| (size_t)(ft_strchr(*env, '=') - *env) != ft_strlen(var)))
 		++env;

@@ -21,12 +21,12 @@ void		env_envdel(t_data *d)
 	int		i;
 
 	i = 0;
-	while (d && d->env && d->env[i])
+	while (d && d->cenv && d->cenv[i])
 	{
-		if (d && d->env && d->env[i])
-			ft_memdel((void **)&d->env[i]);
+		if (d && d->cenv && d->cenv[i])
+			ft_memdel((void **)&d->cenv[i]);
 		i++;
 	}
-	if (d && d->env)
-		ft_memdel((void **)&d->env);
+	if (d && d->cenv)
+		ft_memdel((void **)&d->cenv);
 }

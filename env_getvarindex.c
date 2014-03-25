@@ -41,5 +41,5 @@ int	ft_get_var_index(char **env, char *str)
 
 int	env_getvarindex(t_data *d)
 {
-	return (ft_get_var_index(d->env, d->varenv));
+	return (ft_get_var_index(d->cenv, d->varenv));
 }

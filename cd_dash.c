@@ -17,8 +17,8 @@ void	cd_dash(t_data *d, char *name)
 	char	*pwd;
 	char	*oldpwd;
 
-	pwd = ft_getenv("PWD", d->env);
-	oldpwd = ft_getenv("OLDPWD", d->env);
+	pwd = ft_getenv("PWD", d->cenv);
+	oldpwd = ft_getenv("OLDPWD", d->cenv);
 	if (chdir(oldpwd) == -1)
 		cd_error(name);
 	else

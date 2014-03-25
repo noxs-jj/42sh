@@ -6,7 +6,7 @@
 /*   By: vjacquie <vjacquie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/18 14:16:49 by mlaize            #+#    #+#             */
-/*   Updated: 2014/03/25 16:53:00 by jmoiroux         ###   ########.fr       */
+/*   Updated: 2014/03/26 00:01:06 by jmoiroux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,6 @@
 # define ERR_NOEXIST 2
 # define ERR_DENIED 3
 # define ERR_CMDNOTFOUND 4
-
-extern char	**environ;
-extern int	errno;
 
 /*
 **	type :	0 = for sort
@@ -67,6 +64,7 @@ typedef struct		s_cmd
 }					t_cmd;
 
 /*
+** - env from argv on main.c
 ** - contain an env copy
 ** - used for env
 ** - line command bufered
@@ -80,35 +78,36 @@ typedef struct		s_cmd
 ** - if cmd running 1 yes 0 no used for CTRL + 1
 */
 
-typedef struct	s_data
+typedef struct		s_data
 {
-	char		**env;
-	char		**argv;
-	char		*line;
-	char		*toexec;
-	char		*varenv;
-	char		*valenv;
-	t_cmd		*lst_line;
-	int			statprev;
-	int			cmdrun;
-	t_cmd		*current;
-}				t_data;
+	char			**envmain;
+	char			**cenv;
+	char			**argv;
+	char			*line;
+	char			*toexec;
+	char			*varenv;
+	char			*valenv;
+	t_cmd			*lst_line;
+	int				statprev;
+	int				cmdrun;
+	t_cmd			*current;
+}					t_data;
 
-typedef struct	s_build
+typedef struct		s_build
 {
-	char		*str;
-	void		(*fptr)(t_data *d);
-}				t_build;
+	char			*str;
+	void			(*fptr)(t_data *d);
+}					t_build;
 
-void	build_cd(t_data *d);
-void	build_echo(t_data *d);
-void	build_exit(t_data *d);
-void	env_printenv(t_data *d);
-void	env_setenv(t_data *d);
-void	build_setenv(t_data *d);
-void	build_unsetenv(t_data *d);
+void				build_cd(t_data *d);
+void				build_echo(t_data *d);
+void				build_exit(t_data *d);
+void				env_printenv(t_data *d);
+void				env_setenv(t_data *d);
+void				build_setenv(t_data *d);
+void				build_unsetenv(t_data *d);
 
-static const t_build	tab[] =
+static const t_build	g_tab[] =
 {
 	{
 		"echo", &build_echo
@@ -134,66 +133,66 @@ static const t_build	tab[] =
 ** Used for exe_execve
 */
 
-typedef struct	s_searchexe
+typedef struct		s_searchexe
 {
-	char		**path;
-	char		*var;
-	char		*tmp;
-	char		*tofree;
-	size_t		i;
-}				t_searchexe;
+	char			**path;
+	char			*var;
+	char			*tmp;
+	char			*tofree;
+	size_t			i;
+}					t_searchexe;
 
-char	*env_getenv(t_data *d);
-char	*ft_getenv(char *str, char **env);
+char				*env_getenv(t_data *d);
+char				*ft_getenv(char *str, char **env);
 
-int		build_check(t_data *d);
-int		cd_error(char *name);
-int		check_cmdparam(t_data *d, t_more *link);
-int		env_getvarindex(t_data *d);
-int		exe_build_system(t_data *d);
-int		exe_execve(t_data *d);
-int		ft_get_var_index(char **env, char *str);
-int		is_absolute(char *path);
-int		is_dir(const char *path);
-int		is_dotslash(char *path);
-int		lx_is_op(char *str);
-int		lx_pos_op(char *str, char *cmp);
-int		recurse_left(t_data *d, t_more *link);
-int		recurse_pipe(t_data *d, t_more *link, int fd);
-int		recurse_right(t_data *d, t_more *link);
-int		recurse_rright(t_data *d, t_more *link);
+int					build_check(t_data *d);
+int					cd_error(char *name);
+int					check_cmdparam(t_data *d, t_more *link);
+int					env_getvarindex(t_data *d);
+int					exe_build_system(t_data *d);
+int					exe_execve(t_data *d);
+int					ft_get_var_index(char **env, char *str);
+int					is_absolute(char *path);
+int					is_dir(const char *path);
+int					is_dotslash(char *path);
+int					lx_is_op(char *str);
+int					lx_pos_op(char *str, char *cmp);
+int					recurse_left(t_data *d, t_more *link);
+int					recurse_pipe(t_data *d, t_more *link, int fd);
+int					recurse_right(t_data *d, t_more *link);
+int					recurse_rright(t_data *d, t_more *link);
 
-size_t	arraylen(char **array);
+size_t				arraylen(char **array);
 
-t_cmd	*lx_new_cmd(char *str, int n);
-t_more	*lx_new_more(char *str, int n);
-t_data	*dataptr(t_data *d);
+t_cmd				*lx_new_cmd(char *str, int n);
+t_more				*lx_new_more(char *str, int n);
+t_data				*dataptr(t_data *d);
 
-void	cd_change_pwd(t_data *d, char *add);
-void	cd_dash(t_data *d, char *name);
-void	cd_double_dot(t_data *d, char *av);
-void	cd_only(t_data *d, char *name);
-void	check_exit(t_data *d);
-void	env_copy(t_data *d);
-void	env_envdel(t_data *d);
-void	env_putenv(t_data *d);
-void	env_unsetenv(t_data *d);
-void	free_tabtab(char **tab);
-void	ft_ctrl_c(int i);
-void	ft_exit(t_data *d, char *s);
-void	ft_exit(t_data *d, char *s);
-void	ft_putenv(t_data *d);
-void	ft_replace(char tr, char rw, char *str);
-void	ft_setenv(t_data *d, char *var, char *val);
-void	init_start(t_data *d);
-void	lx_add_cmd(t_data *data, t_cmd *new);
-void	lx_add_more(t_cmd *op, t_more *new);
-void	lx_detail(t_cmd *op);
-void	lx_full_free(t_data *d);
-void	lx_lex_line(char *line, t_data *data);
-void	lx_lexer(char *line, t_data *data);
-void	prev_operator(t_data *d, t_more *link);
-void	prs_parser(t_data *d);
-void	prs_parser_lexer(t_data *data, char *str);
+void				cd_change_pwd(t_data *d, char *add);
+void				cd_dash(t_data *d, char *name);
+void				cd_double_dot(t_data *d, char *av);
+void				cd_only(t_data *d, char *name);
+void				check_exit(t_data *d);
+void				env_copy(t_data *d);
+void				env_envdel(t_data *d);
+void				env_putenv(t_data *d);
+void				env_unsetenv(t_data *d);
+void				free_tabtab(char **tab);
+void				ft_ctrl_c(int i);
+void				ft_exit(t_data *d, char *s);
+void				ft_exit(t_data *d, char *s);
+void				ft_putenv(t_data *d);
+void				ft_replace(char tr, char rw, char *str);
+void				ft_setenv(t_data *d, char *var, char *val);
+void				init_start(t_data *d);
+void				lx_add_cmd(t_data *data, t_cmd *new);
+void				lx_add_more(t_cmd *op, t_more *new);
+void				lx_detail(t_cmd *op);
+void				lx_full_free(t_data *d);
+void				lx_lex_line(char *line, t_data *data);
+void				lx_lexer(char *line, t_data *data);
+void				prev_operator(t_data *d, t_more *link);
+void				prs_parser(t_data *d);
+void				prs_parser_lexer(t_data *data, char *str);
 
 #endif

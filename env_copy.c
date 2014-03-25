@@ -23,15 +23,15 @@ void	env_copy(t_data *d)
 	size_t	len;
 	size_t	i;
 
-	if (*environ == NULL)
+	if (d->envmain == NULL)
 		ft_exit(d, "Cannot run without an environement.");
 	i = 0;
-	len = arraylen(environ);
-	d->env = (char **)malloc(sizeof(char *) * (1 + len));
+	len = arraylen(d->envmain);
+	d->cenv = (char **)malloc(sizeof(char *) * (1 + len));
 	while (i < len)
 	{
-		d->env[i] = ft_strdup(environ[i]);
+		d->cenv[i] = ft_strdup(d->envmain[i]);
 		++i;
 	}
-	d->env[i] = NULL;
+	d->cenv[i] = NULL;
 }

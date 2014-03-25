@@ -6,7 +6,7 @@
 /*   By: nmohamed <nmohamed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/28 16:35:27 by vjacquie          #+#    #+#             */
-/*   Updated: 2014/03/25 23:39:56 by jmoiroux         ###   ########.fr       */
+/*   Updated: 2014/03/25 23:54:58 by jmoiroux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,15 @@ static void	prompt_exit(t_data *d)
 	check_exit(d);
 }
 
-int			main(void)
+int			main(int ac, char **av, char **env)
 {
 	t_data	*d;
 
+	(void)ac;
+	(void)av;
 	if (!(d = (t_data *)malloc(sizeof(t_data))))
 		ft_exit(d, "Malloc error struct data (main)\n");
+	d->envmain = env;
 	init_start(d);
 	while (1)
 	{

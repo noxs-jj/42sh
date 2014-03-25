@@ -22,9 +22,9 @@ void	env_printenv(t_data *d)
 	int		i;
 
 	i = 0;
-	while (d->env[i] != NULL && d->env[i][0] != '\0')
+	while (d->cenv[i] != NULL && d->cenv[i][0] != '\0')
 	{
-		ft_putendl(d->env[i]);
+		ft_putendl(d->cenv[i]);
 		++i;
 	}
 }

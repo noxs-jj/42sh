@@ -59,7 +59,7 @@ void		cd_double_dot(t_data *d, char *av)
 
 	tmp = 0;
 	i = 0;
-	pwd = ft_getenv("PWD", d->env);
+	pwd = ft_getenv("PWD", d->cenv);
 	ft_setenv(d, "OLDPWD", pwd);
 	if (av[2] == '\0')
 	{

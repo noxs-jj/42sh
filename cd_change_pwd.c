@@ -18,7 +18,7 @@ void	cd_change_pwd(t_data *d, char *add)
 	char	*fj;
 	char	*sj;
 
-	pwd = ft_getenv("PWD", d->env);
+	pwd = ft_getenv("PWD", d->cenv);
 	ft_setenv(d, "OLDPWD", pwd);
 	fj = ft_strjoin(pwd, "/");
 	sj = ft_strjoin(fj, add);

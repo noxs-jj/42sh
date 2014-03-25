@@ -38,22 +38,22 @@ void		env_unsetenv(t_data *d)
 
 	i = 0;
 	tofree = NULL;
-	if (d->env == NULL)
+	if (d->cenv == NULL)
 		env_unsetenv2();
-	while (d->env[i] != NULL
-			&& (ft_strncmp(d->env[i], d->varenv, ft_strlen(d->varenv) != 0)
-			|| (size_t)(ft_strchr(d->env[i], '=')
-			- d->env[i]) != ft_strlen(d->varenv)))
+	while (d->cenv[i] != NULL
+			&& (ft_strncmp(d->cenv[i], d->varenv, ft_strlen(d->varenv) != 0)
+			|| (size_t)(ft_strchr(d->cenv[i], '=')
+			- d->cenv[i]) != ft_strlen(d->varenv)))
 		++i;
-	if (d->env[i] != NULL)
+	if (d->cenv[i] != NULL)
 	{
-		tofree = d->env[i];
-		while (d->env[i] != NULL)
+		tofree = d->cenv[i];
+		while (d->cenv[i] != NULL)
 		{
-			d->env[i] = d->env[i + 1];
+			d->cenv[i] = d->cenv[i + 1];
 			++i;
 		}
-		d->env[i] = NULL;
+		d->cenv[i] = NULL;
 	}
 	env_unsetenv3(d, tofree);
 }

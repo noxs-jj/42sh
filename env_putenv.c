@@ -61,11 +61,11 @@ void			ft_putenv(t_data *d)
 		d->current->exedone = 1;
 		return ;
 	}
-	old_ptr = d->env;
-	d->env = realloc_2d(&old_ptr, arraylen(old_ptr) + 4);
+	old_ptr = d->cenv;
+	d->cenv = realloc_2d(&old_ptr, arraylen(old_ptr) + 4);
 	i = 0;
-	while (d->env[i] != NULL)
+	while (d->cenv[i] != NULL)
 		++i;
-	d->env[i] = new_var;
-	d->env[i + 1] = NULL;
+	d->cenv[i] = new_var;
+	d->cenv[i + 1] = NULL;
 }

@@ -44,5 +44,5 @@ char		*ft_getenv(char *var, char **env)
 
 char		*env_getenv(t_data *d)
 {
-	return (ft_getenv(d->varenv, d->env));
+	return (ft_getenv(d->varenv, d->cenv));
 }
