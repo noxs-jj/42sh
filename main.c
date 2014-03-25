@@ -6,7 +6,7 @@
 /*   By: nmohamed <nmohamed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/28 16:35:27 by vjacquie          #+#    #+#             */
-/*   Updated: 2014/03/21 12:48:34 by jmoiroux         ###   ########.fr       */
+/*   Updated: 2014/03/25 16:42:42 by jmoiroux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static void	prompt_exit(t_data *d)
 
 	ft_putstr(PROMPT);
 	d->line = ft_strnew(BUFF_SIZE);
-	if (read(0, d->line, BUFF_SIZE) <= 0 && errno != EINTR)
+	if (read(0, d->line, BUFF_SIZE) <= 0 && g_errno != EINTR)
 		ft_exit(d, "End of transmission\n");
 	tmp = d->line;
 	d->line = ft_strtrim(d->line);

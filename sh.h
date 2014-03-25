@@ -6,7 +6,7 @@
 /*   By: vjacquie <vjacquie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/18 14:16:49 by mlaize            #+#    #+#             */
-/*   Updated: 2014/03/24 17:54:06 by jmoiroux         ###   ########.fr       */
+/*   Updated: 2014/03/25 16:44:42 by jmoiroux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@
 # define ERR_DENIED 3
 # define ERR_CMDNOTFOUND 4
 
-extern char	**environ;
-extern int	errno;
+extern char	**g_environ;
+extern int	g_errno;
 
 /*
 **	type :	0 = for sort
@@ -129,6 +129,19 @@ static const t_build	tab[] =
 		'\0', NULL
 	}
 };
+
+/*
+** Used for exe_execve
+*/
+
+typedef struct	s_searchexe
+{
+	char		**path;
+	char		*var;
+	char		*tmp;
+	char		*tofree;
+	size_t		i;
+}				t_searchexe;
 
 char	*env_getenv(t_data *d);
 char	*ft_getenv(char *str, char **env);

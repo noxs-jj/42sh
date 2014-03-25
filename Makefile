@@ -6,7 +6,7 @@
 #    By: jmoiroux <jmoiroux@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/03/01 12:01:41 by jmoiroux          #+#    #+#              #
-#    Updated: 2014/03/25 15:23:48 by jmoiroux         ###   ########.fr        #
+#    Updated: 2014/03/25 16:38:41 by jmoiroux         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -70,15 +70,19 @@ SRCS =  \
 
 OBJS = $(SRCS:.c=.o)
 
+LIB = libft/libft.a
+
 all : $(NAME)
 
-$(NAME): $(OBJS)
+$(LIB):
 	make -C libft
-	$(CC) -g $(OBJS) -o $(NAME) -I. -L /usr/lib -ltermcap -lncurses \
-	-L libft -lft $(HEADER)
 
-%.o: %.c
-	$(CC) -g $(SRC) -I /usr/lib -I /libft -I /includes -c $<
+$(NAME): $(LIB) $(OBJS)
+	$(CC) $(OBJS) -o $(NAME) -ltermcap -lncurses -L libft \
+	-lft $(HEADER)
+
+%.o: %.c $(HEADER)
+	$(CC) $(SRC) -I /libft -I /includes -c $<
 
 clean:
 	$(RM) $(OBJS)

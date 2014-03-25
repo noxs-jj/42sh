@@ -6,20 +6,11 @@
 /*   By: vjacquie <vjacquie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/28 18:15:27 by nmohamed          #+#    #+#             */
-/*   Updated: 2014/03/25 14:27:33 by jmoiroux         ###   ########.fr       */
+/*   Updated: 2014/03/25 16:45:32 by jmoiroux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
-
-typedef struct	s_searchexe
-{
-	char		**path;
-	char		*var;
-	char		*tmp;
-	char		*tofree;
-	size_t		i;
-}				t_searchexe;
 
 /*
 ** do execve, check if bin is present, check acces
