@@ -6,7 +6,7 @@
 /*   By: vjacquie <vjacquie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/18 14:16:49 by mlaize            #+#    #+#             */
-/*   Updated: 2014/03/25 16:44:42 by jmoiroux         ###   ########.fr       */
+/*   Updated: 2014/03/25 16:53:00 by jmoiroux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@
 # define ERR_DENIED 3
 # define ERR_CMDNOTFOUND 4
 
-extern char	**g_environ;
-extern int	g_errno;
+extern char	**environ;
+extern int	errno;
 
 /*
 **	type :	0 = for sort

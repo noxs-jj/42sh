@@ -6,7 +6,7 @@
 #    By: jmoiroux <jmoiroux@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/03/01 12:01:41 by jmoiroux          #+#    #+#              #
-#    Updated: 2014/03/25 16:38:41 by jmoiroux         ###   ########.fr        #
+#    Updated: 2014/03/25 16:58:17 by jmoiroux         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -95,7 +95,7 @@ fclean: clean
 exe:
 	@clear
 	@echo "---------------------GCC Compil-----------------------"
-	@gcc -Wall -Werror -Wextra -g -o $(NAME) libft.a $(SRCS)
+	@gcc -Wall -Werror -Wextra -g3 -o $(NAME) libft.a $(SRCS)
 
 re: fclean all
 

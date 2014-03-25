@@ -6,7 +6,7 @@
 /*   By: vjacquie <vjacquie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/03 11:12:09 by jmoiroux          #+#    #+#             */
-/*   Updated: 2014/03/24 15:26:56 by vjacquie         ###   ########.fr       */
+/*   Updated: 2014/03/25 16:51:39 by jmoiroux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ void	build_unsetenv(t_data *d)
 		d->current->exedone = 1;
 		return ;
 	}
-	if (tmp[1] == NULL)
+	if (tmp[1] == NULL || tmp[2] != NULL)
 	{
-		ft_putstr("unsetenv usage: 'unsetenv variable'\n");
+		ft_putstr("Unsetenv usage: 'unsetenv variable' only\n");
 		d->current->exedone = 1;
 		return ;
 	}

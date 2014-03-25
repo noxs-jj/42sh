@@ -6,7 +6,7 @@
 /*   By: vjacquie <vjacquie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/28 19:23:50 by nmohamed          #+#    #+#             */
-/*   Updated: 2014/03/25 16:41:54 by jmoiroux         ###   ########.fr       */
+/*   Updated: 2014/03/25 16:53:33 by jmoiroux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,14 @@ void	env_copy(t_data *d)
 	size_t	len;
 	size_t	i;
 
-	if (*g_environ == NULL)
+	if (*environ == NULL)
 		ft_exit(d, "Cannot run without an environement.");
 	i = 0;
-	len = arraylen(g_environ);
+	len = arraylen(environ);
 	d->env = (char **)malloc(sizeof(char *) * (1 + len));
 	while (i < len)
 	{
-		d->env[i] = ft_strdup(g_environ[i]);
+		d->env[i] = ft_strdup(environ[i]);
 		++i;
 	}
 	d->env[i] = NULL;
