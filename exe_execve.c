@@ -6,7 +6,7 @@
 /*   By: vjacquie <vjacquie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/28 18:15:27 by nmohamed          #+#    #+#             */
-/*   Updated: 2014/03/24 17:02:04 by vjacquie         ###   ########.fr       */
+/*   Updated: 2014/03/25 14:27:33 by jmoiroux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,15 +37,25 @@ static int	exe_check_exist(char *tmp)
 	return (SUCCESS);
 }
 
+static void	exe_search_exe2(t_data *d, t_searchexe *s)
+{
+	s->var = ft_getenv("PATH", d->env);
+	s->i = 0;
+	s->tmp = NULL;
+	if (s->var == NULL)
+	{
+		WR(2, "Command not found\n");
+		_exit(1);
+	}
+	s->path = ft_strsplit(s->var, ':');
+	free(s->var);
+}
+
 static char	*exe_search_exe(t_data *d)
 {
 	t_searchexe	s;
 
-	s.i = 0;
-	s.var = ft_getenv("PATH", d->env);
-	s.path = ft_strsplit(s.var, ':');
-	free(s.var);
-	s.tmp = NULL;
+	exe_search_exe2(d, &s);
 	while ((s.path)[s.i])
 	{
 		s.tofree = s.tmp;
@@ -86,10 +96,10 @@ int			exe_execve(t_data *d)
 	if (d->argv != NULL && d->argv[0] != NULL && error == SUCCESS)
 	{
 		execve(d->argv[0], d->argv, d->env);
-		WR(2, "could not execute");
+		WR(2, "Could not execute");
 	}
 	else if (d->argv[0] == NULL)
-		WR(2, "command not found\n");
+		WR(2, "Command not found\n");
 	_exit(1);
 	return (-1);
 }
