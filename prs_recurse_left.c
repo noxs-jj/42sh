@@ -6,7 +6,7 @@
 /*   By: jmoiroux <jmoiroux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/14 14:59:36 by jmoiroux          #+#    #+#             */
-/*   Updated: 2014/03/21 18:12:00 by jmoiroux         ###   ########.fr       */
+/*   Updated: 2014/03/25 12:38:05 by jmoiroux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ static int	recurse_leftfork(t_data *d, int father, int fd, t_more *link);
 
 int			recurse_left(t_data *d, t_more *link)
 {
-	if (link->next != NULL)
+	if (link->next != NULL
+		|| (link->prev != NULL && ft_strlen(link->prev->str) == 0))
 	{
 		WR(2, "Operator: < usage: 'executable < file' only\n");
 		return (-1);
@@ -60,6 +61,7 @@ static int	recurse_leftalone(t_data *d, t_more *link)
 		return (-1);
 	return (1);
 }
+
 static int	recurse_leftfork(t_data *d, int father, int fd, t_more *link)
 {
 	if ((father = fork()) < 0)
