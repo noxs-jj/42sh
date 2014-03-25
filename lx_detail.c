@@ -6,13 +6,14 @@
 /*   By: nmohamed <nmohamed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/05 12:49:50 by vjacquie          #+#    #+#             */
-/*   Updated: 2014/03/19 15:59:39 by jmoiroux         ###   ########.fr       */
+/*   Updated: 2014/03/25 23:37:40 by jmoiroux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
 
 /*
+** main function for the detail lexing
 ** cut the string with '|', '>', '<' or ">>"
 ** save the first part and return the second
 ** TEST OK vjacquie
@@ -42,11 +43,6 @@ static char	*lx_op(char *str, t_cmd *op, int n)
 	free(str);
 	return (cpy);
 }
-
-/*
-** main function for the detail lexing
-** TEST OK vjacquie
-*/
 
 void		lx_detail(t_cmd *op)
 {

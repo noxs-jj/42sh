@@ -6,38 +6,21 @@
 /*   By: vjacquie <vjacquie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/14 12:29:00 by vjacquie          #+#    #+#             */
-/*   Updated: 2014/03/25 12:29:56 by jmoiroux         ###   ########.fr       */
+/*   Updated: 2014/03/25 23:44:50 by jmoiroux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
-
-static int	recurse_rrightfork(t_data *d, int father, t_more *link, int fd);
-static void	recurse_rright_error(void);
 
 /*
 ** Do double right arrow
 ** TEST OK jmoiroux
 */
 
-int			recurse_rright(t_data *d, t_more *link)
+static void	recurse_rright_error(void)
 {
-	int		father;
-	int		fd;
-	char	*tmp;
-
-	father = -1;
-	tmp = ft_strtrim(link->str);
-	if ((fd = open(tmp, O_RDWR | O_CREAT | O_APPEND, 0777)) == -1)
-	{
-		WR(2, "File open error >> (recurse_rright)\n");
-		ft_memdel((void **)&tmp);
-		return (-1);
-	}
-	ft_memdel((void **)&tmp);
-	if (recurse_rrightfork(d, father, link, fd) == -1)
-		return (-1);
-	return (1);
+	WR(2, "Operator: '>>' usage: 'executable >> file'\n");
+	WR(2, "or 'executable | executable >> file' only\n");
 }
 
 static int	recurse_rrightfork(t_data *d, int father, t_more *link, int fd)
@@ -67,8 +50,22 @@ static int	recurse_rrightfork(t_data *d, int father, t_more *link, int fd)
 	return (-1);
 }
 
-static void	recurse_rright_error(void)
+int			recurse_rright(t_data *d, t_more *link)
 {
-	WR(2, "Operator: '>>' usage: 'executable >> file'\n");
-	WR(2, "or 'executable | executable >> file' only\n");
+	int		father;
+	int		fd;
+	char	*tmp;
+
+	father = -1;
+	tmp = ft_strtrim(link->str);
+	if ((fd = open(tmp, O_RDWR | O_CREAT | O_APPEND, 0777)) == -1)
+	{
+		WR(2, "File open error >> (recurse_rright)\n");
+		ft_memdel((void **)&tmp);
+		return (-1);
+	}
+	ft_memdel((void **)&tmp);
+	if (recurse_rrightfork(d, father, link, fd) == -1)
+		return (-1);
+	return (1);
 }

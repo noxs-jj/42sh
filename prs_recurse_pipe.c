@@ -6,7 +6,7 @@
 /*   By: vjacquie <vjacquie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/14 12:27:25 by vjacquie          #+#    #+#             */
-/*   Updated: 2014/03/18 11:25:59 by vjacquie         ###   ########.fr       */
+/*   Updated: 2014/03/25 23:42:54 by jmoiroux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,18 @@
 ** TEST OK jmoiroux
 */
 
-static void	fils(t_data *d, t_more *link, int fd, int pfd[2]);
+static void	fils(t_data *d, t_more *link, int fd, int pfd[2])
+{
+	d->toexec = link->str;
+	close(pfd[1]);
+	if (link->prev != NULL)
+		dup2(pfd[0], 0);
+	close(pfd[0]);
+	if (fd != 0)
+		dup2(fd, 1);
+	exe_build_system(d);
+	_exit(1);
+}
 
 int			recurse_pipe(t_data *d, t_more *link, int fd)
 {
@@ -46,17 +57,4 @@ int			recurse_pipe(t_data *d, t_more *link, int fd)
 	}
 	dup2(0, 1);
 	return (1);
-}
-
-static void	fils(t_data *d, t_more *link, int fd, int pfd[2])
-{
-		d->toexec = link->str;
-		close(pfd[1]);
-		if (link->prev != NULL)
-			dup2(pfd[0], 0);
-		close(pfd[0]);
-		if (fd != 0)
-			dup2(fd, 1);
-		exe_build_system(d);
-		_exit(1);
 }

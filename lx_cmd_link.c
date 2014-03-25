@@ -6,7 +6,7 @@
 /*   By: vjacquie <vjacquie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/05 12:51:20 by vjacquie          #+#    #+#             */
-/*   Updated: 2014/03/24 14:36:33 by vjacquie         ###   ########.fr       */
+/*   Updated: 2014/03/25 23:38:20 by jmoiroux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 /*
 ** create a new cmd link
+** add a new cmd link
 ** TEST OK vjacquie
 */
 
@@ -29,11 +30,6 @@ t_cmd	*lx_new_cmd(char *str, int n)
 	new->more = NULL;
 	return (new);
 }
-
-/*
-** add a new cmd link
-** TEST OK vjacquie
-*/
 
 void	lx_add_cmd(t_data *data, t_cmd *new)
 {

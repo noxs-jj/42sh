@@ -6,32 +6,16 @@
 /*   By: vjacquie <vjacquie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/28 17:48:02 by vjacquie          #+#    #+#             */
-/*   Updated: 2014/03/24 17:38:00 by vjacquie         ###   ########.fr       */
+/*   Updated: 2014/03/25 23:22:16 by jmoiroux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
 
-static void	freeall(t_data *d);
-
 /*
 ** Exit on command
 ** TEST OK jmoiroux
 */
-
-void		build_exit(t_data *d)
-{
-	int	i;
-
-	i = 0;
-	if (ft_strlen(d->toexec) >= 5)
-	{
-		i = ft_atoi(&d->toexec[4]);
-		i = i % 256;
-	}
-	freeall(d);
-	_exit(i);
-}
 
 static void	freeall(t_data *d)
 {
@@ -58,4 +42,18 @@ static void	freeall(t_data *d)
 		if (d != NULL)
 			ft_memdel((void **)&d);
 	}
+}
+
+void		build_exit(t_data *d)
+{
+	int	i;
+
+	i = 0;
+	if (ft_strlen(d->toexec) >= 5)
+	{
+		i = ft_atoi(&d->toexec[4]);
+		i = i % 256;
+	}
+	freeall(d);
+	_exit(i);
 }

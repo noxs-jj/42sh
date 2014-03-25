@@ -6,7 +6,7 @@
 /*   By: nmohamed <nmohamed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/05 12:54:43 by vjacquie          #+#    #+#             */
-/*   Updated: 2014/03/17 17:52:53 by jmoiroux         ###   ########.fr       */
+/*   Updated: 2014/03/25 23:39:13 by jmoiroux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,6 @@ static int	lx_pos_str(char *str, char *cmp)
 	return (0);
 }
 
-/*
-** cut the string in two part,
-** save the first in d->lst_line and return the second
-** TEST OK vjacquie
-*/
-
 static char	*lx_or_and(char *str, t_data *d, char *cmp, int n)
 {
 	char	*tmp;
@@ -50,11 +44,6 @@ static char	*lx_or_and(char *str, t_data *d, char *cmp, int n)
 	ft_memdel((void **)&str);
 	return (cpy);
 }
-
-/*
-** split the line with ";", "&&" and "||"
-** TEST OK vjacquie
-*/
 
 void		lx_lex_line(char *line, t_data *d)
 {

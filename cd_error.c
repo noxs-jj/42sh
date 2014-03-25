@@ -6,15 +6,21 @@
 /*   By: vjacquie <vjacquie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/11 18:02:25 by scohen            #+#    #+#             */
-/*   Updated: 2014/03/24 15:34:56 by vjacquie         ###   ########.fr       */
+/*   Updated: 2014/03/25 23:25:14 by jmoiroux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
 
-static void	cd_error2(char *name, t_data *d);
+static void	cd_error2(char *name, t_data *d)
+{
+	WR(2, "42sh : ");
+	ft_putstr_fd(name, 2);
+	WR(2, ": is not a directory.\n");
+	d->current->exedone = 1;
+}
 
-int		cd_error(char *name)
+int			cd_error(char *name)
 {
 	t_data	*d;
 
@@ -41,12 +47,4 @@ int		cd_error(char *name)
 		return (-1);
 	}
 	return (0);
-}
-
-static void	cd_error2(char *name, t_data *d)
-{
-	WR(2, "42sh : ");
-	ft_putstr_fd(name, 2);
-	WR(2, ": is not a directory.\n");
-	d->current->exedone = 1;
 }

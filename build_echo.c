@@ -6,7 +6,7 @@
 /*   By: vjacquie <vjacquie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/27 12:05:40 by vjacquie          #+#    #+#             */
-/*   Updated: 2014/03/14 14:50:34 by jmoiroux         ###   ########.fr       */
+/*   Updated: 2014/03/25 23:32:33 by jmoiroux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,10 @@
 ** test ok
 ** We write all arg until the end of cmd
 ** We write a '\n' at the end if needed
-** TEST OK jmoiroux
-*/
-
-/*
+** print the string until ' ', '\t', 34 or 39
+** return the actual place
 ** search "-n", if found, recall the function until it find an other char
+** TEST OK jmoiroux
 */
 
 static int	is_option(char *str, int j)
@@ -43,11 +42,6 @@ static int	is_option(char *str, int j)
 	}
 	return (j);
 }
-
-/*
-** print the string until ' ', '\t', 34 or 39
-** return the actual place
-*/
 
 static int	ft_print_echo(char *str, int i)
 {

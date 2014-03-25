@@ -6,21 +6,62 @@
 /*   By: vjacquie <vjacquie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/05 13:15:04 by vjacquie          #+#    #+#             */
-/*   Updated: 2014/03/24 17:53:22 by jmoiroux         ###   ########.fr       */
+/*   Updated: 2014/03/25 23:42:35 by jmoiroux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
-
-static void	prs_operator(t_data *d, t_more *link);
-static int	prs_parseralone(t_data *d, t_more *tmpmore);
-static void	prs_parser2(t_data *d, t_cmd *tmpcmd);
 
 /*
 ** main parser, check chaininglist and lunch function operator
 ** end : contain the op after str, 1 = |, 2 = <, 3 = >, 4 = >>
 ** TEST OK jmoiroux
 */
+
+static int	prs_parseralone(t_data *d, t_more *tmpmore)
+{
+	int	father;
+
+	if ((father = fork()) < 0)
+	{
+		WR(2, "Fork error (prs_parser)\n");
+		return (-1);
+	}
+	if (father == 0)
+	{
+		d->toexec = tmpmore->str;
+		exe_build_system(d);
+		_exit(1);
+	}
+	return (1);
+}
+
+static void	prs_operator(t_data *d, t_more *link)
+{
+	if (link->prev->end == 1)
+		recurse_pipe(d, link, 0);
+	else if (link->prev->end == 2)
+		recurse_left(d, link);
+	else if (link->prev->end == 3)
+		recurse_right(d, link);
+	else if (link->prev->end == 4)
+		recurse_rright(d, link);
+	else
+		WR(2, "Operator error (prs_operator else)\n");
+}
+
+static void	prs_parser2(t_data *d, t_cmd *tmpcmd)
+{
+	t_more	*tmpmore;
+
+	tmpmore = tmpcmd->more;
+	while (tmpmore->next != NULL)
+		tmpmore = tmpmore->next;
+	if (tmpmore->prev != NULL)
+		prs_operator(d, tmpmore);
+	else
+		prs_parseralone(d, tmpmore);
+}
 
 void		prs_parser(t_data *d)
 {
@@ -45,49 +86,4 @@ void		prs_parser(t_data *d)
 		if (tmpcmd)
 			tmpcmd = tmpcmd->next;
 	}
-}
-
-static void	prs_parser2(t_data *d, t_cmd *tmpcmd)
-{
-	t_more	*tmpmore;
-
-	tmpmore = tmpcmd->more;
-	while (tmpmore->next != NULL)
-		tmpmore = tmpmore->next;
-	if (tmpmore->prev != NULL)
-		prs_operator(d, tmpmore);
-	else
-		prs_parseralone(d, tmpmore);
-}
-
-static void	prs_operator(t_data *d, t_more *link)
-{
-	if (link->prev->end == 1)
-		recurse_pipe(d, link, 0);
-	else if (link->prev->end == 2)
-		recurse_left(d, link);
-	else if (link->prev->end == 3)
-		recurse_right(d, link);
-	else if (link->prev->end == 4)
-		recurse_rright(d, link);
-	else
-		WR(2, "Operator error (prs_operator else)\n");
-}
-
-static int	prs_parseralone(t_data *d, t_more *tmpmore)
-{
-	int	father;
-
-	if ((father = fork()) < 0)
-	{
-		WR(2, "Fork error (prs_parser)\n");
-		return (-1);
-	}
-	if (father == 0)
-	{
-		d->toexec = tmpmore->str;
-		exe_build_system(d);
-		_exit(1);
-	}
-	return (1);
 }

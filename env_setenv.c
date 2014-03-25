@@ -6,48 +6,17 @@
 /*   By: vjacquie <vjacquie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/27 12:39:35 by nmohamed          #+#    #+#             */
-/*   Updated: 2014/03/24 15:35:08 by vjacquie         ###   ########.fr       */
+/*   Updated: 2014/03/25 23:34:53 by jmoiroux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
-
-static void	ft_setenv2(t_data *d, char *tofree, char *var, char *val);
-static void	ft_setenv3(char *toset, char *var, char *val);
-static void	ft_setenv4(char *tofree, char **env, char *toset);
 
 /*
 ** add entry to envtab[] from builtin cd or setenv
 ** check for FREE
 ** TEST OK jmoiroux
 */
-
-void		ft_setenv(t_data *d, char *var, char *val)
-{
-	char		**env;
-	char		*tofree;
-	char		*toset;
-
-	env = d->env;
-	tofree = ft_getenv(var, env);
-	ft_setenv2(d, tofree, var, val);
-	if ((toset = ft_strnew(ft_strlen(var) + ft_strlen(val))) == NULL)
-	{
-		ft_strdel(&tofree);
-		return ;
-	}
-	ft_setenv3(toset, var, val);
-	env = d->env;
-	while (env != NULL && env[0] && (ft_strncmp(*env, var, ft_strlen(var) != 0)
-			|| (size_t)(ft_strchr(*env, '=') - *env) != ft_strlen(var)))
-		++env;
-	if (env == NULL && !env[0])
-	{
-		ft_strdel(&tofree);
-		return ;
-	}
-	ft_setenv4(tofree, env, toset);
-}
 
 static void	ft_setenv2(t_data *d, char *tofree, char *var, char *val)
 {
@@ -86,4 +55,31 @@ void		env_setenv(t_data *d)
 		d->current->exedone = 1;
 		ft_putstr("Setenv usage: 'setenv variable value'\n");
 	}
+}
+
+void		ft_setenv(t_data *d, char *var, char *val)
+{
+	char		**env;
+	char		*tofree;
+	char		*toset;
+
+	env = d->env;
+	tofree = ft_getenv(var, env);
+	ft_setenv2(d, tofree, var, val);
+	if ((toset = ft_strnew(ft_strlen(var) + ft_strlen(val))) == NULL)
+	{
+		ft_strdel(&tofree);
+		return ;
+	}
+	ft_setenv3(toset, var, val);
+	env = d->env;
+	while (env != NULL && env[0] && (ft_strncmp(*env, var, ft_strlen(var) != 0)
+			|| (size_t)(ft_strchr(*env, '=') - *env) != ft_strlen(var)))
+		++env;
+	if (env == NULL && !env[0])
+	{
+		ft_strdel(&tofree);
+		return ;
+	}
+	ft_setenv4(tofree, env, toset);
 }

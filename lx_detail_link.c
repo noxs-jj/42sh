@@ -6,7 +6,7 @@
 /*   By: vjacquie <vjacquie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/05 12:51:20 by vjacquie          #+#    #+#             */
-/*   Updated: 2014/03/05 15:04:47 by vjacquie         ###   ########.fr       */
+/*   Updated: 2014/03/25 23:38:50 by jmoiroux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,6 @@ t_more	*lx_new_more(char *str, int n)
 	new->prev = NULL;
 	return (new);
 }
-
-/*
-** add a new detail link
-** TEST OK vjacquie
-*/
 
 void	lx_add_more(t_cmd *op, t_more *new)
 {

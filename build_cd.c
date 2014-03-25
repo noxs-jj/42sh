@@ -6,14 +6,21 @@
 /*   By: vjacquie <vjacquie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/11 13:58:34 by scohen            #+#    #+#             */
-/*   Updated: 2014/03/24 15:10:32 by vjacquie         ###   ########.fr       */
+/*   Updated: 2014/03/25 23:20:39 by jmoiroux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
 
-static void	free_vars(char *home, char *pwd, char *oldpwd);
-static void	build_cd2(t_data *d, char **av);
+static void	free_vars(char *home, char *pwd, char *oldpwd)
+{
+	if (home != NULL)
+		free(home);
+	if (pwd != NULL)
+		free(pwd);
+	if (oldpwd != NULL)
+		free(oldpwd);
+}
 
 static int	build_cd_check_for_env(t_data *d)
 {
@@ -35,14 +42,18 @@ static int	build_cd_check_for_env(t_data *d)
 	return (1);
 }
 
-static void	free_vars(char *home, char *pwd, char *oldpwd)
+static void	build_cd2(t_data *d, char **av)
 {
-	if (home != NULL)
-		free(home);
-	if (pwd != NULL)
-		free(pwd);
-	if (oldpwd != NULL)
-		free(oldpwd);
+	if (chdir(av[1]) == -1)
+		cd_error(av[1]);
+	else
+	{
+		if (ft_strncmp(av[1], "..", 2) == 0
+			&& (av[1][2] == '/' || av[1][2] == '\0'))
+			cd_double_dot(d, av[1]);
+		else
+			cd_change_pwd(d, av[1]);
+	}
 }
 
 void		build_cd(t_data *d)
@@ -63,20 +74,6 @@ void		build_cd(t_data *d)
 	if (av[1] == NULL)
 		cd_only(d, av[1]);
 	free_tabtab(av);
-}
-
-static void	build_cd2(t_data *d, char **av)
-{
-	if (chdir(av[1]) == -1)
-		cd_error(av[1]);
-	else
-	{
-		if (ft_strncmp(av[1], "..", 2) == 0
-			&& (av[1][2] == '/' || av[1][2] == '\0'))
-			cd_double_dot(d, av[1]);
-		else
-			cd_change_pwd(d, av[1]);
-	}
 }
 
 void		free_tabtab(char **tab)
