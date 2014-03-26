@@ -6,7 +6,7 @@
 /*   By: nmohamed <nmohamed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/28 16:35:27 by vjacquie          #+#    #+#             */
-/*   Updated: 2014/03/25 23:54:58 by jmoiroux         ###   ########.fr       */
+/*   Updated: 2014/03/26 14:21:58 by jmoiroux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 static void	prompt_exit(t_data *d)
 {
-	char	*tmp;
+	char		*tmp;
+	extern int	errno;
 
 	ft_putstr(PROMPT);
 	d->line = ft_strnew(BUFF_SIZE);

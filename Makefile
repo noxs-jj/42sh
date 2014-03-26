@@ -6,7 +6,7 @@
 #    By: jmoiroux <jmoiroux@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/03/01 12:01:41 by jmoiroux          #+#    #+#              #
-#    Updated: 2014/03/26 12:22:24 by jmoiroux         ###   ########.fr        #
+#    Updated: 2014/03/26 14:29:04 by jmoiroux         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -81,8 +81,7 @@ $(LIB):
 	$(CC) $(SRC) -I /libft -I /includes -c $<
 
 $(NAME): $(LIB) $(OBJS)
-	$(CC) $(OBJS) -o $(NAME) -ltermcap -lncurses -L libft \
-	-lft $(HEADER)
+	$(CC) $(OBJS) -o $(NAME) -ltermcap -lncurses -L libft -lft
 
 clean:
 	$(RM) $(OBJS)
