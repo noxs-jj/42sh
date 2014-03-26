@@ -6,7 +6,7 @@
 /*   By: vjacquie <vjacquie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/18 14:16:49 by mlaize            #+#    #+#             */
-/*   Updated: 2014/03/26 00:01:06 by jmoiroux         ###   ########.fr       */
+/*   Updated: 2014/03/26 11:54:57 by jmoiroux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <sys/wait.h>
 # include <sys/types.h>
 # include <signal.h>
+
 # define MAX_PRIORITY 2
 # define BUFF 20000000
 # define PROMPT "$> "
