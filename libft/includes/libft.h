@@ -6,7 +6,7 @@
 /*   By: jmoiroux <jmoiroux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/19 11:30:04 by jmoiroux          #+#    #+#             */
-/*   Updated: 2014/03/17 12:18:39 by jmoiroux         ###   ########.fr       */
+/*   Updated: 2014/03/26 12:11:50 by jmoiroux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,6 @@
 # include <unistd.h>
 # include "get_next_line.h"
 # include "printf.h"
-
-# define WR(fd, str) write(fd, str, (sizeof(str) - 1))
 
 typedef struct		s_list
 {

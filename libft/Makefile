@@ -6,7 +6,7 @@
 #    By: jmoiroux <jmoiroux@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/11/19 11:59:27 by jmoiroux          #+#    #+#              #
-#    Updated: 2014/02/06 17:42:38 by jmoiroux         ###   ########.fr        #
+#    Updated: 2014/03/26 12:20:22 by jmoiroux         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -45,7 +45,7 @@ fclean: clean
 
 re: fclean all
 
-%.o: %.c
+%.o: %.c $(HEADER)
 	@gcc -c $< -o $@
 
 .PHONY: all clean fclean re
