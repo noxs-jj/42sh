@@ -6,7 +6,7 @@
 /*   By: vjacquie <vjacquie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/11 13:58:34 by scohen            #+#    #+#             */
-/*   Updated: 2014/03/25 23:20:39 by jmoiroux         ###   ########.fr       */
+/*   Updated: 2014/03/26 12:01:23 by jmoiroux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static int	build_cd_check_for_env(t_data *d)
 	pwd = ft_getenv("PWD", d->cenv);
 	if (oldpwd == NULL || pwd == NULL || home == NULL)
 	{
-		WR(2, "Cannot run `cd' without HOME or OLDPWD, PWD\n");
+		ft_putstr_fd("Cannot run `cd' without HOME or OLDPWD, PWD\n", 2);
 		d->current->exedone = 1;
 		free_vars(home, pwd, oldpwd);
 		return (0);

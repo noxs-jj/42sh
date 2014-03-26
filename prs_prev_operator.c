@@ -6,7 +6,7 @@
 /*   By: vjacquie <vjacquie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/14 12:32:48 by vjacquie          #+#    #+#             */
-/*   Updated: 2014/03/17 15:58:46 by jmoiroux         ###   ########.fr       */
+/*   Updated: 2014/03/26 12:06:12 by jmoiroux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ void	prev_operator(t_data *d, t_more *link)
 	else if (link->prev->end == 2)
 		recurse_left(d, link->prev);
 	else if (link->prev->end == 3)
-		WR(2, "Ambiguous output redirect. (prev_operator)\n");
+		ft_putstr_fd("Ambiguous output redirect. (prev_operator)\n", 2);
 	else if (link->prev->end == 4)
-		WR(2, "Ambiguous output redirect. (prev_operator)\n");
+		ft_putstr_fd("Ambiguous output redirect. (prev_operator)\n", 2);
 	else
-		WR(2, "Operator error (prs_parser else if)\n");
+		ft_putstr_fd("Operator error (prs_parser else if)\n", 2);
 }

@@ -6,7 +6,7 @@
 /*   By: jmoiroux <jmoiroux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/14 14:59:36 by jmoiroux          #+#    #+#             */
-/*   Updated: 2014/03/25 23:43:18 by jmoiroux         ###   ########.fr       */
+/*   Updated: 2014/03/26 12:09:16 by jmoiroux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int	recurse_leftfork(t_data *d, int father, int fd, t_more *link)
 {
 	if ((father = fork()) < 0)
 	{
-		WR(2, "Fork() error (recurse_left)\n");
+		ft_putstr_fd("Fork() error (recurse_left)\n", 2);
 		return (-1);
 	}
 	if (father == 0)
@@ -44,13 +44,13 @@ static int	recurse_leftalone(t_data *d, t_more *link)
 	tmp = ft_strtrim(link->str);
 	if ((fd = open(tmp, O_RDONLY)) == -1)
 	{
-		WR(2, "File open error (recurse_left)\n");
+		ft_putstr_fd("File open error (recurse_left)\n", 2);
 		ft_memdel((void **)&tmp);
 		return (-1);
 	}
 	if (link->prev != NULL && link->prev->str == NULL)
 	{
-		WR(2, "Operator: < usage: 'executable < file' only\n");
+		ft_putstr_fd("Operator: < usage: 'executable < file' only\n", 2);
 		ft_memdel((void **)&tmp);
 		return (-1);
 	}
@@ -65,7 +65,7 @@ int			recurse_left(t_data *d, t_more *link)
 	if (link->next != NULL
 		|| (link->prev != NULL && ft_strlen(link->prev->str) == 0))
 	{
-		WR(2, "Operator: < usage: 'executable < file' only\n");
+		ft_putstr_fd("Operator: < usage: 'executable < file' only\n", 2);
 		return (-1);
 	}
 	else

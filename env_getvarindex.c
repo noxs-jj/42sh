@@ -6,7 +6,7 @@
 /*   By: vjacquie <vjacquie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/28 19:30:51 by nmohamed          #+#    #+#             */
-/*   Updated: 2014/03/24 15:34:59 by vjacquie         ###   ########.fr       */
+/*   Updated: 2014/03/26 12:03:44 by jmoiroux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	ft_get_var_index(char **env, char *str)
 	}
 	else
 	{
-		WR(2, "Malloc error: could not allocate tmp\n");
+		ft_putstr_fd("Malloc error: could not allocate tmp\n", 2);
 		d->current->exedone = 1;
 		return (-1);
 	}

@@ -6,7 +6,7 @@
 /*   By: vjacquie <vjacquie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/28 19:28:09 by nmohamed          #+#    #+#             */
-/*   Updated: 2014/03/24 15:35:04 by vjacquie         ###   ########.fr       */
+/*   Updated: 2014/03/26 12:04:18 by jmoiroux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void			ft_putenv(t_data *d)
 	}
 	else
 	{
-		WR(2, "Malloc error: could not allocate new variable\n");
+		ft_putstr_fd("Malloc error: could not allocate new variable\n", 2);
 		d->current->exedone = 1;
 		return ;
 	}

@@ -6,7 +6,7 @@
 /*   By: vjacquie <vjacquie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/14 12:24:50 by vjacquie          #+#    #+#             */
-/*   Updated: 2014/03/25 23:44:22 by jmoiroux         ###   ########.fr       */
+/*   Updated: 2014/03/26 12:07:37 by jmoiroux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,15 @@
 
 static void	recurse_right_error(void)
 {
-	WR(2, "Operator: '>' usage: 'executable > file'\n");
-	WR(2, "or 'executable | executable > file' only\n");
+	ft_putstr_fd("Operator: '>' usage: 'executable > file'\n", 2);
+	ft_putstr_fd("or 'executable | executable > file' only\n", 2);
 }
 
 static int	recurse_rightfork(t_data *d, int father, t_more *link, int fd)
 {
 	if ((father = fork()) < 0)
 	{
-		WR(2, "Fork() error > (recurse_right)\n");
+		ft_putstr_fd("Fork() error > (recurse_right)\n", 2);
 		return (-1);
 	}
 	if (father == 0)
@@ -60,7 +60,7 @@ int			recurse_right(t_data *d, t_more *link)
 	tmp = ft_strtrim(link->str);
 	if ((fd = open(tmp, O_RDWR | O_CREAT | O_TRUNC, 0777)) == -1)
 	{
-		WR(2, "File open error > (recurse_right)\n");
+		ft_putstr_fd("File open error > (recurse_right)\n", 2);
 		ft_memdel((void **)&tmp);
 		return (-1);
 	}

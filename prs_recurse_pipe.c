@@ -6,7 +6,7 @@
 /*   By: vjacquie <vjacquie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/14 12:27:25 by vjacquie          #+#    #+#             */
-/*   Updated: 2014/03/25 23:42:54 by jmoiroux         ###   ########.fr       */
+/*   Updated: 2014/03/26 12:07:14 by jmoiroux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,12 @@ int			recurse_pipe(t_data *d, t_more *link, int fd)
 
 	if (pipe(pfd) == -1)
 	{
-		WR(2, "Pipe error (recurse_pipe)\n");
+		ft_putstr_fd("Pipe error (recurse_pipe)\n", 2);
 		return (-1);
 	}
 	if ((father = fork()) < 0)
 	{
-		WR(2, "Fork() error (recurse_pipe)\n");
+		ft_putstr_fd("Fork() error (recurse_pipe)\n", 2);
 		return (-1);
 	}
 	if (father == 0)

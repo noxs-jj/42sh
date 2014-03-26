@@ -6,7 +6,7 @@
 /*   By: vjacquie <vjacquie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/05 13:15:04 by vjacquie          #+#    #+#             */
-/*   Updated: 2014/03/25 23:42:35 by jmoiroux         ###   ########.fr       */
+/*   Updated: 2014/03/26 12:05:54 by jmoiroux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static int	prs_parseralone(t_data *d, t_more *tmpmore)
 
 	if ((father = fork()) < 0)
 	{
-		WR(2, "Fork error (prs_parser)\n");
+		ft_putstr_fd("Fork error (prs_parser)\n", 2);
 		return (-1);
 	}
 	if (father == 0)
@@ -47,7 +47,7 @@ static void	prs_operator(t_data *d, t_more *link)
 	else if (link->prev->end == 4)
 		recurse_rright(d, link);
 	else
-		WR(2, "Operator error (prs_operator else)\n");
+		ft_putstr_fd("Operator error (prs_operator else)\n", 2);
 }
 
 static void	prs_parser2(t_data *d, t_cmd *tmpcmd)

@@ -6,7 +6,7 @@
 /*   By: vjacquie <vjacquie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/11 18:02:25 by scohen            #+#    #+#             */
-/*   Updated: 2014/03/25 23:25:14 by jmoiroux         ###   ########.fr       */
+/*   Updated: 2014/03/26 12:03:20 by jmoiroux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 static void	cd_error2(char *name, t_data *d)
 {
-	WR(2, "42sh : ");
+	ft_putstr_fd("42sh : ", 2);
 	ft_putstr_fd(name, 2);
-	WR(2, ": is not a directory.\n");
+	ft_putstr_fd(": is not a directory.\n", 2);
 	d->current->exedone = 1;
 }
 
@@ -32,17 +32,17 @@ int			cd_error(char *name)
 	}
 	if (access(name, F_OK) == -1)
 	{
-		WR(2, "42sh : ");
+		ft_putstr_fd("42sh : ", 2);
 		ft_putstr_fd(name, 2);
-		WR(2, ": directory not found.\n");
+		ft_putstr_fd(": directory not found.\n", 2);
 		d->current->exedone = 1;
 		return (-1);
 	}
 	if (access(name, X_OK) == -1)
 	{
-		WR(2, "42sh : ");
+		ft_putstr_fd("42sh : ", 2);
 		ft_putstr_fd(name, 2);
-		WR(2, ": %s : permission denied.\n");
+		ft_putstr_fd(": %s : permission denied.\n", 2);
 		d->current->exedone = 1;
 		return (-1);
 	}

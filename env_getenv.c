@@ -6,7 +6,7 @@
 /*   By: nmohamed <nmohamed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/28 19:26:46 by nmohamed          #+#    #+#             */
-/*   Updated: 2014/03/19 15:20:46 by jmoiroux         ###   ########.fr       */
+/*   Updated: 2014/03/26 12:03:31 by jmoiroux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ char		*ft_getenv(char *var, char **env)
 	i = 0;
 	if (env == NULL || var == NULL)
 	{
-		WR(2, "Env is null | ft_getenv\n");
+		ft_putstr_fd("Env is null | ft_getenv\n", 2);
 		_exit(1);
 		return (NULL);
 	}

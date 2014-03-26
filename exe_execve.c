@@ -6,7 +6,7 @@
 /*   By: vjacquie <vjacquie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/28 18:15:27 by nmohamed          #+#    #+#             */
-/*   Updated: 2014/03/25 16:45:32 by jmoiroux         ###   ########.fr       */
+/*   Updated: 2014/03/26 12:05:14 by jmoiroux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static void	exe_search_exe2(t_data *d, t_searchexe *s)
 	s->tmp = NULL;
 	if (s->var == NULL)
 	{
-		WR(2, "Command not found\n");
+		ft_putstr_fd("Command not found\n", 2);
 		_exit(1);
 	}
 	s->path = ft_strsplit(s->var, ':');
@@ -78,19 +78,19 @@ int			exe_execve(t_data *d)
 	else if ((error = exe_check_exist(d->argv[0])) != SUCCESS)
 	{
 		if (error == ERR_ISDIR)
-			WR(2, "is a directory\n");
+			ft_putstr_fd("is a directory\n", 2);
 		if (error == ERR_NOEXIST)
-			WR(2, "does not exist\n");
+			ft_putstr_fd("does not exist\n", 2);
 		if (error == ERR_DENIED)
-			WR(2, "access denied\n");
+			ft_putstr_fd("access denied\n", 2);
 	}
 	if (d->argv != NULL && d->argv[0] != NULL && error == SUCCESS)
 	{
 		execve(d->argv[0], d->argv, d->cenv);
-		WR(2, "Could not execute");
+		ft_putstr_fd("Could not execute", 2);
 	}
 	else if (d->argv[0] == NULL)
-		WR(2, "Command not found\n");
+		ft_putstr_fd("Command not found\n", 2);
 	_exit(1);
 	return (-1);
 }

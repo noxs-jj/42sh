@@ -6,7 +6,7 @@
 /*   By: nmohamed <nmohamed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/28 19:08:01 by nmohamed          #+#    #+#             */
-/*   Updated: 2014/03/25 23:36:07 by jmoiroux         ###   ########.fr       */
+/*   Updated: 2014/03/26 12:04:28 by jmoiroux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 static void	env_unsetenv2(void)
 {
-	WR(2, "env is null | ft_getenv\n");
+	ft_putstr_fd("env is null | ft_getenv\n", 2);
 	_exit(1);
 }
 

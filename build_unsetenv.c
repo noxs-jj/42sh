@@ -6,7 +6,7 @@
 /*   By: vjacquie <vjacquie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/03 11:12:09 by jmoiroux          #+#    #+#             */
-/*   Updated: 2014/03/25 16:51:39 by jmoiroux         ###   ########.fr       */
+/*   Updated: 2014/03/26 12:08:46 by jmoiroux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,13 @@ void	build_unsetenv(t_data *d)
 	tmp = ft_strsplit(d->line, ' ');
 	if (tmp == NULL)
 	{
-		WR(2, "Split error (build_unsetenv)\n");
+		ft_putstr_fd("Split error (build_unsetenv)\n", 2);
 		d->current->exedone = 1;
 		return ;
 	}
 	if (tmp[1] == NULL || tmp[2] != NULL)
 	{
-		ft_putstr("Unsetenv usage: 'unsetenv variable' only\n");
+		ft_putstr_fd("Unsetenv usage: 'unsetenv variable' only\n", 2);
 		d->current->exedone = 1;
 		return ;
 	}
