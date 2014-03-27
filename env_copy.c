@@ -6,7 +6,7 @@
 /*   By: vjacquie <vjacquie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/28 19:23:50 by nmohamed          #+#    #+#             */
-/*   Updated: 2014/03/25 16:53:33 by jmoiroux         ###   ########.fr       */
+/*   Updated: 2014/03/27 15:23:09 by vjacquie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,7 @@
 
 /*
 ** get extern environ and copy it on char **env in struct data
-** if no environement soft say to trtry with env
-** TEST OK jmoiroux
+** if no environement soft say to retry with env
 */
 
 void	env_copy(t_data *d)

@@ -6,7 +6,7 @@
 /*   By: vjacquie <vjacquie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/27 15:41:22 by nmohamed          #+#    #+#             */
-/*   Updated: 2014/03/24 16:32:32 by vjacquie         ###   ########.fr       */
+/*   Updated: 2014/03/27 15:23:28 by vjacquie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 /*
 ** print envcopy
-** TEST OK jmoiroux
 */
 
 void	env_printenv(t_data *d)

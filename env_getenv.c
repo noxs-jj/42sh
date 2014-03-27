@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_getenv.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nmohamed <nmohamed@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vjacquie <vjacquie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/28 19:26:46 by nmohamed          #+#    #+#             */
-/*   Updated: 2014/03/26 12:03:31 by jmoiroux         ###   ########.fr       */
+/*   Updated: 2014/03/27 15:23:24 by vjacquie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 ** Return values:
 ** NULL if *str is not found in **env
 ** Otherwise, returns an allocated COPY of the string found in **env
-** TEST maybe OK need explain to confirm test, jmoiroux
 */
 
 char		*ft_getenv(char *var, char **env)

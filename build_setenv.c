@@ -6,7 +6,7 @@
 /*   By: vjacquie <vjacquie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/01 15:29:45 by vjacquie          #+#    #+#             */
-/*   Updated: 2014/03/26 12:01:12 by jmoiroux         ###   ########.fr       */
+/*   Updated: 2014/03/27 15:22:36 by vjacquie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 /*
 ** Add entry from command, call env_setenv()
-** TEST OK jmoiroux check free valenv line 37
 */
 
 void	build_setenv(t_data *d)

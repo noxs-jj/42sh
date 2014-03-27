@@ -3,19 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   env_unsetenv.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nmohamed <nmohamed@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vjacquie <vjacquie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/28 19:08:01 by nmohamed          #+#    #+#             */
-/*   Updated: 2014/03/26 12:04:28 by jmoiroux         ###   ########.fr       */
+/*   Updated: 2014/03/27 15:06:18 by vjacquie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
-
-/*
-** remove entry called fron build_unsetenv or cd
-** TEST OK jmoiroux
-*/
 
 static void	env_unsetenv2(void)
 {
@@ -41,9 +36,7 @@ void		env_unsetenv(t_data *d)
 	if (d->cenv == NULL)
 		env_unsetenv2();
 	while (d->cenv[i] != NULL
-			&& (ft_strncmp(d->cenv[i], d->varenv, ft_strlen(d->varenv) != 0)
-			|| (size_t)(ft_strchr(d->cenv[i], '=')
-			- d->cenv[i]) != ft_strlen(d->varenv)))
+		&& ft_strncmp(d->cenv[i], d->varenv, ft_strlen(d->varenv)) != 0)
 		++i;
 	if (d->cenv[i] != NULL)
 	{

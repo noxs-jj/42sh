@@ -6,16 +6,11 @@
 /*   By: vjacquie <vjacquie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/28 17:48:02 by vjacquie          #+#    #+#             */
-/*   Updated: 2014/03/25 23:22:16 by jmoiroux         ###   ########.fr       */
+/*   Updated: 2014/03/27 15:22:13 by vjacquie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
-
-/*
-** Exit on command
-** TEST OK jmoiroux
-*/
 
 static void	freeall(t_data *d)
 {
@@ -25,9 +20,11 @@ static void	freeall(t_data *d)
 			ft_memdel((void **)&d->line);
 		if (ft_strlen(d->toexec) > 0)
 		{
-			if (d->toexec[0] != 4)
+			if (d->toexec[0] == 101)
+			{
 				free(d->toexec);
-			d->toexec = NULL;
+				d->toexec = NULL;
+			}
 		}
 		if (d->argv != NULL)
 			ft_memdel((void **)&d->argv);

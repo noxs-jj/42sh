@@ -6,7 +6,7 @@
 /*   By: vjacquie <vjacquie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/28 18:15:27 by nmohamed          #+#    #+#             */
-/*   Updated: 2014/03/26 12:05:14 by jmoiroux         ###   ########.fr       */
+/*   Updated: 2014/03/27 15:23:44 by vjacquie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 /*
 ** do execve, check if bin is present, check acces
-** TEST OK jmoiroux
 */
 
 static int	exe_check_exist(char *tmp)

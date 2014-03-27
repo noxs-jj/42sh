@@ -6,7 +6,7 @@
 /*   By: vjacquie <vjacquie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/05 13:15:04 by vjacquie          #+#    #+#             */
-/*   Updated: 2014/03/26 12:05:54 by jmoiroux         ###   ########.fr       */
+/*   Updated: 2014/03/27 15:24:23 by vjacquie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 /*
 ** main parser, check chaininglist and lunch function operator
 ** end : contain the op after str, 1 = |, 2 = <, 3 = >, 4 = >>
-** TEST OK jmoiroux
 */
 
 static int	prs_parseralone(t_data *d, t_more *tmpmore)

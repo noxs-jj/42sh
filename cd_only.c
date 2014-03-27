@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd_only.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nmohamed <nmohamed@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vjacquie <vjacquie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/11 18:02:43 by scohen            #+#    #+#             */
-/*   Updated: 2014/03/19 17:32:36 by nmohamed         ###   ########.fr       */
+/*   Updated: 2014/03/27 15:22:48 by vjacquie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 /*
 ** if 'cd' only
-** TEST OK jmoiroux
 */
 
 void	cd_only(t_data *d, char *name)

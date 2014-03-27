@@ -6,7 +6,7 @@
 /*   By: vjacquie <vjacquie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/28 19:28:09 by nmohamed          #+#    #+#             */
-/*   Updated: 2014/03/26 12:04:18 by jmoiroux         ###   ########.fr       */
+/*   Updated: 2014/03/27 15:23:31 by vjacquie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 ** Frees each strings one by one
 ** Frees main string of strings
 ** Set value of the main pointer to NULL
-** TEST OK jmoiroux
 */
 
 static char		**realloc_2d(char ***old_ptr, size_t new_size)

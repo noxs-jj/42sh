@@ -6,7 +6,7 @@
 /*   By: vjacquie <vjacquie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/14 12:29:00 by vjacquie          #+#    #+#             */
-/*   Updated: 2014/03/26 12:08:19 by jmoiroux         ###   ########.fr       */
+/*   Updated: 2014/03/27 15:24:40 by vjacquie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 /*
 ** Do double right arrow
-** TEST OK jmoiroux
 */
 
 static void	recurse_rright_error(void)

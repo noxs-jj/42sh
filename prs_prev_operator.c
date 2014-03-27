@@ -6,7 +6,7 @@
 /*   By: vjacquie <vjacquie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/14 12:32:48 by vjacquie          #+#    #+#             */
-/*   Updated: 2014/03/26 12:06:12 by jmoiroux         ###   ########.fr       */
+/*   Updated: 2014/03/27 15:24:27 by vjacquie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 ** else if previous chainlink is a '<'
 ** if previous chainlink is a '>'
 ** if previous chainlink is a '>>'
-** TEST OK jmoiroux
 */
 
 void	prev_operator(t_data *d, t_more *link)

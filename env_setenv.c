@@ -6,7 +6,7 @@
 /*   By: vjacquie <vjacquie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/27 12:39:35 by nmohamed          #+#    #+#             */
-/*   Updated: 2014/03/25 23:34:53 by jmoiroux         ###   ########.fr       */
+/*   Updated: 2014/03/27 15:23:35 by vjacquie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 /*
 ** add entry to envtab[] from builtin cd or setenv
 ** check for FREE
-** TEST OK jmoiroux
 */
 
 static void	ft_setenv2(t_data *d, char *tofree, char *var, char *val)

@@ -6,7 +6,7 @@
 /*   By: vjacquie <vjacquie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/03 11:12:09 by jmoiroux          #+#    #+#             */
-/*   Updated: 2014/03/26 12:39:36 by jmoiroux         ###   ########.fr       */
+/*   Updated: 2014/03/27 15:22:43 by vjacquie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 /*
 ** remove line on env called from command
-** TEST OK jmoiroux
 */
 
 void	build_unsetenv(t_data *d)

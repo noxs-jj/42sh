@@ -6,16 +6,11 @@
 /*   By: vjacquie <vjacquie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/15 13:33:48 by jmoiroux          #+#    #+#             */
-/*   Updated: 2014/03/25 23:32:53 by jmoiroux         ###   ########.fr       */
+/*   Updated: 2014/03/27 15:06:03 by vjacquie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
-
-/*
-** check incoming linkcmd, execute if
-** TEST OK jmoiroux
-*/
 
 static int	check_cmdparam2(t_data *d, char *tmp)
 {
@@ -45,7 +40,8 @@ static int	check_cmdparam2(t_data *d, char *tmp)
 
 static int	check_cmdparam3(t_data *d, char *tmp)
 {
-	if (ft_strncmp("exit", tmp, ft_strlen("exit")) == 0)
+	if (ft_strncmp("exit", tmp, ft_strlen("exit")) == 0
+		&& (tmp[4] == '\n' || tmp[4] == '\0'))
 	{
 		d->toexec = tmp;
 		build_exit(d);

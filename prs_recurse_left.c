@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prs_recurse_left.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmoiroux <jmoiroux@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vjacquie <vjacquie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/14 14:59:36 by jmoiroux          #+#    #+#             */
-/*   Updated: 2014/03/26 12:09:16 by jmoiroux         ###   ########.fr       */
+/*   Updated: 2014/03/27 15:24:30 by vjacquie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 /*
 ** open link and dup2 it on prev link cmd
-** TEST OK jmoiroux
 */
 
 static int	recurse_leftfork(t_data *d, int father, int fd, t_more *link)

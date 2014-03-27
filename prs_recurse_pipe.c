@@ -6,7 +6,7 @@
 /*   By: vjacquie <vjacquie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/14 12:27:25 by vjacquie          #+#    #+#             */
-/*   Updated: 2014/03/26 12:07:14 by jmoiroux         ###   ########.fr       */
+/*   Updated: 2014/03/27 15:24:34 by vjacquie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 /*
 ** Do pipe operator, redirect to file fd if fd != 0
-** TEST OK jmoiroux
 */
 
 static void	fils(t_data *d, t_more *link, int fd, int pfd[2])

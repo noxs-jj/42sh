@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lx_lex_line.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nmohamed <nmohamed@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vjacquie <vjacquie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/05 12:54:43 by vjacquie          #+#    #+#             */
-/*   Updated: 2014/03/25 23:39:13 by jmoiroux         ###   ########.fr       */
+/*   Updated: 2014/03/27 15:24:10 by vjacquie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 /*
 ** return the pos of cmp in str, 0 if not found
-** TEST OK vjacquie
 */
 
 static int	lx_pos_str(char *str, char *cmp)

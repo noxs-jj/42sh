@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_exit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmoiroux <jmoiroux@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vjacquie <vjacquie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/03 13:04:57 by jmoiroux          #+#    #+#             */
-/*   Updated: 2014/03/21 12:09:39 by jmoiroux         ###   ########.fr       */
+/*   Updated: 2014/03/27 15:22:52 by vjacquie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 /*
 ** check comman is "exit" is present, call free and exit
-** TEST OK jmoiroux
 */
 
 void	check_exit(t_data *d)

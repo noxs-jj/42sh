@@ -6,7 +6,7 @@
 /*   By: vjacquie <vjacquie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/14 13:38:08 by jmoiroux          #+#    #+#             */
-/*   Updated: 2014/03/25 11:56:37 by jmoiroux         ###   ########.fr       */
+/*   Updated: 2014/03/27 15:23:41 by vjacquie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 /*
 ** check md to exec, lubch it by build or execve in fork()
-** TEST jmoiroux
 */
 
 int		exe_build_system(t_data *d)
